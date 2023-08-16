@@ -1,0 +1,17 @@
+@mixin btn($bgColor){
+    width: 20%;
+    padding: 6px 10px;
+    font-weight: 600;
+    background-color: $bgColor;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: $white;
+    font-family: 'Dodo';
+    text-transform: capitalize;
+    transition: 0.4s;
+}
+
+@mixin activeBtn($color){
+    cursor: pointer;
+    background-color: $color;
+}

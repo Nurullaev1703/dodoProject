@@ -1,0 +1,16 @@
+{
+  "name": "dodo-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "style": "sass -w assets/scss/:assets/css/",
+    "start":"node server-start.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

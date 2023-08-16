@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <div class="form-container">
+        <form action="" class="auth" >
+            <h1>Авторизация</h1>
+            <input type="text" placeholder="Логин" id="login">
+            <input type="password" placeholder="Пароль" id="password">
+            <span id="hint" style="display: none; color: red;">Неверный логин или пароль</span>
+
+            <input type="button" value="Войти" class="btn-main" onclick="auth()">
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
+    <script src="./assets/js/data.js"></script>
+    <script src="./assets/js/auth.js"></script>
+</body>
+</html>

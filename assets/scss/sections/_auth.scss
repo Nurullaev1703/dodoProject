@@ -1,0 +1,31 @@
+.form-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .auth{
+        width: 30%;
+        @extend %card;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        input:not([type=button]){
+            width: 80%;
+            padding: 3%;
+            border: 1px solid $main;
+            border-radius: 8px;
+            font-family: 'Dodo';
+            font-size: 16px;
+        }
+        .btn-main{
+            @include btn($main);
+            width: 86%;
+            padding: 16px 0;
+            font-size: 16px;
+        }
+    }
+    
+}

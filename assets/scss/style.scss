@@ -1,0 +1,342 @@
+@import 'default';
+@import 'fonts';
+@import 'colors';
+@import 'mixin';
+
+.wrapper{
+    position: absolute;
+    top: 2%;
+    left: 18%;
+    width: 81%;
+}
+section{
+    margin-bottom: 40px;
+}
+p,h1,h2,h3,h4,h5,h6{
+    font-family: 'Dodo';
+}
+h1{
+    font-size: 36px;
+}
+h2{
+    font-size: 30px;
+}
+.d-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.text-container{
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+}
+%card{
+    border-radius: 6px;
+    background-color: $white;
+    box-shadow: 2px 2px 5px 2px rgba($color: $main, $alpha: 0.1);
+}
+%img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.title{
+    padding: 30px 0;
+    font-size: 36px;
+    font-weight: 600;
+    color: $black;
+}
+
+// header styles
+header{
+    .container{
+        box-shadow: 0 0 5px 2px rgba($color: $mainDark, $alpha: 0.15);
+        margin: 10px auto;
+        border-radius: 10px;
+        padding: 10px 20px;
+        color: $lightgrey;
+        font-family: 'Dodo';
+        .burger-menu{
+            display: none;
+        }
+        .location-container{
+            gap: 12px;
+            font-size: 20px;
+            align-items: baseline;
+        }
+        .nav-menu{
+            width: 20%;
+            .choose-language{
+                gap: 10px;
+                p{
+                    cursor: pointer;
+                    font-weight: 300;
+                    font-size: 20px;
+                    &.active{
+                        font-weight: 600;
+                    }
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+                
+            }
+            .profile-preview{
+                flex-direction: column-reverse;
+                align-items: center;
+                &:hover{
+                    cursor: pointer;
+                }
+                p{
+                    font-size: 14px;
+                }
+                .img-cover{
+                    position: relative;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 100%;
+                    margin-left: 12px;
+                    .avatar{
+                        @extend %img;
+                        border-radius: 100%;
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    
+}
+
+//sidebar styles
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 15vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 1vw;
+    height: 100vh;
+    box-shadow: 0 0 5px 2px rgba($color: $mainDark, $alpha: 0.15);
+    .d-flex{
+        justify-content: flex-start;
+        gap: 16px;
+    }
+    &-item{
+        padding: 5px 12px;
+        border-radius: 5px;
+        color: $lightgrey;
+        font-size: 20px;
+        svg{
+            height: 30px;
+        }
+        cursor: pointer;
+        &.active{
+            svg{
+                fill: $white;
+            }
+            color: $white;
+            background-color: rgba($color: $main, $alpha: 1);
+        }
+        &:not(.active){
+            &:hover{
+                background-color: rgba($color: $main, $alpha: 0.15);
+            }
+        }
+    }
+    .logo{
+        height: 40px;
+        position: relative;
+        cursor: pointer;
+        img{
+            @extend %img;
+        }
+    }
+}
+
+
+//profile styles
+.user-profile{
+    .profile-card{
+        @extend %card;
+        width: 100%;
+        position: relative;
+        .bg{
+            aspect-ratio: 6/1;
+            width: 100%;
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            border-radius: 6px 6px 0 0;
+        }
+        .card-content{
+            margin-top: -3rem;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            .info{
+                margin-top: 3rem;
+                .name{
+                    margin-bottom: 12px;
+                }
+                .text-container{
+                    color: $lightgrey;
+                    text-transform: capitalize;
+                    &:not(:last-child){
+                        margin-bottom: 8px;
+                    }
+                    
+                    
+                }
+                span{
+                    font-family: 'Dodo';
+                    font-size: 16px;    
+                }
+            }
+        }
+        .avatar{
+            width: 120px;
+            height: 120px;
+            border: 5px solid $white;
+            border-radius: 8px;
+            position: relative;
+            &:hover{
+                label{
+                    opacity: 100;
+                    display: flex;
+                }
+            }
+            label{
+                opacity: 0;
+                display: none;
+                transition: 0.3s;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: $main;
+                border-radius: 0 0 4px 4px;
+                padding-top: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                span{
+                    color: $white;
+                    font-family: 'Dodo';
+                    text-transform: capitalize;
+                    text-align: center;
+                }
+            }
+            img{
+                @extend %img;
+                border-radius: 4px;
+            }
+        }
+
+    }
+}
+
+//about user
+
+.about-user{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    .user-info{
+        @extend %card;
+        width: 32%;
+        padding: 2%;
+        h3{
+            font-size: 24px;
+            color: $black;
+            text-transform: capitalize;
+            margin-bottom: 16px;
+        }
+        .text-container{
+            h4{
+                font-size: 18px;
+                color:$black;
+                font-weight: 500;
+                text-transform: capitalize;
+            }
+            svg{
+                fill: $black;
+            }
+            p{
+                color: $lightgrey;
+            }
+            &:not(:last-child){
+                margin-bottom: 12px;
+            }
+        }
+    }
+    .user-divisions{
+        width: 58%;
+        @extend %card;
+        padding: 20px;
+        h3{
+            font-size: 24px;
+            margin-bottom: 16px;
+            text-transform: capitalize;
+        }
+        .division-member{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            &:not(:last-child){
+                margin-bottom: 16px;
+            }
+            h5{
+                font-size: 14px;
+                text-transform: capitalize;
+            }
+            p{
+                font-size: 13px;
+                color: $lightgrey;
+            }
+            .text-container{
+                flex-direction: column;
+                .employee-count{
+                    text-align: center;
+                    width: 100%;
+                }
+            }
+            .member-info{
+                display: flex;
+                gap: 12px;
+                align-items: center;
+                
+                
+                .img-cover{
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 100%;
+                    position: relative;
+                    img{
+                        @extend %img;
+                        border-radius: 100%;
+                    }
+                }
+            }
+            .btn-green{
+                @include btn($green);
+                &:hover{
+                    @include activeBtn($greenDark);
+                }
+            }
+            
+        }
+    }
+}
+
+@import './sections/auth';
+@import './sections/modal';
+
+
+@import 'adaptive';
