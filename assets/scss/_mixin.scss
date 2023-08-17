@@ -1,5 +1,5 @@
 @mixin btn($bgColor){
-    width: 20%;
+    width: fit-content;
     padding: 6px 10px;
     font-weight: 600;
     background-color: $bgColor;

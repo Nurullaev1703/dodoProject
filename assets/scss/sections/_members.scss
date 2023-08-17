@@ -1,0 +1,102 @@
+.members{
+    margin-top: 40px;
+    .row{
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+    }
+    .column{
+        width: 22%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 0;
+    }
+    .edit-column{
+        width: 10%;
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: wrap;
+        svg{
+            cursor: pointer;
+            padding: 8px;
+            background-color: transparent;
+            border-radius: 8px;
+            transition:0.4s;
+            &:hover{
+                fill: $main;
+                background-color: rgba($color: $mainDark, $alpha: 0.1);
+            }
+        }
+    }
+    .table{
+        width: 98%;
+        padding: 1%;
+        @extend %card;
+        &-title{
+            font-weight: 600;
+            .column:not(:last-child){
+                border-bottom: 1px dashed $main;
+            }
+        }
+    }
+    .top-menu{
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        .select{
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            position: relative;
+            border-radius: 8px;
+            width: 15%;
+            background-color: $white;
+            p{
+                padding: 6px 10px;
+                color: $black;
+                transition: 0.4s;
+                user-select: none;
+                text-align: center;
+                &.select-title{
+                    &:hover{
+                        border-radius: 8px;
+                    }
+                }
+                &:hover{
+                    background-color: $main;
+                    color: $white;
+                    cursor: pointer;
+                }
+            }
+            &-inner{
+                position: absolute;
+                left: 0;
+                top: 100%;
+                z-index: 2;
+                display: none;
+                width: 100%;
+                background-color: $white;
+                p{
+                    text-align: center;
+                    &:last-child{
+                        border-radius: 0 0 8px 8px;
+                    }
+                }
+            }
+            
+            &.active{
+                p{
+                    &.select-title{
+                        border-radius: 8px 8px 0 0;
+                    }
+                }
+                .select-inner{
+                    display: block;
+                }
+            }
+        }
+    }
+}

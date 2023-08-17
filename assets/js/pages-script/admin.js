@@ -1,4 +1,6 @@
+
 const currentUserId = localStorage.getItem('id')
+
 
 const setInfo = () =>{
     let header = document.getElementById('header');
@@ -31,5 +33,4 @@ const burgerMenu = (open) =>{
         },300)
         
     }
-    
 }

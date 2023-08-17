@@ -3,6 +3,9 @@
 @import 'colors';
 @import 'mixin';
 
+body{
+    background-color: $background;
+}
 .wrapper{
     position: absolute;
     top: 2%;
@@ -14,6 +17,7 @@ section{
 }
 p,h1,h2,h3,h4,h5,h6{
     font-family: 'Dodo';
+    color: $black;
 }
 h1{
     font-size: 36px;
@@ -50,7 +54,24 @@ h2{
     font-weight: 600;
     color: $black;
 }
-
+.btn-green{
+    @include btn($green);
+    &:hover{
+        @include activeBtn($greenDark);
+    }
+}
+.btn-main{
+    @include btn($main);
+    &:hover{
+        @include activeBtn($mainDark);
+    }
+}
+.btn-red{
+    @include btn($red);
+    &:hover{
+        @include activeBtn($redDark);
+    }
+}
 // header styles
 header{
     .container{
@@ -58,7 +79,9 @@ header{
         margin: 10px auto;
         border-radius: 10px;
         padding: 10px 20px;
-        color: $lightgrey;
+        p{
+            color: $lightgrey;
+        }
         font-family: 'Dodo';
         .burger-menu{
             display: none;
@@ -132,17 +155,25 @@ header{
     &-item{
         padding: 5px 12px;
         border-radius: 5px;
-        color: $lightgrey;
-        font-size: 20px;
+        text-decoration: none;
+        font-family: 'Dodo';
+        p{
+            color: $lightgrey;
+            font-size: 20px;
+        }
         svg{
             height: 30px;
+            fill: $lightgrey;
         }
         cursor: pointer;
         &.active{
             svg{
                 fill: $white;
             }
-            color: $white;
+            p{
+                color: $white;
+            }
+            
             background-color: rgba($color: $main, $alpha: 1);
         }
         &:not(.active){
@@ -168,11 +199,15 @@ header{
         @extend %card;
         width: 100%;
         position: relative;
+        
         .bg{
             aspect-ratio: 6/1;
             width: 100%;
             background: linear-gradient(to right, #ff9966, #ff5e62);
             border-radius: 6px 6px 0 0;
+        }
+        p{
+            color: $lightgrey;
         }
         .card-content{
             margin-top: -3rem;
@@ -285,58 +320,63 @@ header{
             margin-bottom: 16px;
             text-transform: capitalize;
         }
-        .division-member{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            &:not(:last-child){
-                margin-bottom: 16px;
+    }
+}
+.division-member{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &:not(:last-child){
+        margin-bottom: 16px;
+    }
+    h5{
+        font-size: 14px;
+        text-transform: capitalize;
+    }
+    p{
+        font-size: 13px;
+        color: $lightgrey;
+    }
+    .text-container{
+        width: 33%;
+        flex-direction: column;
+        h5{
+            text-align: center;
+            width: 100%;
+        }
+        .employee-count{
+            text-align: center;
+            width: 100%;
+        }
+    }
+    .member-info{
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        width: 33%;
+        h5{
+            width: fit-content;
+            text-align: left;
+        }
+        .text-container{
+            width: fit-content;
+            gap: 0;
+        }
+        .img-cover{
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            position: relative;
+            img{
+                @extend %img;
+                border-radius: 100%;
             }
-            h5{
-                font-size: 14px;
-                text-transform: capitalize;
-            }
-            p{
-                font-size: 13px;
-                color: $lightgrey;
-            }
-            .text-container{
-                flex-direction: column;
-                .employee-count{
-                    text-align: center;
-                    width: 100%;
-                }
-            }
-            .member-info{
-                display: flex;
-                gap: 12px;
-                align-items: center;
-                
-                
-                .img-cover{
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 100%;
-                    position: relative;
-                    img{
-                        @extend %img;
-                        border-radius: 100%;
-                    }
-                }
-            }
-            .btn-green{
-                @include btn($green);
-                &:hover{
-                    @include activeBtn($greenDark);
-                }
-            }
-            
         }
     }
 }
-
 @import './sections/auth';
 @import './sections/modal';
-
+@import './sections/stats';
+@import './sections/members';
 
 @import 'adaptive';

@@ -39,6 +39,10 @@ input {
   src: url("../fonts/DodoRounded_v2-Thin.otf");
   font-weight: 100;
 }
+body {
+  background-color: #f8f8f8;
+}
+
 .wrapper {
   position: absolute;
   top: 2%;
@@ -52,6 +56,7 @@ section {
 
 p, h1, h2, h3, h4, h5, h6 {
   font-family: "Dodo";
+  color: #303030;
 }
 
 h1 {
@@ -74,13 +79,13 @@ h2 {
   align-items: baseline;
 }
 
-.modal-container .modal, .form-container .auth, .about-user .user-divisions, .about-user .user-info, .user-profile .profile-card {
+.members .table, .test-results .results-container, .test-results .equipment-container, .modal-container .modal .modal-content form input, .modal-container .modal, .form-container .auth, .about-user .user-divisions, .about-user .user-info, .user-profile .profile-card {
   border-radius: 6px;
   background-color: #fff;
   box-shadow: 2px 2px 5px 2px rgba(232, 110, 44, 0.1);
 }
 
-.modal-container .modal .modal-content .user-img img, .about-user .user-divisions .division-member .member-info .img-cover img, .user-profile .profile-card .avatar img, .side-bar .logo img, header .container .nav-menu .profile-preview .img-cover .avatar {
+.test-results .equpment-stats .img-cover img, .modal-container .modal .modal-content .user-img img, .division-member .member-info .img-cover img, .user-profile .profile-card .avatar img, .side-bar .logo img, header .container .nav-menu .profile-preview .img-cover .avatar {
   position: absolute;
   top: 0;
   left: 0;
@@ -96,13 +101,66 @@ h2 {
   color: #303030;
 }
 
+.btn-green {
+  width: fit-content;
+  padding: 6px 10px;
+  font-weight: 600;
+  background-color: #37b34a;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Dodo";
+  text-transform: capitalize;
+  transition: 0.4s;
+}
+.btn-green:hover {
+  cursor: pointer;
+  background-color: #1f882e;
+}
+
+.btn-main {
+  width: fit-content;
+  padding: 6px 10px;
+  font-weight: 600;
+  background-color: #e86e2c;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Dodo";
+  text-transform: capitalize;
+  transition: 0.4s;
+}
+.btn-main:hover {
+  cursor: pointer;
+  background-color: #e35d15;
+}
+
+.btn-red {
+  width: fit-content;
+  padding: 6px 10px;
+  font-weight: 600;
+  background-color: #f95441;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Dodo";
+  text-transform: capitalize;
+  transition: 0.4s;
+}
+.btn-red:hover {
+  cursor: pointer;
+  background-color: #f93e29;
+}
+
 header .container {
   box-shadow: 0 0 5px 2px rgba(227, 93, 21, 0.15);
   margin: 10px auto;
   border-radius: 10px;
   padding: 10px 20px;
-  color: #808080;
   font-family: "Dodo";
+}
+header .container p {
+  color: #808080;
 }
 header .container .burger-menu {
   display: none;
@@ -169,19 +227,26 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
 .side-bar-item {
   padding: 5px 12px;
   border-radius: 5px;
+  text-decoration: none;
+  font-family: "Dodo";
+  cursor: pointer;
+}
+.side-bar-item p {
   color: #808080;
   font-size: 20px;
-  cursor: pointer;
 }
 .side-bar-item svg {
   height: 30px;
+  fill: #808080;
 }
 .side-bar-item.active {
-  color: #fff;
   background-color: #e86e2c;
 }
 .side-bar-item.active svg {
   fill: #fff;
+}
+.side-bar-item.active p {
+  color: #fff;
 }
 .side-bar-item:not(.active):hover {
   background-color: rgba(232, 110, 44, 0.15);
@@ -200,6 +265,9 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   width: 100%;
   background: linear-gradient(to right, #ff9966, #ff5e62);
   border-radius: 6px 6px 0 0;
+}
+.user-profile .profile-card p {
+  color: #808080;
 }
 .user-profile .profile-card .card-content {
   margin-top: -3rem;
@@ -300,58 +368,57 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   margin-bottom: 16px;
   text-transform: capitalize;
 }
-.about-user .user-divisions .division-member {
+
+.division-member {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.about-user .user-divisions .division-member:not(:last-child) {
+.division-member:not(:last-child) {
   margin-bottom: 16px;
 }
-.about-user .user-divisions .division-member h5 {
+.division-member h5 {
   font-size: 14px;
   text-transform: capitalize;
 }
-.about-user .user-divisions .division-member p {
+.division-member p {
   font-size: 13px;
   color: #808080;
 }
-.about-user .user-divisions .division-member .text-container {
+.division-member .text-container {
+  width: 33%;
   flex-direction: column;
 }
-.about-user .user-divisions .division-member .text-container .employee-count {
+.division-member .text-container h5 {
   text-align: center;
   width: 100%;
 }
-.about-user .user-divisions .division-member .member-info {
+.division-member .text-container .employee-count {
+  text-align: center;
+  width: 100%;
+}
+.division-member .member-info {
   display: flex;
   gap: 12px;
   align-items: center;
+  width: 33%;
 }
-.about-user .user-divisions .division-member .member-info .img-cover {
+.division-member .member-info h5 {
+  width: fit-content;
+  text-align: left;
+}
+.division-member .member-info .text-container {
+  width: fit-content;
+  gap: 0;
+}
+.division-member .member-info .img-cover {
   width: 50px;
   height: 50px;
   border-radius: 100%;
   position: relative;
 }
-.about-user .user-divisions .division-member .member-info .img-cover img {
+.division-member .member-info .img-cover img {
   border-radius: 100%;
-}
-.about-user .user-divisions .division-member .btn-green {
-  width: 20%;
-  padding: 6px 10px;
-  font-weight: 600;
-  background-color: #37b34a;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  color: #fff;
-  font-family: "Dodo";
-  text-transform: capitalize;
-  transition: 0.4s;
-}
-.about-user .user-divisions .division-member .btn-green:hover {
-  cursor: pointer;
-  background-color: #1f882e;
 }
 
 .form-container {
@@ -378,7 +445,7 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   font-size: 16px;
 }
 .form-container .auth .btn-main {
-  width: 20%;
+  width: fit-content;
   padding: 6px 10px;
   font-weight: 600;
   background-color: #e86e2c;
@@ -412,6 +479,25 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   width: 40%;
   padding: 20px;
   cursor: default;
+  position: relative;
+}
+.modal-container .modal .exit {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Dodo";
+  color: #f95441;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  padding: 4px 10px;
+  background-color: rgba(249, 84, 65, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.modal-container .modal .exit:hover {
+  color: #f93e29;
+  background-color: rgba(249, 84, 65, 0.3);
 }
 .modal-container .modal .modal-content {
   display: flex;
@@ -440,6 +526,167 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
 .modal-container .modal .modal-content .user-info p {
   font-size: 16px;
   color: #808080;
+}
+.modal-container .modal .modal-content form {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.modal-container .modal .modal-content form p {
+  margin-bottom: -10px;
+  font-size: 14px;
+}
+.modal-container .modal .modal-content form input {
+  width: 100%;
+  padding: 12px;
+}
+
+.test-results {
+  margin-top: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.test-results .title {
+  padding: 0;
+  margin-bottom: 16px;
+  font-size: 30px;
+}
+.test-results .results-container, .test-results .equipment-container {
+  padding: 2%;
+  width: 44%;
+}
+.test-results .equpment-stats {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  align-items: center;
+}
+.test-results .equpment-stats:not(:last-child) {
+  margin-bottom: 15px;
+}
+.test-results .equpment-stats p {
+  font-size: 13px;
+}
+.test-results .equpment-stats .text-container {
+  width: 33%;
+  flex-direction: column;
+  gap: 0;
+}
+.test-results .equpment-stats .text-container .name {
+  font-size: 14px;
+}
+.test-results .equpment-stats .text-container .school {
+  color: #808080;
+}
+.test-results .equpment-stats .img-cover {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  border-radius: 100%;
+}
+.test-results .equpment-stats .img-cover img {
+  border-radius: 100%;
+}
+.test-results .equpment-stats .date, .test-results .equpment-stats .time {
+  width: 21%;
+}
+
+.members {
+  margin-top: 40px;
+}
+.members .row {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+.members .column {
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+}
+.members .edit-column {
+  width: 10%;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.members .edit-column svg {
+  cursor: pointer;
+  padding: 8px;
+  background-color: transparent;
+  border-radius: 8px;
+  transition: 0.4s;
+}
+.members .edit-column svg:hover {
+  fill: #e86e2c;
+  background-color: rgba(227, 93, 21, 0.1);
+}
+.members .table {
+  width: 98%;
+  padding: 1%;
+}
+.members .table-title {
+  font-weight: 600;
+}
+.members .table-title .column:not(:last-child) {
+  border-bottom: 1px dashed #e86e2c;
+}
+.members .top-menu {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.members .top-menu .select {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  border-radius: 8px;
+  width: 15%;
+  background-color: #fff;
+}
+.members .top-menu .select p {
+  padding: 6px 10px;
+  color: #303030;
+  transition: 0.4s;
+  user-select: none;
+  text-align: center;
+}
+.members .top-menu .select p.select-title:hover {
+  border-radius: 8px;
+}
+.members .top-menu .select p:hover {
+  background-color: #e86e2c;
+  color: #fff;
+  cursor: pointer;
+}
+.members .top-menu .select-inner {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 2;
+  display: none;
+  width: 100%;
+  background-color: #fff;
+}
+.members .top-menu .select-inner p {
+  text-align: center;
+}
+.members .top-menu .select-inner p:last-child {
+  border-radius: 0 0 8px 8px;
+}
+.members .top-menu .select.active p.select-title {
+  border-radius: 8px 8px 0 0;
+}
+.members .top-menu .select.active .select-inner {
+  display: block;
 }
 
 @media screen and (max-width: 900px) {
@@ -553,6 +800,13 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   }
   .modal-container .modal .modal-content .user-info p {
     font-size: 14px;
+  }
+  .test-results {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .test-results .results-container, .test-results .equipment-container {
+    width: 96%;
   }
 }
 @keyframes openSidebar {

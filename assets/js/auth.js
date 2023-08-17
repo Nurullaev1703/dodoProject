@@ -11,24 +11,21 @@ const auth = () => {
             password: userPassword.value
         },
         success: function (response) {
-           console.log(response)
+            console.log(response)
+            if(userLogin.value === response.login){
+                localStorage.setItem('id',response.id)
+                localStorage.setItem('role',response.role)
+                window.location = './assets/pages/admin/profile.html' + '#ru'
+            }
+            else{
+                    userLogin.style.border = '1px solid red';
+                    userPassword.style.border = '1px solid red';
+                    authHint.style.display = 'block';
+            }
         },
         error: function (error) {
             console.log(error);
         }
     });
 
-    // usersInfo.forEach(user =>{
-    //     if(userLogin.value === user.login && userPassword.value === user.password){
-    //         localStorage.setItem('id',user.id)
-    //         setTimeout(() =>{
-    //             window.location = './app.html'
-    //         },300) 
-    //     }
-    //     else{
-    //         userLogin.style.border = '1px solid red';
-    //         userPassword.style.border = '1px solid red';
-    //         authHint.style.display = 'block';
-    //     }
-    // });
 }

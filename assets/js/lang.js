@@ -1,6 +1,6 @@
 let ruLang = document.getElementById('ru')
 
-var langArray = {
+let langArray = {
     'changeImg':{
         'ru':'Сменить фото',
         'kz':'фотосуретті өзгерту'
@@ -57,15 +57,15 @@ const changeUrl = (lang) =>{
 }
 
 const changeLanguage = () =>{
-    
     let hash = window.location.hash.substring(1)
     
     for(let key in langArray){
-       let element =  document.querySelector('.lang-' + key)
-       console.log(element)
-       if(element){
-        element.innerHTML = langArray[key][hash]
-       }
+       let elements =  document.querySelectorAll('.lang-' + key)
+       elements.forEach(element =>{
+        if(element){
+            element.innerHTML = langArray[key][hash]
+           }
+       })
     };
     
 }

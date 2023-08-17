@@ -111,6 +111,13 @@
             }
         }
     }
+    .test-results{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .test-results .results-container, .test-results .equipment-container{
+        width: 96%;
+    }
 }
 
 @keyframes openSidebar {
