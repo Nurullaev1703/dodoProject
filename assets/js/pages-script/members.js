@@ -1,15 +1,31 @@
 const currentUserId = localStorage.getItem('id')
 
+const getCities = () =>{
+    let cities = []
+    usersInfo.forEach(user =>{
+        if(user.id == currentUserId){
+            user.division.forEach(item =>{
+                if(!cities.includes(item.adress)){
+                    cities.push(item.adress)
+                }
+            })
+        }
+    })
+    return cities
+}
+
 const setInfo = () =>{
     let header = document.getElementById('header');
     let membersInfo = document.querySelector('.table-inner');
+    let citiesContainer = document.querySelector('.select-inner')
     membersInfo.innerHTML = ``
     usersInfo.forEach(user =>{
         if (user.id === parseInt(currentUserId)){
             header.innerHTML = setHeaderContent(user)
+            citiesContainer.innerHTML = setCities(getCities())
             user.division.forEach(member =>{
                 membersInfo.innerHTML += setMembersInfo(member)
-                // equipmentStats.innerHTML += setEquipmentStats(member)
+
             })
         }
     })
@@ -181,3 +197,4 @@ $(function(){
         
     })
 })
+

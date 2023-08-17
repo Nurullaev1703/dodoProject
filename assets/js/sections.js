@@ -111,7 +111,9 @@ return divisionMember
 // stats page
 const setMembersResults = (member) =>{
     const memberResult = `
-        <div class="division-member member-parent" data-id=${member.id}>
+        <div class="division-member member-parent"
+         data-id=${member.id} data-name='${member.name}' data-role='${member.role}'
+         data-date='${member.dateB}' data-point='${member.adress}' data-quest='${member.quest}'>
             <div class="member-info">
                 <div class="img-cover">
                     <img src=${member.img} alt="">
@@ -125,14 +127,15 @@ const setMembersResults = (member) =>{
                 <h5 class="lang-rating">Оценка:</h5>
                 <p class="employee-count">${member.rating}</p>
             </div>
-            <button class="btn-green lang-info" onclick="modal(true,this,'result')">Информация</button>
+            <button class="btn-green lang-info" onclick="modal(true,this,'result')">Инфо</button>
         </div>`
         return memberResult
 }
 
 const setEquipmentStats = (member) =>{
     const equipmentStats = `
-    <div class="equpment-stats">
+    <div class="equipment-stats" data-name-equip='${member.name}'
+    data-date-equip='${member.dateB}' data-point-equip='${member.adress}'>
             <div class="img-cover">
                 <img src="${member.img}" alt="">
             </div>
@@ -219,4 +222,13 @@ const setAddUserForm = () =>{
     </form>
     `
     return userInfoForm
+}
+
+const setCities = (array) =>{
+    let city = ``
+
+    array.forEach(element => {
+        city += `<p data-filter="${element}">${element}</p>`
+    });
+    return city
 }

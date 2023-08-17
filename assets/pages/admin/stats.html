@@ -32,18 +32,84 @@
         <header id="header"></header>
 
         <section class="test-results" >
-            
-
-            <div class="results-container" id="results-container">
-                <h2 class="title">Сотрудники</h2>
+            <div class="results-info" >
+                <div class="filter-container active">
+                    <button class="btn-main">Вернуться</button>
+                    <p class="filter-title">Фильтр</p>
+                    <div class="filter-inner">
+                        <div class="filter name">
+                            <p>Имя сотрудника</p>
+                            <input type="text" id="member-name" data-filterName="memberName">
+                        </div>
+                        <div class="filter date">
+                            <div class="date-container">
+                                <p>От</p>
+                                <input type="date" id="member-date-start">
+                            </div>
+                            <div class="date-container">
+                                <p>До</p>
+                                <input type="date" id="member-date-end">
+                            </div>
+                        </div>
+                        <div class="filter point">
+                            <p>Место проведения</p>
+                            <input type="text" id="member-point" data-filterPoint="memberPoint">
+                        </div>
+                        <div class="filter role">
+                            <p>Должность</p>
+                            <input type="text" id="member-role" data-filterRole="memberRole">
+                        </div>
+                        <div class="filter quest">
+                            <p>Задание</p>
+                            <input type="text" id="member-quest" data-filterQuest="memberQuest">
+                        </div>
+                    </div>
+                </div>
+                <div class="results-container" id="results-container">
+                    <div class="d-flex">
+                        <h2 class="title">Сотрудники</h2>
+                        <button class="btn-main toggle-filter">Фильтр</button>
+                    </div>
+                    <div class="nav-buttons">
+                        <button id="prevPage" class="btn-main">назад</button>
+                        <button id="nextPage" class="btn-main">вперед</button>
+                    </div>
+                </div>
             </div>
-
-            <div class="equipment-container" id="equipment-container">
-                <h2 class="title">Оборудование</h2>
-                
-            </div>
-
         </section>
+        <section class="equipment-info">
+            <div class="filter-container active">
+                <button class="btn-main">Вернуться</button>
+                <p class="filter-title">Фильтр</p>
+                <div class="filter-inner">
+                    <div class="filter name">
+                        <p>Имя сотрудника</p>
+                        <input type="text" id="member-name" data-member-name-equip="member-name">
+                    </div>
+                    <div class="filter date">
+                        <div class="date-container">
+                            <p>От</p>
+                            <input type="date" id="member-fromDate">
+                        </div>
+                        <div class="date-container">
+                            <p>До</p>
+                            <input type="date" id="member-toDate">
+                        </div>
+                    </div>
+                    <div class="filter point" >
+                        <p>Место проведения</p>
+                        <input type="text" id="member-point" data-member-point-equip="member-point">
+                    </div>
+                </div>
+            </div>
+            <div class="equipment-container" id="equipment-container">
+                <div class="d-flex">
+                    <h2 class="title">Оборудование</h2>
+                    <button class="btn-main">Фильтр</button>
+                </div>
+            </div>
+        </section>
+        
     </div>
 
     <div class="modal-container" onclick="modal(false,this,'')" style="cursor:pointer;">
@@ -53,6 +119,9 @@
         </div>
     </div>  
     
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
     <script src="../../js/data.js"></script>
     <script src="../../js/members-info.js"></script>
     <script src="../../js/sections.js"></script>

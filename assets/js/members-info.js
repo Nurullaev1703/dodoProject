@@ -44,11 +44,15 @@ const setResultInfo = (member) =>{
         </div>
         <div class="user-info">
             <div class="text-container">
-                <h4>Имя:</h4>
+                <h4'>Имя:</h4>
                 <p>${member.name}</p>
             </div>
             <div class="text-container">
-                <h4>Адрес:</h4>
+                <h4>Должность:</h4>
+                <p>${member.role}</p>
+            </div>
+            <div class="text-container">
+                <h4>Точка:</h4>
                 <p>${member.adress}</p>
             </div>
             <div class="text-container">
@@ -56,8 +60,16 @@ const setResultInfo = (member) =>{
                 <p>${member.time} минут</p>
             </div>
             <div class="text-container">
+                <h4>Дата:</h4>
+                <p>${member.dateB}</p>
+            </div>
+            <div class="text-container">
                 <h4>Ошибки:</h4>
                 <p>${member.mistakes}</p>
+            </div>
+            <div class="text-container">
+                <h4>Задание:</h4>
+                <p>${member.quest}</p>
             </div>
         </div>
     `

@@ -327,6 +327,9 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    &.hide{
+        display: none;
+    }
     &:not(:last-child){
         margin-bottom: 16px;
     }
@@ -424,6 +427,44 @@ header{
         }
         .select-inner{
             display: block;
+        }
+    }
+}
+.filter-container{
+    .btn-main{
+        display: none;
+    }
+    width: 30%;
+    padding: 2%;
+    @extend %card;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 600px;
+    .filter-title{
+        font-size: 30px;
+        font-weight: 600;
+        border-radius: 6px;
+        transition: 0.4s;
+    }
+    .filter-inner{
+        .filter{
+            width: 100%;
+        }
+        P{
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+        input{
+            width: 96%;
+            padding: 2%;
+            border: 1px solid rgba($color: $main, $alpha: 0.5);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            &[type=date]:hover{
+                cursor: text;
+            }
+            font-family: 'Dodo';
         }
     }
 }

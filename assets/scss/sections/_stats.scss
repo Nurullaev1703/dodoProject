@@ -8,45 +8,88 @@
         margin-bottom: 16px;
         font-size: 30px;
     }
-    .results-container, .equipment-container{
-        @extend %card;
-        padding: 2%;
-        width: 44%;
-    }
-    .equpment-stats{
+    .results-info{
+        width: 100%;
         display: flex;
         justify-content: space-between;
-        flex-grow:1;
-        align-items: center;
-        &:not(:last-child){
-            margin-bottom: 15px;
+        align-items: stretch;
+    }
+    .results-container{
+        @extend %card;
+        padding: 2%;
+        width: 60%;
+        height: 600px;
+        position: relative;
+        .toggle-filter{
+            width: 30%;
+            display: none;
         }
-        p{
-            font-size: 13px;
-        }
-        .text-container{
-            width: 33%;
-            flex-direction: column;
-            gap: 0;
-            .name{
-                font-size: 14px;
+        .nav-buttons{
+            position: absolute;
+            top: 90%;
+            right: 3%;
+            .btn-main{
+                width: 80px;
             }
-            .school{
-                color: $lightgrey;
-            }
-        }
-        .img-cover{
-            width: 50px;
-            height: 50px;
-            position: relative;
-            border-radius: 100%;
-            img{
-                @extend %img;
-                border-radius: 100%;
-            }
-        }
-        .date,.time{
-            width: 21%;
         }
     }
+}
+.equipment-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    .equipment-container{
+        @extend %card;
+        padding: 2%;
+        width: 60%;
+        .toggle-filter{
+            width: 30%;
+            display: none;
+        }
+        .title{
+            padding: 0;
+            margin-bottom: 16px;
+            font-size: 30px;
+        }
+        .equipment-stats{
+            display: flex;
+            justify-content: space-between;
+            flex-grow:1;
+            align-items: center;
+            &.hide{
+                display: none;
+            }
+            &:not(:last-child){
+                margin-bottom: 15px;
+            }
+            p{
+                font-size: 13px;
+            }
+            .text-container{
+                width: 33%;
+                flex-direction: column;
+                gap: 0;
+                .name{
+                    font-size: 14px;
+                }
+                .school{
+                    color: $lightgrey;
+                }
+            }
+            .img-cover{
+                width: 50px;
+                height: 50px;
+                position: relative;
+                border-radius: 100%;
+                img{
+                    @extend %img;
+                    border-radius: 100%;
+                }
+            }
+            .date,.time{
+                width: 21%;
+            }
+        }
+    }
+    
 }
