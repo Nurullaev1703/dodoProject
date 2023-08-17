@@ -421,6 +421,51 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   border-radius: 100%;
 }
 
+.select {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  border-radius: 8px;
+  background-color: #fff;
+}
+.select p {
+  padding: 6px 10px;
+  color: #303030;
+  transition: 0.4s;
+  user-select: none;
+  text-align: center;
+}
+.select p.select-title:hover {
+  border-radius: 8px;
+}
+.select p:hover {
+  background-color: #e86e2c;
+  color: #fff;
+  cursor: pointer;
+}
+.select-inner {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 2;
+  display: none;
+  width: 100%;
+  background-color: #fff;
+}
+.select-inner p {
+  text-align: center;
+}
+.select-inner p:last-child {
+  border-radius: 0 0 8px 8px;
+}
+.select.active p.select-title {
+  border-radius: 8px 8px 0 0;
+}
+.select.active .select-inner {
+  display: block;
+}
+
 .form-container {
   width: 100vw;
   height: 100vh;
@@ -602,6 +647,9 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   align-items: stretch;
   justify-content: space-between;
 }
+.members .row.hide {
+  display: none;
+}
 .members .column {
   width: 22%;
   display: flex;
@@ -643,50 +691,10 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   justify-content: space-between;
   margin-bottom: 20px;
 }
-.members .top-menu .select {
+.members .top-menu-container {
+  width: fit-content;
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  position: relative;
-  border-radius: 8px;
-  width: 15%;
-  background-color: #fff;
-}
-.members .top-menu .select p {
-  padding: 6px 10px;
-  color: #303030;
-  transition: 0.4s;
-  user-select: none;
-  text-align: center;
-}
-.members .top-menu .select p.select-title:hover {
-  border-radius: 8px;
-}
-.members .top-menu .select p:hover {
-  background-color: #e86e2c;
-  color: #fff;
-  cursor: pointer;
-}
-.members .top-menu .select-inner {
-  position: absolute;
-  left: 0;
-  top: 100%;
-  z-index: 2;
-  display: none;
-  width: 100%;
-  background-color: #fff;
-}
-.members .top-menu .select-inner p {
-  text-align: center;
-}
-.members .top-menu .select-inner p:last-child {
-  border-radius: 0 0 8px 8px;
-}
-.members .top-menu .select.active p.select-title {
-  border-radius: 8px 8px 0 0;
-}
-.members .top-menu .select.active .select-inner {
-  display: block;
+  gap: 10px;
 }
 
 @media screen and (max-width: 900px) {

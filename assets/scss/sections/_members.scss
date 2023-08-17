@@ -4,6 +4,9 @@
         display: flex;
         align-items: stretch;
         justify-content: space-between;
+        &.hide{
+            display: none;
+        }
     }
     .column{
         width: 22%;
@@ -46,57 +49,11 @@
         align-items: stretch;
         justify-content: space-between;
         margin-bottom: 20px;
-        .select{
+        &-container{
+            width: fit-content;
             display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            position: relative;
-            border-radius: 8px;
-            width: 15%;
-            background-color: $white;
-            p{
-                padding: 6px 10px;
-                color: $black;
-                transition: 0.4s;
-                user-select: none;
-                text-align: center;
-                &.select-title{
-                    &:hover{
-                        border-radius: 8px;
-                    }
-                }
-                &:hover{
-                    background-color: $main;
-                    color: $white;
-                    cursor: pointer;
-                }
-            }
-            &-inner{
-                position: absolute;
-                left: 0;
-                top: 100%;
-                z-index: 2;
-                display: none;
-                width: 100%;
-                background-color: $white;
-                p{
-                    text-align: center;
-                    &:last-child{
-                        border-radius: 0 0 8px 8px;
-                    }
-                }
-            }
-            
-            &.active{
-                p{
-                    &.select-title{
-                        border-radius: 8px 8px 0 0;
-                    }
-                }
-                .select-inner{
-                    display: block;
-                }
-            }
+            gap: 10px;
         }
+        
     }
 }

@@ -149,7 +149,7 @@ const setEquipmentStats = (member) =>{
 //members page
 const setMembersInfo = (member) =>{
     const membersInfo = `
-            <div class="row member-parent" data-id="${member.id}">
+            <div class="row member-parent" data-id="${member.id}" data-city='${member.adress}'>
                 <div class="column">
                     <p class="name">${member.name}</p>
                 </div>
@@ -166,7 +166,7 @@ const setMembersInfo = (member) =>{
                     <div class="edit" onclick="modal(true,this,'editUser')">
                         <svg  xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 640 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H322.8c-3.1-8.8-3.7-18.4-1.4-27.8l15-60.1c2.8-11.3 8.6-21.5 16.8-29.7l40.3-40.3c-32.1-31-75.7-50.1-123.9-50.1H178.3zm435.5-68.3c-15.6-15.6-40.9-15.6-56.6 0l-29.4 29.4 71 71 29.4-29.4c15.6-15.6 15.6-40.9 0-56.6l-14.4-14.4zM375.9 417c-4.1 4.1-7 9.2-8.4 14.9l-15 60.1c-1.4 5.5 .2 11.2 4.2 15.2s9.7 5.6 15.2 4.2l60.1-15c5.6-1.4 10.8-4.3 14.9-8.4L576.1 358.7l-71-71L375.9 417z"/></svg>
                     </div>
-                    <div class="delete" onclick="deleteUser(this)">
+                    <div class="delete" onclick="deleteUser(${member.id})">
                         <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 640 512"><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM472 200H616c13.3 0 24 10.7 24 24s-10.7 24-24 24H472c-13.3 0-24-10.7-24-24s10.7-24 24-24z"/></svg>
                     </div>
                 </div>
@@ -179,10 +179,10 @@ const setUserInfoForm = (member) =>{
     const userInfoForm = `
         <form action="" class="member-parent" data-id="${member.id}">
             <h3>Изменение профиля</h3>
-            <input type="text" placeholder="Имя" id="userName" value="${member.name}">
-            <input type="text" placeholder="Логин" id="userLogin" value="${member.login}">
-            <input type="password" placeholder="Пароль" id="userPassword" value="${member.login}">
-            <input type="email" placeholder="E-mail" id="userEmail" value="${member.email}">
+            <input type="text" placeholder="Имя" id="userName" value="${member.name}" required>
+            <input type="text" placeholder="Логин" id="userLogin" value="${member.login}" required>
+            <input type="password" placeholder="Пароль" id="userPassword" value="${member.login}" required>
+            <input type="email" placeholder="E-mail" id="userEmail" value="${member.email}" required>
             <input type="text" placeholder="Адрес" id="userAdress" value="${member.adress}">
             <p>Дата рождения</p>
             <input type="date" placeholder="" id="userDateB" value="${member.dateB}">
@@ -193,6 +193,29 @@ const setUserInfoForm = (member) =>{
             <p>Фотография</p>
             <input type="file" id="userImg" value="${member.img}">
             <button onclick="saveUser(this,${member.id})" class="btn-green">Сохранить</button>
+    </form>
+    `
+    return userInfoForm
+}
+
+const setAddUserForm = () =>{
+    const userInfoForm = `
+        <form action="" class="member-parent">
+            <h3>Добавление пользователя</h3>
+            <input type="text" placeholder="Имя" id="userName" value="">
+            <input type="text" placeholder="Логин" id="userLogin" value="">
+            <input type="password" placeholder="Пароль" id="userPassword" value="">
+            <input type="email" placeholder="E-mail" id="userEmail" value="">
+            <input type="text" placeholder="Адрес" id="userAdress" value="">
+            <p>Дата рождения</p>
+            <input type="date" placeholder="" id="userDateB" value="">
+            <input type="text" placeholder="Город" id="userCity" value="">
+            <input type="text" placeholder="Должность" id="userRole" value="">
+            <p>Дата начала работы</p>
+            <input type="date" placeholder="" id="userDateStart" value="">
+            <p>Фотография</p>
+            <input type="file" id="userImg" value="">
+            <button onclick="addUser(this)" class="btn-green">Сохранить</button>
     </form>
     `
     return userInfoForm

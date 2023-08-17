@@ -34,14 +34,17 @@
         </header>
         <section class="members">
             <div class="top-menu">
-                <button class="btn-green">Добавить</button>
-                <div class="select">
-                    <p class="select-title">Все города</p>
-                    <div class="select-inner">
-                        <p id="pvl">Павлодар</p>
-                        <p id="astana">Астана</p>
-                        <p id="almaty">Алматы</p>
-                        <p id="karaganda">Караганда</p>
+                <button class="btn-green" onclick="modal(true,this,'addUser')">Добавить</button>
+                <div class="top-menu-container">
+                    <button class="btn-main" data-filter="all">Показать всех</button>
+                    <div class="select" onclick="this.classList.toggle('active')">
+                        <p class="select-title" >Все города</p>
+                        <div class="select-inner">
+                            <p id="pvl" data-filter="Павлодар">Павлодар</p>
+                            <p id="astana" data-filter="Астана">Астана</p>
+                            <p id="almaty" data-filter="Алматы">Алматы</p>
+                            <p id="karaganda" data-filter="Караганда">Караганда</p>
+                        </div>
                     </div>
                 </div>
             </div>

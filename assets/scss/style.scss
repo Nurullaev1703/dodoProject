@@ -72,6 +72,7 @@ h2{
         @include activeBtn($redDark);
     }
 }
+
 // header styles
 header{
     .container{
@@ -374,6 +375,59 @@ header{
         }
     }
 }
+
+.select{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+    border-radius: 8px;
+    background-color: $white;
+    p{
+        padding: 6px 10px;
+        color: $black;
+        transition: 0.4s;
+        user-select: none;
+        text-align: center;
+        &.select-title{
+            &:hover{
+                border-radius: 8px;
+            }
+        }
+        &:hover{
+            background-color: $main;
+            color: $white;
+            cursor: pointer;
+        }
+    }
+    &-inner{
+        position: absolute;
+        left: 0;
+        top: 100%;
+        z-index: 2;
+        display: none;
+        width: 100%;
+        background-color: $white;
+        p{
+            text-align: center;
+            &:last-child{
+                border-radius: 0 0 8px 8px;
+            }
+        }
+    }
+    
+    &.active{
+        p{
+            &.select-title{
+                border-radius: 8px 8px 0 0;
+            }
+        }
+        .select-inner{
+            display: block;
+        }
+    }
+}
+
 @import './sections/auth';
 @import './sections/modal';
 @import './sections/stats';
