@@ -22,19 +22,14 @@
             font-size: 20px;
             font-weight: 600;
             font-family: 'Dodo';
-            color: $red;
+            color: $lightgrey;
             position: absolute;
             top: 2%;
             right: 2%;
             padding: 4px 10px;
-            background-color: rgba($color: $red, $alpha: 0.1);
             border-radius: 6px;
             cursor: pointer;
             transition: 0.4s;
-            &:hover{
-                color: $redDark;
-                background-color: rgba($color: $red, $alpha: 0.3);
-            }
         }
         .modal-content{
             display: flex;

@@ -3,14 +3,12 @@ const currentUserId = localStorage.getItem('id')
 
 
 const setInfo = () =>{
-    let header = document.getElementById('header');
-    let userProfile = document.querySelector('#user-profile');
+    let header = document.querySelector('header .container');
     let userInfo = document.querySelector('#user-info');
     let userDivisions = document.querySelector('#user-divisions');
     usersInfo.forEach(user =>{
         if (user.id === parseInt(currentUserId)){
             header.innerHTML += setHeaderContent(user)
-            userProfile.innerHTML += setUserProfileCard(user)
             userInfo.innerHTML += setUserInfoCard(user)
             user.division.forEach(member =>{
                 userDivisions.innerHTML += setDivisions(member)

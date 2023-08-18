@@ -15,13 +15,13 @@ const getCities = () =>{
 }
 
 const setInfo = () =>{
-    let header = document.getElementById('header');
+    let header = document.querySelector('header .container');
     let membersInfo = document.querySelector('.table-inner');
     let citiesContainer = document.querySelector('.select-inner')
     membersInfo.innerHTML = ``
     usersInfo.forEach(user =>{
         if (user.id === parseInt(currentUserId)){
-            header.innerHTML = setHeaderContent(user)
+            header.innerHTML += setHeaderContent(user)
             citiesContainer.innerHTML = setCities(getCities())
             user.division.forEach(member =>{
                 membersInfo.innerHTML += setMembersInfo(member)

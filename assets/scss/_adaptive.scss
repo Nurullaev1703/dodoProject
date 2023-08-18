@@ -8,9 +8,9 @@
         animation-direction: normal;
         &.open{
             display: flex;
-            width: 60vw;
+            width: 80vw;
             z-index: 999;
-            background-color: $white;
+            background-color: $main;
             padding-top: 20px;
             animation-name: openSidebar;
         }
@@ -34,10 +34,11 @@
             display: flex;
             flex-direction: column;
             gap: 3px;
+            cursor: pointer;
             .line{
                 width: 16px;
                 height: 2px;
-                background-color: $lightgrey;
+                background-color: $white;
             }
         }
         p{
@@ -86,6 +87,13 @@
         .about-user .user-divisions{
             padding: 2%;
             width: 96%;
+            height: 650px;
+        }
+        .division-member .member-info{
+            width: 45%;
+        }
+        .about-user .user-info .user-img label{
+            font-size: 14px;
         }
     } 
     .user-profile .profile-card .card-content .info span{
@@ -118,6 +126,60 @@
     .test-results .results-container, .test-results .equipment-container{
         width: 96%;
     }
+    .members .edit-column svg{
+        height: 1.2em;
+        padding: 4px;
+    }
+    .members .column{
+        text-align: center;
+    }
+    .filter-container{
+        display: none;
+        width: 96%;
+        height: fit-content;
+        margin-bottom: 12px;
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        animation-duration: 300ms;
+        &.open{
+            display: block;
+        }
+        .d-flex{
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-main{
+            display: block;
+        }
+        .filter-title{
+            font-size: 24px;
+        }
+        .filter-inner {
+            p{
+                font-size: 12px;
+            }
+            
+        }
+    }
+    .equipment-info .equipment-container .toggle-filter{
+        display: block;
+        margin-right: 2%;
+    }
+    .test-results .results-container .toggle-filter{
+        display: block;
+        margin-right: 2%;
+    }
+    .equipment-info .equipment-container{
+        width: 100%;
+    }
+    .test-results .title{
+        margin-bottom: 0;
+    }
+    .test-results .results-info{
+        flex-direction: column;
+    }
 }
 
 @keyframes openSidebar {
@@ -134,5 +196,21 @@
     }
     100%{
         transform: translateX(-100%);
+    }
+}
+@keyframes openFilter {
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+@keyframes closeFilter {
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(-100%);
     }
 }

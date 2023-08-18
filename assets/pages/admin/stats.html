@@ -29,13 +29,27 @@
         </a>
     </div>
     <div class="wrapper">
-        <header id="header"></header>
+        <header id="header">
+            <div class="container d-flex">
+                <div class="burger-menu" onclick=burgerMenu(true)>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <div class="page-title-container d-flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg>
+                    <p class="page-title">Статистика</p>
+                </div>
+            </div>
+        </header>
 
         <section class="test-results" >
             <div class="results-info" >
-                <div class="filter-container active">
-                    <button class="btn-main">Вернуться</button>
-                    <p class="filter-title">Фильтр</p>
+                <div class="filter-container results-filter">
+                    <div class="d-flex">
+                        <p class="filter-title">Фильтр</p>
+                        <button class="btn-main" onclick="openFilterResults(false,'results')">Свернуть</button>
+                    </div>
                     <div class="filter-inner">
                         <div class="filter name">
                             <p>Имя сотрудника</p>
@@ -65,22 +79,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="results-container" id="results-container">
+                <div class="results-container">
                     <div class="d-flex">
                         <h2 class="title">Сотрудники</h2>
-                        <button class="btn-main toggle-filter">Фильтр</button>
+                        <button class="btn-main toggle-filter" onclick="openFilterResults(true,'results')">Фильтр</button>
                     </div>
-                    <div class="nav-buttons">
-                        <button id="prevPage" class="btn-main">назад</button>
-                        <button id="nextPage" class="btn-main">вперед</button>
-                    </div>
+                    <div class="results" id="results-container"></div>
                 </div>
             </div>
         </section>
         <section class="equipment-info">
-            <div class="filter-container active">
-                <button class="btn-main">Вернуться</button>
-                <p class="filter-title">Фильтр</p>
+            <div class="filter-container equipment-filter">
+                <div class="d-flex">
+                    <p class="filter-title">Фильтр</p>
+                    <button class="btn-main" onclick="openFilterResults(false,'equipment')">Свернуть</button>
+                </div>
                 <div class="filter-inner">
                     <div class="filter name">
                         <p>Имя сотрудника</p>
@@ -89,24 +102,25 @@
                     <div class="filter date">
                         <div class="date-container">
                             <p>От</p>
-                            <input type="date" id="member-fromDate">
+                            <input type="date" id="member-fromDate" >
                         </div>
                         <div class="date-container">
                             <p>До</p>
-                            <input type="date" id="member-toDate">
+                            <input type="date" id="member-toDate" >
                         </div>
                     </div>
                     <div class="filter point" >
                         <p>Место проведения</p>
-                        <input type="text" id="member-point" data-member-point-equip="member-point">
+                        <input type="text" id="member-point" data-member-point-equip="member-point" >
                     </div>
                 </div>
             </div>
-            <div class="equipment-container" id="equipment-container">
+            <div class="equipment-container">
                 <div class="d-flex">
                     <h2 class="title">Оборудование</h2>
-                    <button class="btn-main">Фильтр</button>
+                    <button class="btn-main toggle-filter" onclick="openFilterResults(true,'equipment')">Фильтр</button>
                 </div>
+                <div class="equipment" id="equipment-container"></div>
             </div>
         </section>
         
@@ -114,6 +128,7 @@
 
     <div class="modal-container" onclick="modal(false,this,'')" style="cursor:pointer;">
         <div class="modal">
+            <div class="exit" onclick="modal(false,this,'')">X</div>
             <div class="modal-content">
             </div>
         </div>

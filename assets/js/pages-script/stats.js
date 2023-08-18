@@ -1,7 +1,7 @@
 const currentUserId = localStorage.getItem('id')
 
 const setInfo = () =>{
-    let header = document.getElementById('header');
+    let header = document.querySelector('header .container');
     let testResults = document.querySelector('#results-container');
     let equipmentStats = document.querySelector('#equipment-container');
     usersInfo.forEach(user =>{
@@ -29,6 +29,28 @@ const burgerMenu = (open) =>{
         
     }
 }
+
+const openFilterResults = (open,filterName) =>{
+  let filter = ``
+  if(filterName === 'results'){
+    filter = document.querySelector('.results-filter')
+  }
+  else{
+    filter = document.querySelector('.equipment-filter')
+  }
+  if(open){
+      filter.style.animationName = 'openFilter'
+      filter.classList.add('open')
+  }
+  else{
+    filter.style.animationName = 'closeFilter'
+      setTimeout(() =>{
+        filter.classList.remove('open')
+      },300)
+      
+  }
+}
+
 // фильтр сотрудников в results-info
 $(function() {
     let nameFilter = $("[data-filterName]");
@@ -38,12 +60,12 @@ $(function() {
     let dateStartFilter = $("#member-date-start");
     let dateEndFilter = $("#member-date-end");
   
-    nameFilter.on("change", updateFilters);
-    roleFilter.on("change", updateFilters);
+    nameFilter.on("keyup", updateFilters);
+    roleFilter.on("keyup", updateFilters);
     dateStartFilter.on("change", updateFilters);
     dateEndFilter.on("change", updateFilters);
-    questFilter.on("change", updateFilters);
-    pointFilter.on("change", updateFilters);
+    questFilter.on("keyup", updateFilters);
+    pointFilter.on("keyup", updateFilters);
 
     function updateFilters() {
       let name = nameFilter.val();
@@ -82,10 +104,10 @@ $(function() {
     let dateStartFilter = $("#member-fromDate");
     let dateEndFilter = $("#member-toDate");
   
-    nameFilter.on("change", updateFiltersEquip);
+    nameFilter.on("keyup", updateFiltersEquip);
     dateStartFilter.on("change", updateFiltersEquip);
     dateEndFilter.on("change", updateFiltersEquip);
-    pointFilter.on("change", updateFiltersEquip);
+    pointFilter.on("keyup", updateFiltersEquip);
 
     function updateFiltersEquip() {
       let name = nameFilter.val();
@@ -111,42 +133,4 @@ $(function() {
     }
   });
   
-// функция для переключения профилей
-$(function() {
-  const itemsPerPage = 7;
-  let currentPage = 0;
-  const items = $(".division-member");
-  const totalPages = Math.ceil(items.length / itemsPerPage);
-  
-  function showItemsOnPage(page) {
-    items.addClass("hide");
-    items.slice(page * itemsPerPage, (page + 1) * itemsPerPage).removeClass("hide");
-  }
-  
-  function updatePaginationButtons() {
-    $("#prevPage").prop("disabled", currentPage === 0);
-    $("#nextPage").prop("disabled", currentPage === totalPages - 1);
-  }
-  
-  $("#prevPage").click(function() {
-    if (currentPage > 0) {
-      currentPage--;
-      showItemsOnPage(currentPage);
-      updatePaginationButtons();
-    }
-  });
-  
-  $("#nextPage").click(function() {
-    if (currentPage < totalPages - 1) {
-      currentPage++;
-      showItemsOnPage(currentPage);
-      updatePaginationButtons();
-    }
-  });
-  
-  // Показать первую страницу при загрузке страницы
-  showItemsOnPage(currentPage);
-  updatePaginationButtons();
-});
-
 

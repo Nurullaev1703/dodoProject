@@ -44,7 +44,7 @@ const setResultInfo = (member) =>{
         </div>
         <div class="user-info">
             <div class="text-container">
-                <h4'>Имя:</h4>
+                <h4>Имя:</h4>
                 <p>${member.name}</p>
             </div>
             <div class="text-container">
