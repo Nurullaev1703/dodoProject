@@ -3,6 +3,10 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    .toggle-filter{
+        width: 100%;
+        display: none;
+    }
     .title{
         padding: 0;
         margin-bottom: 16px;
@@ -35,10 +39,6 @@
             &::-webkit-scrollbar-thumb:hover {
                 background-color: $mainDark;
             }
-        }
-        .toggle-filter{
-            width: 30%;
-            display: none;
         }
         .nav-buttons{
             position: absolute;

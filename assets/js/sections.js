@@ -6,28 +6,37 @@ const setHeaderContent = (user) => {
                 <p class="active" onclick="changeUrl('ru')" id="ru">Рус</p>
                 <p onclick="changeUrl('kz')" id="kz">Каз</p>
             </div>
-            <div class="profile-preview d-flex">
-                <p class="role">${user.roleName}</p>
+            <div class="profile-preview d-flex" onclick="showExit(this)">
+                <p class="role">${user.role_name}</p>
                 <div class="img-cover">
-                    <img class="avatar" src=${user.img}>
+                    <img class="avatar" src=${user.photo}>
                 </div>
             </div>
+            <a href="../../../index.html" class="btn-main">Выйти</a>
         </div>
     `;
   return headerContent;
 };
 
-
 const setUserInfoCard = (user) => {
   const userInfoCard = `
   <div class="user-img">
-                <img src="${user.img}" alt="">
-                <label for="changeImg">
-                    <input type="file" id="changeImg" hidden>
-                    <span>Сменить фото</span>
-                </label>
+                <img src="${imgUrl + user.photo}" alt="">
+                <div class="text-container">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1em"
+                    viewBox="0 0 448 512"
+                  >
+                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path
+                      d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"
+                    />
+                  </svg>
+                  <h4 class="lang-addPhoto">Добавьте фото</h4>
+              </div>
             </div>
-            <p class="btn">${user.roleName}</p>
+            <p class="btn">${user.role_name}</p>
           <div class="text-container">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +54,7 @@ const setUserInfoCard = (user) => {
           <div class="text-container">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M184 48H328c4.4 0 8 3.6 8 8V96H176V56c0-4.4 3.6-8 8-8zm-56 8V96H64C28.7 96 0 124.7 0 160v96H192 320 512V160c0-35.3-28.7-64-64-64H384V56c0-30.9-25.1-56-56-56H184c-30.9 0-56 25.1-56 56zM512 288H320v32c0 17.7-14.3 32-32 32H224c-17.7 0-32-14.3-32-32V288H0V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V288z"/></svg>
             <h4 class="">Работает с:</h4>
-            <p class="about-date">${user.dateB}</p>
+            <p class="about-date">${user.dateStartWork}</p>
           </div>
           <div class="text-container">
             <svg
@@ -64,7 +73,7 @@ const setUserInfoCard = (user) => {
               />
             </svg>
             <h4 class="lang-adress">Адрес:</h4>
-            <p class="about-location">${user.adress}</p>
+            <p class="about-location">${user.city_name}</p>
           </div>
           <div class="text-container">
             <svg
@@ -92,8 +101,12 @@ const setUserInfoCard = (user) => {
               />
             </svg>
             <h4>Телефон:</h4>
-            <p class="about-tel">${user.tel}</p>
+            <p class="about-tel">${user.phone}</p>
           </div>
+          <label for="changeProfile">
+            <input type="button" id="changeProfile" onclick="modal(true,this,'editProfile')" hidden>
+            <span>Редактировать</span>
+        </label>
         `;
   return userInfoCard;
 };
@@ -103,16 +116,16 @@ const setDivisions = (member) => {
     <div class="division-member member-parent" data-id=${member.id}>
     <div class="member-info">
         <div class="img-cover">
-            <img src=${member.img} alt="">
+            <img src=${imgUrl + member.photo} alt="">
         </div>
         <div class="text-container">
-            <h5 class="member-name">${member.name}</h5>
-            <p class="member-city">${member.adress}</p>
+            <h5 class="member-city">${member.city_name}</h5>
+            <p class="member-name">${member.name}</p>
         </div>
     </div>
     <div class="text-container">
-        <h5 class="lang-employers">Сотрудники</h5>
-        <p class="employee-count">${member.count}</p>
+        <h5 class="lang-employers">Должность</h5>
+        <p class="employee-count">${member.role_name}</p>
     </div>
     <button class="btn-main lang-info" onclick="modal(true,this,'fullInfo')">Информация</button>
 </div>`;
@@ -120,61 +133,58 @@ const setDivisions = (member) => {
 };
 
 // stats page
+
 const setMembersResults = (member) => {
   const memberResult = `
         <div class="division-member member-parent"
-         data-id=${member.id} data-name='${member.name}' data-role='${member.role}'
-         data-date='${member.dateB}' data-point='${member.adress}' data-quest='${member.quest}'>
+        data-id=${member.id} data-name='${member.name}'
+         data-point='${member.city_name}'>
             <div class="member-info">
                 <div class="img-cover">
-                    <img src=${member.img} alt="">
+                    <img src="${member.photo}" alt="">
                 </div>
                 <div class="text-container">
-                    <h5 class="member-name">${member.name}</h5>
-                    <p class="member-city">${member.adress}</p>
+                    <h5 class="member-point">${member.city_name}</h5>
+                    <p class="member-name">${member.name}</p>
                 </div>
-            </div>
-            <div class="text-container">
-                <h5 class="lang-rating">Оценка:</h5>
-                <p class="employee-count">${member.rating}</p>
             </div>
             <button class="btn-main lang-info" onclick="modal(true,this,'result')">Инфо</button>
         </div>`;
   return memberResult;
 };
 
-const setEquipmentStats = (member) => {
-  const equipmentStats = `
-    <div class="equipment-stats" data-name-equip='${member.name}'
-    data-date-equip='${member.dateB}' data-point-equip='${member.adress}'>
-            <div class="img-cover">
-                <img src="${member.img}" alt="">
-            </div>
-        <div class="text-container">
-            <h5 class="name">${member.name}</h5>
-            <p class="school">${member.adress}</p>
-        </div>
-        <p class="date">${member.dateB}</p>
-        <p class="time">${member.time} минут</p>
-    </div>`;
-  return equipmentStats;
-};
+// const setEquipmentStats = (member) => {
+//   const equipmentStats = `
+//     <div class="equipment-stats" data-name-equip='${member.name}'
+//     data-date-equip='${member.dateB}' data-point-equip='${member.adress}'>
+//             <div class="img-cover">
+//                 <img src="${member.photo}" alt="">
+//             </div>
+//         <div class="text-container">
+//             <h5 class="name">${member.name}</h5>
+//             <p class="school">${member.adress}</p>
+//         </div>
+//         <p class="date">${member.dateB}</p>
+//         <p class="time">${member.time} минут</p>
+//     </div>`;
+//   return equipmentStats;
+// };
 
 //members page
 const setMembersInfo = (member) => {
   const membersInfo = `
-            <div class="row member-parent" data-id="${member.id}" data-city='${member.adress}'>
+            <div class="row member-parent" data-id="${member.id}" data-city='${member.city_name}'>
                 <div class="column">
                     <p class="name">${member.name}</p>
                 </div>
                 <div class="column">
-                    <p class="adress">${member.adress}</p>
+                    <p class="city">${member.city_name}</p>
                 </div>
                 <div class="column">
-                    <p class="role">${member.role}</p>
+                    <p class="role">${member.role_name}</p>
                 </div>
                 <div class="column">
-                    <p class="join-date">${member.dateB}</p>
+                    <p class="join-date">${member.dateStartWork}</p>
                 </div>
                 <div class="column edit-column" >
                     <div class="edit" onclick="modal(true,this,'editUser')">
@@ -189,23 +199,73 @@ const setMembersInfo = (member) => {
   return membersInfo;
 };
 
-const setUserInfoForm = (member) => {
-  const userInfoForm = `
+const setUserInfoForm = (member,pageName) => {
+  if(pageName === 'Портал'){
+    const userInfoFormProfile = `
         <form action="" class="member-parent" data-id="${member.id}">
             <h3>Изменение профиля</h3>
+            <p>Имя</p>
             <input type="text" placeholder="Имя" id="userName" value="${member.name}" required>
+            <p>Логин</p>
             <input type="text" placeholder="Логин" id="userLogin" value="${member.login}" required>
-            <input type="password" placeholder="Пароль" id="userPassword" value="${member.login}" required>
+            <p>Пароль</p>
+            <input type="text" placeholder="Пароль" id="userPassword" value="">
+            <p>Подтвердить пароль</p>
+            <input type="text" placeholder="Подтвердите пароль" id="confirmPassword" value="">
+            <p>E-mail</p>
             <input type="email" placeholder="E-mail" id="userEmail" value="${member.email}" required>
+            <p>Телефон</p>
+            <input type="text" placeholder="Номер телефона" id="userPhone" value="${member.phone}">
+            <p>Адрес</p>
             <input type="text" placeholder="Адрес" id="userAdress" value="${member.adress}">
             <p>Дата рождения</p>
             <input type="date" placeholder="" id="userDateB" value="${member.dateB}">
-            <input type="text" placeholder="Город" id="userCity" value="${member.adress}">
-            <input type="text" placeholder="Должность" id="userRole" value="${member.role}">
             <p>Дата начала работы</p>
             <input type="date" placeholder="" id="userDateStart" value="${member.dateB}">
             <p>Фотография</p>
-            <input type="file" id="userImg" value="${member.img}">
+            <input type="file" id="userImg" value="${member.photo}">
+            <button onclick="saveUser(this,${member.id})" class="btn-main">Сохранить</button>
+    </form>
+    `;
+    return userInfoFormProfile
+  }
+  const userInfoForm = `
+        <form action="" class="member-parent" data-id="${member.id}">
+            <h3>Изменение профиля</h3>
+            <p>Имя</p>
+            <input type="text" placeholder="Имя" id="userName" value="${member.name}" required>
+            <p>Логин</p>
+            <input type="text" placeholder="Логин" id="userLogin" value="${member.login}" required>
+            <p>Пароль</p>
+            <input type="text" placeholder="Пароль" id="userPassword" value="">
+            <p>Подтвердить пароль</p>
+            <input type="text" placeholder="Подтвердите пароль" id="confirmPassword" value="">
+            <p>E-mail</p>
+            <input type="email" placeholder="E-mail" id="userEmail" value="${member.email}" required>
+            <p>Телефон</p>
+            <input type="text" placeholder="Номер телефона" id="userPhone" value="${member.phone}">
+            <p>Адрес</p>
+            <input type="text" placeholder="Адрес" id="userAdress" value="${member.adress}">
+            <p>Дата рождения</p>
+            <input type="date" placeholder="" id="userDateB" value="${member.dateB}">
+            <p>Город</p>
+            <div class="select" onclick="this.classList.toggle('active')">
+              <p class="select-title">${member.city_name}</p>
+              <div class="select-inner">
+              ${setCities(cities)}
+              </div>
+            </div>
+            <p>Должность</p> 
+            <div class="select" onclick="this.classList.toggle('active')">
+              <p class="select-title">Должность</p>
+              <div class="select-inner">
+              ${setRoles()}
+              </div>
+            </div>
+            <p>Дата начала работы</p>
+            <input type="date" placeholder="" id="userDateStart" value="${member.dateB}">
+            <p>Фотография</p>
+            <input type="file" id="userImg" value="${member.photo}">
             <button onclick="saveUser(this,${member.id})" class="btn-main">Сохранить</button>
     </form>
     `;
@@ -216,15 +276,34 @@ const setAddUserForm = () => {
   const userInfoForm = `
         <form action="" class="member-parent">
             <h3>Добавление пользователя</h3>
+            <p>Имя</p>
             <input type="text" placeholder="Имя" id="userName" value="">
+            <p>Логин</p>
             <input type="text" placeholder="Логин" id="userLogin" value="">
+            <p>Пароль</p>
             <input type="password" placeholder="Пароль" id="userPassword" value="">
+            <p>E-mail</p>
             <input type="email" placeholder="E-mail" id="userEmail" value="">
+            <p>Телефон</p>
+            <input type="text" placeholder="Номер телефона" id="userPhone" value="">
+            <p>Адрес</p>
             <input type="text" placeholder="Адрес" id="userAdress" value="">
             <p>Дата рождения</p>
             <input type="date" placeholder="" id="userDateB" value="">
-            <input type="text" placeholder="Город" id="userCity" value="">
-            <input type="text" placeholder="Должность" id="userRole" value="">
+            <p>Город</p>
+            <div class="select" onclick="this.classList.toggle('active')">
+              <p class="select-title">Все города</p>
+              <div class="select-inner">
+              ${setCities(cities)}
+              </div>
+            </div>
+            <p>Должность</p> 
+            <div class="select" onclick="this.classList.toggle('active')">
+              <p class="select-title">Должность</p>
+              <div class="select-inner">
+              ${setRoles()}
+              </div>
+            </div>
             <p>Дата начала работы</p>
             <input type="date" placeholder="" id="userDateStart" value="">
             <p>Фотография</p>
@@ -235,11 +314,21 @@ const setAddUserForm = () => {
   return userInfoForm;
 };
 
-const setCities = (array) => {
-  let city = ``;
-
-  array.forEach((element) => {
-    city += `<p data-filter="${element}">${element}</p>`;
-  });
-  return city;
-};
+const headerContentMembers = `
+      <div class="burger-menu" onclick=burgerMenu(true)>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+      </div>
+      <div class="page-title-container d-flex">
+          <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="1em"
+          viewBox="0 0 640 512"
+          >
+          <path
+          d="M72 88a56 56 0 1 1 112 0A56 56 0 1 1 72 88zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3V245.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5V416c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V389.2C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112h32c24 0 46.2 7.5 64.4 20.3zM448 416V394.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176h32c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2V416c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32zm8-328a56 56 0 1 1 112 0A56 56 0 1 1 456 88zM576 245.7v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM240 304c0 16.2 6 31 16 42.3V261.7c-10 11.3-16 26.1-16 42.3zm144-42.3v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2V448c0 17.7-14.3 32-32 32H288c-17.7 0-32-14.3-32-32V405.2c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112h32c61.9 0 112 50.1 112 112z"
+          />
+          </svg>
+          <p class="page-title">Сотрудники</p>
+      </div>`

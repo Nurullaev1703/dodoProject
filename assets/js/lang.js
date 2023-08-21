@@ -57,6 +57,7 @@ const changeUrl = (lang) =>{
 }
 
 const changeLanguage = () =>{
+    
     let hash = window.location.hash.substring(1)
     
     for(let key in langArray){

@@ -5,7 +5,7 @@ const auth = () => {
 
     $.ajax({
         type: 'POST',
-        url: url+'/api/login',
+        url: url+'/login',
         data: {
             login: userLogin.value,
             password: userPassword.value
@@ -14,7 +14,7 @@ const auth = () => {
             console.log(response)
             if(userLogin.value === response.login){
                 localStorage.setItem('id',response.id)
-                localStorage.setItem('role',response.role)
+                localStorage.setItem('user',JSON.stringify(response))
                 window.location = './assets/pages/admin/profile.html' + '#ru'
             }
             else{
@@ -27,5 +27,4 @@ const auth = () => {
             console.log(error);
         }
     });
-
 }

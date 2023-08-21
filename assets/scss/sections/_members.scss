@@ -1,5 +1,14 @@
 .members{
     margin-top: 40px;
+    select{
+        @include btn($main);
+        outline: none;
+        border: none;
+        option{
+            border: none;
+            outline: none;
+        }
+    }
     .row{
         display: flex;
         align-items: stretch;
@@ -15,6 +24,9 @@
         align-items: center;
         justify-content: center;
         padding: 8px 0;
+        p{
+            text-align: center;
+        }
     }
     .edit-column{
         width: 10%;

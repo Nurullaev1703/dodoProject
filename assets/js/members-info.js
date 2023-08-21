@@ -1,7 +1,7 @@
 const setFullInfo = (member) => {
-    const fullInfo = `
+  const fullInfo = `
     <div class="user-img">
-    <img src=${member.img} alt="">
+    <img src=${member.photo} alt="">
     </div>
     <div class="user-info">
     <div class="text-container">
@@ -10,7 +10,7 @@ const setFullInfo = (member) => {
     </div>
     <div class="text-container">
         <h4>Тел:</h4>
-        <p>${member.tel}</p>
+        <p>${member.phone}</p>
     </div>
     <div class="text-container">
         <h4>email:</h4>
@@ -26,21 +26,17 @@ const setFullInfo = (member) => {
     </div>
     <div class="text-container">
         <h4>Должность:</h4>
-        <p>${member.role}</p>
-    </div>
-    <div class="text-container">
-        <h4>Успеваемость:</h4>
-        <p>${member.rating}</p>
+        <p>${member.role_name}</p>
     </div>
     </div>
-`  
-return fullInfo
-}
+`;
+  return fullInfo;
+};
 
-const setResultInfo = (member) =>{
-    const resultInfo = `
+const setResultInfo = (member,statistic) => {
+  const resultInfo = `
         <div class="user-img">
-            <img src=${member.img} alt="">
+            <img src=${member.photo} alt="">
         </div>
         <div class="user-info">
             <div class="text-container">
@@ -49,29 +45,29 @@ const setResultInfo = (member) =>{
             </div>
             <div class="text-container">
                 <h4>Должность:</h4>
-                <p>${member.role}</p>
+                <p>${member.role_name}</p>
             </div>
             <div class="text-container">
-                <h4>Точка:</h4>
-                <p>${member.adress}</p>
+                <h4>Город:</h4>
+                <p>${member.city_name}</p>
             </div>
             <div class="text-container">
-                <h4>Время:</h4>
-                <p>${member.time} минут</p>
+                <h4>Начало работы:</h4>
+                <p>${member.dateStartWork}</p>
             </div>
             <div class="text-container">
-                <h4>Дата:</h4>
-                <p>${member.dateB}</p>
+                <h4>Количество управляющих:</h4>
+                <p>${statistic.upr_count}</p>
             </div>
             <div class="text-container">
-                <h4>Ошибки:</h4>
-                <p>${member.mistakes}</p>
+                <h4>Количество Курьеров:</h4>
+                <p>${statistic.kur_count}</p>
             </div>
             <div class="text-container">
-                <h4>Задание:</h4>
-                <p>${member.quest}</p>
+                <h4>Общая успеваемость:</h4>
+                <p>${statistic.avg}/10</p>
             </div>
         </div>
-    `
-    return resultInfo
-}
+    `;
+  return resultInfo;
+};
