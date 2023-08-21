@@ -3,7 +3,7 @@ const setHeaderContent = (user) => {
         
         <div class="nav-menu d-flex">
             <div class="choose-language d-flex">
-                <p class="active" onclick="changeUrl('ru')" id="ru">Рус</p>
+                <p class="" onclick="changeUrl('ru')" id="ru">Рус</p>
                 <p onclick="changeUrl('kz')" id="kz">Каз</p>
             </div>
             <div class="profile-preview d-flex" onclick="showExit(this)">
@@ -332,3 +332,38 @@ const headerContentMembers = `
           </svg>
           <p class="page-title">Сотрудники</p>
       </div>`
+
+// cities page
+const setCityNames = (item) =>{
+  const city = `
+  <div class="division-member " data-city-name="${item}">
+    <div class="city-info">
+        <h3 class="city-name">${item}</h3>
+    </div>
+    <div class="city-actions">
+        <button class="btn-main lang-change" onclick="modal(true,this,'changeCity')">Изменить</button>
+        <button class="btn-red lang-change" onclick="deleteCity(this)">удалить</button>
+    </div>
+</div>`
+return city
+}
+const setChangeCity = (cityName) =>{
+   const cityForm = `
+    <form action="" class="member-parent">
+        <h3>Редактирование города</h3>
+        <p>Название города</p>
+        <input type="text" placeholder="Введите название города" id="city" value="${cityName}">
+        <button onclick="changeCityName(this)" class="btn-main">Сохранить</button>
+    </form>`
+ return cityForm
+}
+const setAddCity = () =>{
+  const cityForm = `
+   <form action="" class="member-parent">
+       <h3>Добавление города</h3>
+       <p>Название города</p>
+       <input type="text" placeholder="Введите название города" id="city" value="">
+       <button onclick="addCityName(this)" class="btn-main">Сохранить</button>
+   </form>`
+return cityForm
+}

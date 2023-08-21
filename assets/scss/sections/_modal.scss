@@ -12,6 +12,10 @@
     align-items: center;
     justify-content: center;
     z-index: 999;
+    &.city-modal{
+        padding-top: 40px;
+        align-items: start;
+    }
     .modal{
         @extend %card;
         width: 40%;

@@ -1,0 +1,21 @@
+.cities{
+    width: 96%;
+    @extend %card;
+    padding: 2%;
+    height: 400px;
+    overflow-y: scroll;
+    .division-member{
+        border: none;
+    }
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+      
+    &::-webkit-scrollbar-thumb {
+        background-color: $main;
+    }
+      
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: $mainDark;
+    }
+}

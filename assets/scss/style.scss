@@ -68,8 +68,10 @@ h2 {
 }
 .btn-red {
   @include btn($red);
+  color: $red;
   &:hover {
-    @include activeBtn($redDark);
+    @include activeBtn($red);
+    background-color: $red;
   }
 }
 
@@ -332,12 +334,12 @@ header {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 5px;
-  border-bottom: 1px solid $stroke;
   &.hide {
     display: none;
   }
   &:not(:last-child) {
     margin-bottom: 16px;
+    border-bottom: 1px solid $stroke;
   }
   h5 {
     font-size: 14px;
@@ -490,5 +492,6 @@ header {
 @import "./sections/modal";
 @import "./sections/stats";
 @import "./sections/members";
+@import "./sections/cities";
 
 @import "adaptive";

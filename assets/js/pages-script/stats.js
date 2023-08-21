@@ -1,22 +1,3 @@
-// первое число - количество городов (нулевой индекс)
-// upr-count - количество управляющих
-// kur-count - количество курьеров
-$.ajax({
-  type: 'POST',
-  url: url+'/statistic',
-  data: {
-    currentUserId: parseInt(currentUserId)
-  },
-  success: function (response) {
-      console.log(response)
-      localStorage.setItem('divisionsInfo', JSON.stringify(response)) 
-      setInfo()
-  },
-  error: function (error) {
-      console.log(error);
-  }
-});
-
 const setInfo = () =>{
     let header = document.querySelector('header .container');
     let testResults = document.querySelector('#results-container');

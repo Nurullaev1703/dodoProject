@@ -12,10 +12,15 @@ const modal = (open,e,info) =>{
                 mask: '+{7}(000)000-00-00'
             });
         }
+        else if(info ==='changeCity'){
+            modalContent.innerHTML = setChangeCity(e.parentNode.parentNode.querySelector('.city-name').innerHTML)
+        }
+        else if(info ==='addCity'){
+            modalContent.innerHTML = setAddCity()
+        }
         else{
             if(user.id === parseInt(currentUserId)){
                 if(info ==='editProfile'){
-                    console.log('test')
                     modalContent.innerHTML = setUserInfoForm(user,document.title)
                     modalContent.innerHTML = setAddUserForm()
                     var targetElement = document.getElementById('userPhone');

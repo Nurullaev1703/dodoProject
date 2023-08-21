@@ -2,23 +2,6 @@
 // проверка роли по id и возможность манипуляции с пользователями (права администратора)
 
 // При манипуляции с сотрудниками отправляем его id
-
-$.ajax({
-  type: 'POST',
-  url: url+'/getUsers',
-  data: {
-      id: parseInt(currentUserId)
-  },
-  success: function (response) {
-    console.log(response)
-    localStorage.setItem("usersInfo",  JSON.stringify(response))
-    setInfo()
-  },
-  error: function (error) {
-      console.log(error);
-  }
-});
-
 const setInfo = () => {
   let header = document.querySelector("header .container");
   let citiesContainer = document.querySelector(".select-inner");
@@ -31,7 +14,6 @@ const setInfo = () => {
       membersInfo.innerHTML += setMembersInfo(user);
     })
 };
-
 
 
 const saveUser = (e, id) => {

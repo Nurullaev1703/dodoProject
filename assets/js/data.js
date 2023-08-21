@@ -1,203 +1,81 @@
 let url= `https://test.pol1pvl.kz/api`
 let imgUrl = `https://test.pol1pvl.kz/storage/app/public/user_photo/`
-// let usersInfo = [
-//     {
-//         id: 1,
-//         name: 'Алиса Валерьевна',
-//         tel: '+77777777777',
-//         email:'admin@gmail.com',
-//         adress: 'Павлодар',
-//         dateB: '2002-12-18',
-//         role: '1',
-//         roleName: 'Администратор',
-//         login: 'admin',
-//         password: '123',
-//         joinDate: '2018-10-12',
-//         img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//         division: [
-//             {
-//                 id:1,
-//                 name: 'Федор Петров',
-//                 tel: '+7777777777777',
-//                 email: 'test@gmail.com',
-//                 adress: 'Кызылорда',
-//                 dateB: '2000-12-18',
-//                 role: 'курьер',
-//                 rating: 8,
-//                 img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//                 count: 7,
-//                 mistakes: 3,
-//                 time: 60,
-//                 quest: 'Отправить 40 заказов'
-//             },
-//             {
-//                 id:2,
-//                 name: 'Иванов Иван',
-//                 tel: '+7777777777777',
-//                 email: 'test@gmail.com',
-//                 adress: 'Павлодар',
-//                 dateB: '2002-12-18',
-//                 role: 'курьер',
-//                 rating: 8,
-//                 img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//                 count: 7,
-//                 mistakes: 3,
-//                 time: 60,
-//                 quest: 'Отправить 40 заказов'
-//             },
-//             {
-//                 id:3,
-//                 name: 'Фамилия имя',
-//                 tel: '+7777777777777',
-//                 email: 'test@gmail.com',
-//                 adress: 'Павлодар',
-//                 dateB: '1985-12-18',
-//                 role: 'курьер',
-//                 rating: 8,
-//                 img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//                 count: 7,
-//                 mistakes: 3,
-//                 time: 60,
-//                 quest: 'Отправить 40 заказов'
-//             },
-//             {
-//                 id:4,
-//                 name: 'Фамилия имя',
-//                 tel: '+7777777777777',
-//                 email: 'test@gmail.com',
-//                 adress: 'Караганда',
-//                 dateB: '2030-12-18',
-//                 role: 'курьер',
-//                 rating: 8,
-//                 img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//                 count: 7,
-//                 mistakes: 3,
-//                 time: 60,
-//                 quest: 'Отправить 40 заказов'
-//             },
-//             {
-//                 id:5,
-//                 name: 'Фамилия имя',
-//                 tel: '+7777777777777',
-//                 email: 'test@gmail.com',
-//                 adress: 'Астана',
-//                 dateB: '2012-12-18',
-//                 role: 'курьер',
-//                 rating: 8,
-//                 img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//                 count: 7,
-//                 mistakes: 3,
-//                 time: 60,
-//                 quest: 'Отправить 40 заказов'
-//             },
-//             {
-//                 id:6,
-//                 name: 'Фамилия имя',
-//                 tel: '+7777777777777',
-//                 email: 'test@gmail.com',
-//                 adress: 'Алматы',
-//                 dateB: '2022-12-18',
-//                 role: 'курьер',
-//                 rating: 8,
-//                 img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//                 count: 7,
-//                 mistakes: 3,
-//                 time: 60,
-//                 quest: 'Отправить 40 заказов'
-//             },
-//             {
-//                 id:7,
-//                 name: 'Федор Петров',
-//                 tel: '+7777777777777',
-//                 email: 'test@gmail.com',
-//                 adress: 'Кызылорда',
-//                 dateB: '2000-12-18',
-//                 role: 'курьер',
-//                 rating: 8,
-//                 img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//                 count: 7,
-//                 mistakes: 3,
-//                 time: 60,
-//                 quest: 'Отправить 40 заказов'
-//             },
-//             {
-//                 id:8,
-//                 name: 'Иванов Иван',
-//                 tel: '+7777777777777',
-//                 email: 'test@gmail.com',
-//                 adress: 'Павлодар',
-//                 dateB: '2002-12-18',
-//                 role: 'курьер',
-//                 rating: 8,
-//                 img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//                 count: 7,
-//                 mistakes: 3,
-//                 time: 60,
-//                 quest: 'Отправить 40 заказов'
-//             },
-//             {
-//                 id:9,
-//                 name: 'Фамилия имя',
-//                 tel: '+7777777777777',
-//                 email: 'test@gmail.com',
-//                 adress: 'Павлодар',
-//                 dateB: '1985-12-18',
-//                 role: 'курьер',
-//                 rating: 8,
-//                 img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//                 count: 7,
-//                 mistakes: 3,
-//                 time: 60,
-//                 quest: 'Отправить 40 заказов'
-//             },
-//             {
-//                 id:10,
-//                 name: 'Фамилия имя',
-//                 tel: '+7777777777777',
-//                 email: 'test@gmail.com',
-//                 adress: 'Караганда',
-//                 dateB: '2030-12-18',
-//                 role: 'курьер',
-//                 rating: 8,
-//                 img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//                 count: 7,
-//                 mistakes: 3,
-//                 time: 60,
-//                 quest: 'Отправить 40 заказов'
-//             },
-//             {
-//                 id:11,
-//                 name: 'Фамилия имя',
-//                 tel: '+7777777777777',
-//                 email: 'test@gmail.com',
-//                 adress: 'Астана',
-//                 dateB: '2012-12-18',
-//                 role: 'курьер',
-//                 rating: 8,
-//                 img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//                 count: 7,
-//                 mistakes: 3,
-//                 time: 60,
-//                 quest: 'Отправить 40 заказов'
-//             },
-//             {
-//                 id:12,
-//                 name: 'Фамилия имя',
-//                 tel: '+7777777777777',
-//                 email: 'test@gmail.com',
-//                 adress: 'Алматы',
-//                 dateB: '2022-12-18',
-//                 role: 'курьер',
-//                 rating: 8,
-//                 img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-//                 count: 7,
-//                 mistakes: 3,
-//                 time: 60,
-//                 quest: 'Отправить 40 заказов'
-//             },
-//         ]
-//     }
-// ]
+
+const setLangActive = () => {
+  let ruLang = document.getElementById('ru')
+  let kzLang = document.getElementById('kz')
+  if(location.hash === '#ru'){
+      ruLang.classList.add('active');
+  }
+  else{
+      kzLang.classList.add('active');
+  }
+}
+// id текущего пользователя
+let currentUserId = localStorage.getItem('id')
+// отправляем и текущий id и id пользователя (одинаковые значения) при редактировании
+$.ajax({
+  type: 'POST',
+  url: url+'/getSub',
+  data: {
+      id: parseInt(currentUserId)
+  },
+  success: function (response) {
+    localStorage.setItem('members', JSON.stringify(response));
+    if(document.title === 'Портал'){
+      setInfo(JSON.parse(localStorage.getItem('members')));
+    }
+  },
+  error: function (error) {
+      console.log(error);
+  }
+});
+
+$.ajax({
+  type: 'POST',
+  url: url+'/getUsers',
+  data: {
+      id: parseInt(currentUserId)
+  },
+  success: function (response) {
+    console.log(response)
+    localStorage.setItem("usersInfo",  JSON.stringify(response))
+    if(document.title !== 'Портал'){
+      setInfo()
+      setLangActive()
+    } 
+  },
+  error: function (error) {
+      console.log(error);
+  }
+});
+// первое число - количество городов (нулевой индекс)
+// upr-count - количество управляющих
+// kur-count - количество курьеров
+$.ajax({
+  type: 'POST',
+  url: url+'/statistic',
+  data: {
+    currentUserId: parseInt(currentUserId)
+  },
+  success: function (response) {
+      console.log(response)
+      localStorage.setItem('divisionsInfo', JSON.stringify(response)) 
+  },
+  error: function (error) {
+      console.log(error);
+  }
+});
+
+// Информация о всех пользователях
+let usersInfo = JSON.parse(localStorage.getItem('usersInfo'))
+// информация о текущем пользователе
+let user = JSON.parse(localStorage.getItem('user'))
+// полная информация о подразделениях
+const divisionsInfo = JSON.parse(localStorage.getItem('divisionsInfo'))
+// статистика о подразделениях без количества городов
+const divisionStatistics = [...divisionsInfo[1]]
+
 const setSelect = (array) => {
     let city = ``;
     array.forEach((element) => {
@@ -252,18 +130,8 @@ const changeSelectTitle = (e) =>{
 const showExit = (e) =>{
     e.parentNode.querySelector('.btn-main').classList.toggle('active')
 }
-// информация о текущем пользователе
-let user = JSON.parse(localStorage.getItem('user'))
-// id текущего пользователя
-let currentUserId = localStorage.getItem('id')
-// полная информация о подразделениях
-const divisionsInfo = JSON.parse(localStorage.getItem('divisionsInfo'))
-// статистика о подразделениях без количества городов
-const divisionStatistics = [...divisionsInfo[1]]
-// Информация о всех пользователях
-let usersInfo = JSON.parse(localStorage.getItem('usersInfo'))
+
 // Города
 const cities = getCities()
 // Роли на сайте
 const rolesName = ['Администратор','Подразделение', 'Управляющий','Курьер']
-

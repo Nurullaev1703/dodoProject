@@ -43,10 +43,13 @@
                 </div>
             </div>
         </header>
-        
+        <input type="button" value="Добавить" style="margin-bottom: 2%;" onclick="modal(true,this,'addCity')" class="btn-main">
+        <section class="cities">
+            
+        </section>
     </div>
-
-    <div class="modal-container" onclick="modal(false,this,'')" style="cursor:pointer;">
+    
+    <div class="modal-container city-modal" style="cursor:pointer;">
         <div class="modal">
             <div class="exit" onclick="modal(false,this,'')">X</div>
             <div class="modal-content">

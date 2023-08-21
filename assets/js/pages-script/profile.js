@@ -1,28 +1,13 @@
-// отправляем и текущий id и id пользователя (одинаковые значения) при редактировании
-$.ajax({
-    type: 'POST',
-    url: url+'/getSub',
-    data: {
-        id: parseInt(currentUserId)
-    },
-    success: function (response) {
-      localStorage.setItem('members', JSON.stringify(response));
-        setInfo(response)
-    },
-    error: function (error) {
-        console.log(error);
-    }
-});
-
 const setInfo = (members) =>{
   let header = document.querySelector('header .container');
   let userInfo = document.querySelector('#user-info');
   let userDivisions = document.querySelector('#user-divisions');
   members.forEach(member =>{
-            userDivisions.innerHTML += setDivisions(member)
+      userDivisions.innerHTML += setDivisions(member)
   })
   header.innerHTML += setHeaderContent(user)
   userInfo.innerHTML += setUserInfoCard(user)
+  setLangActive()
 }
 
 

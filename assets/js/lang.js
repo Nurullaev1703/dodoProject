@@ -1,5 +1,5 @@
 let ruLang = document.getElementById('ru')
-
+let kzLang = document.getElementById('kz')
 let langArray = {
     'changeImg':{
         'ru':'Сменить фото',
@@ -51,13 +51,13 @@ let langArray = {
     },
 }
 
+
 const changeUrl = (lang) =>{
     location.href = window.location.pathname + '#' + lang
     location.reload()
 }
 
 const changeLanguage = () =>{
-    
     let hash = window.location.hash.substring(1)
     
     for(let key in langArray){
@@ -68,6 +68,5 @@ const changeLanguage = () =>{
            }
        })
     };
-    
 }
 changeLanguage()
