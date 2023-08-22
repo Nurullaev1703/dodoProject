@@ -487,11 +487,35 @@ header {
     }
   }
 }
+.checkbox-container{
+  width: 25px;
+  height: 25px;
+  @extend %card;
+  background-color: $main;
+  cursor: pointer;
+  label{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  svg{
+    display: none;
+    height: 15px;
+    fill: $white;
+  }
+  &.active{
+    svg{
+      display: inline-block;
+    }
+  }
+}
 
 @import "./sections/auth";
 @import "./sections/modal";
 @import "./sections/stats";
 @import "./sections/members";
 @import "./sections/cities";
-
+@import "./sections/tasks";
 @import "adaptive";

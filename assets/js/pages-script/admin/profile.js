@@ -43,7 +43,7 @@ const saveUser = (e, id) => {
                 role: '1',
             },
             success: function (response) {
-                console.log(response)
+              
             },
             error: function (error) {
                 console.log(error);

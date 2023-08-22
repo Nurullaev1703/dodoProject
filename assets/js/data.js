@@ -38,7 +38,6 @@ $.ajax({
       id: parseInt(currentUserId)
   },
   success: function (response) {
-    console.log(response)
     localStorage.setItem("usersInfo",  JSON.stringify(response))
     if(document.title !== 'Портал'){
       setInfo()
@@ -59,7 +58,6 @@ $.ajax({
     currentUserId: parseInt(currentUserId)
   },
   success: function (response) {
-      console.log(response)
       localStorage.setItem('divisionsInfo', JSON.stringify(response)) 
   },
   error: function (error) {

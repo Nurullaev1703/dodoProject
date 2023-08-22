@@ -18,6 +18,9 @@ const modal = (open,e,info) =>{
         else if(info ==='addCity'){
             modalContent.innerHTML = setAddCity()
         }
+        else if(info ==='showEmployees'){
+            modalContent.innerHTML = setEmployees()
+        }
         else{
             if(user.id === parseInt(currentUserId)){
                 if(info ==='editProfile'){

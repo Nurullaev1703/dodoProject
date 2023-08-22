@@ -367,3 +367,40 @@ const setAddCity = () =>{
    </form>`
 return cityForm
 }
+
+//tasks page
+const setEmployees = () =>{
+  let employee = ``
+  usersInfo.forEach(item =>{
+    
+    if(item.role == '4'){
+      employee += `
+        <div class="division-member member-parent">
+          <div class="member-info">
+              <div class="img-cover">
+                  <img src="${item.photo}" alt="">
+              </div>
+              <div class="text-container">
+                  <h5 class="member-city">${item.city_name}</h5>
+                  <p class="member-name">${item.name}</p>
+              </div>
+          </div>
+          <div class="text-container">
+              <h5 class="">Должность</h5>
+              <p class="employee-count">${item.role_name}</p>
+          </div>
+          <div class="checkbox-container">
+              <label for="checkbox${item.id}">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
+                  <input type="checkbox" id="checkbox${item.id}" onchange="setCheckbox(this)" hidden>
+              </label>
+          </div>
+      </div>
+        `
+    }
+  })
+  employee += `
+    <button class="btn-main" onclick="giveTask(this)">Назначить задание</button>
+  `
+  return employee
+}

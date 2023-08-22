@@ -9,63 +9,64 @@
             outline: none;
         }
     }
-    .row{
-        display: flex;
-        align-items: stretch;
-        justify-content: space-between;
-        &.hide{
-            display: none;
+    
+}
+.row{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    &.hide{
+        display: none;
+    }
+}
+.column{
+    width: 22%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+    p{
+        text-align: center;
+    }
+}
+.edit-column{
+    width: 10%;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    svg{
+        cursor: pointer;
+        padding: 8px;
+        background-color: transparent;
+        border-radius: 8px;
+        transition:0.4s;
+        &:hover{
+            fill: $main;
+            background-color: rgba($color: $mainDark, $alpha: 0.1);
         }
     }
-    .column{
-        width: 22%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 0;
-        p{
-            text-align: center;
+}
+.table{
+    width: 98%;
+    padding: 1%;
+    @extend %card;
+    &-title{
+        font-weight: 600;
+        .column:not(:last-child){
+            border-bottom: 1px dashed $main;
         }
     }
-    .edit-column{
-        width: 10%;
-        flex-direction: row;
+}
+.top-menu{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    &-container{
+        width: fit-content;
+        display: flex;
         gap: 10px;
-        flex-wrap: wrap;
-        svg{
-            cursor: pointer;
-            padding: 8px;
-            background-color: transparent;
-            border-radius: 8px;
-            transition:0.4s;
-            &:hover{
-                fill: $main;
-                background-color: rgba($color: $mainDark, $alpha: 0.1);
-            }
-        }
     }
-    .table{
-        width: 98%;
-        padding: 1%;
-        @extend %card;
-        &-title{
-            font-weight: 600;
-            .column:not(:last-child){
-                border-bottom: 1px dashed $main;
-            }
-        }
-    }
-    .top-menu{
-        display: flex;
-        align-items: stretch;
-        justify-content: space-between;
-        margin-bottom: 20px;
-        &-container{
-            width: fit-content;
-            display: flex;
-            gap: 10px;
-        }
-        
-    }
+    
 }

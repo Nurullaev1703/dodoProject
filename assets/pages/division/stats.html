@@ -44,6 +44,7 @@
         </header>
 
         <section class="test-results" >
+            <button class="btn-main toggle-filter" onclick="openFilterResults(true,'results')">Фильтр</button>
             <div class="results-info" >
                 <div class="filter-container results-filter">
                     <div class="d-flex">
@@ -55,40 +56,24 @@
                             <p>Имя сотрудника</p>
                             <input type="text" id="member-name" data-filterName="memberName">
                         </div>
-                        <div class="filter date">
-                            <div class="date-container">
-                                <p>От</p>
-                                <input type="date" id="member-date-start">
-                            </div>
-                            <div class="date-container">
-                                <p>До</p>
-                                <input type="date" id="member-date-end">
-                            </div>
-                        </div>
                         <div class="filter point">
-                            <p>Место проведения</p>
+                            <p>Город</p>
                             <input type="text" id="member-point" data-filterPoint="memberPoint">
                         </div>
-                        <div class="filter role">
-                            <p>Должность</p>
-                            <input type="text" id="member-role" data-filterRole="memberRole">
-                        </div>
-                        <div class="filter quest">
-                            <p>Задание</p>
-                            <input type="text" id="member-quest" data-filterQuest="memberQuest">
-                        </div>
+                        <input type="button" value="Очистить фильтр" class="btn-main" onclick="clearInputs(this)">
                     </div>
                 </div>
                 <div class="results-container">
                     <div class="d-flex">
-                        <h2 class="title">Сотрудники</h2>
-                        <button class="btn-main toggle-filter" onclick="openFilterResults(true,'results')">Фильтр</button>
+                        <h2 class="title">Управляющие</h2>
+                        <h3 class="division-count" style="margin-right: 3%;"></h3>
+                        
                     </div>
                     <div class="results" id="results-container"></div>
                 </div>
             </div>
         </section>
-        <section class="equipment-info">
+        <!-- <section class="equipment-info">
             <div class="filter-container equipment-filter">
                 <div class="d-flex">
                     <p class="filter-title">Фильтр</p>
@@ -122,7 +107,7 @@
                 </div>
                 <div class="equipment" id="equipment-container"></div>
             </div>
-        </section>
+        </section> -->
         
     </div>
 
@@ -140,7 +125,7 @@
     <script src="../../js/data.js"></script>
     <script src="../../js/members-info.js"></script>
     <script src="../../js/sections.js"></script>
-    <script src="../../js/pages-script/stats.js"></script>
+    <script src="../../js/pages-script/division/stats.js"></script>
     <script src="../../js/modal.js"></script>
     <script src="../../js/lang.js"></script>
 </body>

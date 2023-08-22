@@ -10,7 +10,7 @@ const setInfo = () => {
   header.innerHTML = headerContentMembers + setHeaderContent(user);
   citiesContainer.innerHTML = setSelect(cities);
   usersInfo.forEach((user) => {
-    console.log(user)
+    if(user.role == 3 || user.role == 4)
       membersInfo.innerHTML += setMembersInfo(user);
     })
 };
@@ -32,7 +32,8 @@ const saveUser = (e, id) => {
   if (
     userName.value.trim() &&
     userLogin.value.trim() &&
-    userEmail.value.trim() 
+    userEmail.value.trim() &&
+    userPassword.value.trim() 
   ) {
     $.ajax({
       type: 'POST',
@@ -52,7 +53,7 @@ const saveUser = (e, id) => {
         city: 2
       },
       success: function (response) {
-          console.log(response)
+          
           setTimeout(function(){
             location.reload()
           },2000)
@@ -93,7 +94,6 @@ const deleteUser = (userId) => {
         id: userId
     },
     success: function (response) {
-        console.log(response)
         usersInfo.forEach(item =>{
           if(userId === item.id){
             usersInfo.splice(usersInfo.indexOf(item), 1);
@@ -143,7 +143,7 @@ const addUser = (e) => {
             gender: '1'
         },
         success: function (response) {
-            console.log(response)
+        
         },
         error: function (error) {
             console.log(error);

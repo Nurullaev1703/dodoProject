@@ -39,6 +39,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            &.tasks{
+                flex-direction: column;
+                padding-top: 20px;
+                .division-member{
+                    width: 96%;
+                }
+            }
             .user-img{
                 width: 40%;
                 padding-top: 40%;
