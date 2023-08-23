@@ -394,15 +394,18 @@ header {
   position: relative;
   border-radius: 10px;
   background-color: $white;
-  border: 1px solid $main;
-  width: 150px;
+  width: 200px;
+  height: fit-content;
   p {
     padding: 6px 10px;
     color: $black;
     transition: 0.4s;
     user-select: none;
     text-align: center;
+    
     &.select-title {
+      border: 1px solid $main;
+      border-radius: 10px;
       &:hover {
         border-radius: 8px;
       }
@@ -415,11 +418,11 @@ header {
   }
   &-inner {
     position: absolute;
-    left: -1px;
+    left: 0;
     top: 100%;
     z-index: 2;
     display: none;
-    width: 100%;
+    width: 99%;
     background-color: $white;
     p {
       text-align: center;
@@ -518,4 +521,5 @@ header {
 @import "./sections/members";
 @import "./sections/cities";
 @import "./sections/tasks";
+@import "./sections/loader";
 @import "adaptive";

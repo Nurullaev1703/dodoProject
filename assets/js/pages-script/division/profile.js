@@ -3,9 +3,7 @@ const setInfo = () =>{
   let userInfo = document.querySelector('#user-info');
   let userDivisions = document.querySelector('#user-divisions');
   usersInfo.forEach(member =>{
-    if(member.role == 3){
       userDivisions.innerHTML += setDivisions(member)
-    }
   })
   header.innerHTML += setHeaderContent(user)
   userInfo.innerHTML += setUserInfoCard(user)
@@ -13,19 +11,16 @@ const setInfo = () =>{
 }
 
 
-const saveUser = (e, id) => {
+const saveUser = (e) => {
     let userName = e.parentNode.querySelector("#userName");
     let userLogin = e.parentNode.querySelector("#userLogin");
-    let userPassword = e.parentNode.querySelector("#userPassword");
     let userEmail = e.parentNode.querySelector("#userEmail");
     let userAdress = e.parentNode.querySelector("#userAdress");
     let userDateB = e.parentNode.querySelector("#userDateB");
     let userCity = e.parentNode.querySelector("#userCity");
-    let userRole = e.parentNode.querySelector("#userRole");
     let userDateStart = e.parentNode.querySelector("#userDateStart");
     let userImg = e.parentNode.querySelector("#userImg");
     let userPhone = e.parentNode.querySelector("#userPhone");
-    let memberId = id;
     if (
       userName.value.trim() &&
       userLogin.value.trim() &&
@@ -36,13 +31,18 @@ const saveUser = (e, id) => {
             type: 'POST',
             url: url+'/edit',
             data: {
-                id: 1,
+                currentUserId: parseInt(currentUserId),
+                id: parseInt(currentUserId),
                 name: userName.value,
                 login: userLogin.value,
                 email: userEmail.value,
                 adress: userAdress.value,
-                dateB: userDateB.value,
-                role: '1',
+                role: user.role,
+                role_name: user.role_name,
+                city: userCity.city,
+                city_name: user.city_name,
+                phone: userPhone.value.replace(/\D/g, ''),
+                photo: userImg.value                
             },
             success: function (response) {
                 

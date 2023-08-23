@@ -8,6 +8,7 @@ const setInfo = (members) =>{
   header.innerHTML += setHeaderContent(user)
   userInfo.innerHTML += setUserInfoCard(user)
   setLangActive()
+  document.querySelector('.loader-container').classList.remove('active')
 }
 
 
@@ -18,12 +19,8 @@ const saveUser = (e, id) => {
     let userEmail = e.parentNode.querySelector("#userEmail");
     let userAdress = e.parentNode.querySelector("#userAdress");
     let userDateB = e.parentNode.querySelector("#userDateB");
-    let userCity = e.parentNode.querySelector("#userCity");
-    let userRole = e.parentNode.querySelector("#userRole");
-    let userDateStart = e.parentNode.querySelector("#userDateStart");
     let userImg = e.parentNode.querySelector("#userImg");
     let userPhone = e.parentNode.querySelector("#userPhone");
-    let memberId = id;
     if (
       userName.value.trim() &&
       userLogin.value.trim() &&
@@ -34,13 +31,15 @@ const saveUser = (e, id) => {
             type: 'POST',
             url: url+'/edit',
             data: {
-                id: 1,
+              currentUserId: parseInt(currentUserId),
+                id: user.id,
                 name: userName.value,
                 login: userLogin.value,
                 email: userEmail.value,
                 adress: userAdress.value,
                 dateB: userDateB.value,
-                role: '1',
+                role: user.role,
+                phone: userPhone.value.replace(/\D/g, '')
             },
             success: function (response) {
               

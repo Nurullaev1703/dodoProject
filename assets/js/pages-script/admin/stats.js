@@ -2,10 +2,12 @@ const setInfo = () =>{
     let header = document.querySelector('header .container');
     let testResults = document.querySelector('#results-container');
     let divisionsCount = document.querySelector('.division-count')
+    let equipment = document.querySelector('#equipment-container')
     header.innerHTML += setHeaderContent(user)
     divisionsCount.innerHTML = `Кол-во: ${divisionsInfo[0]}`
     division.forEach(member =>{
         testResults.innerHTML += setMembersResults(member)
+        equipment.innerHTML += setEquipmentStats(member)
     })
 }
 

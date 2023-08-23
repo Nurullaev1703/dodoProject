@@ -8,12 +8,11 @@ const setInfo = () => {
   let membersInfo = document.querySelector(".table-inner");
   membersInfo.innerHTML = ``
   header.innerHTML = headerContentMembers + setHeaderContent(user);
-  citiesContainer.innerHTML = setSelect(cities);
+  citiesContainer.innerHTML = setSelect();
   usersInfo.forEach((user) => {
       membersInfo.innerHTML += setMembersInfo(user);
     })
 };
-
 
 const saveUser = (e, id) => {
   let userName = e.parentNode.querySelector("#userName");
@@ -31,29 +30,30 @@ const saveUser = (e, id) => {
   if (
     userName.value.trim() &&
     userLogin.value.trim() &&
-    userEmail.value.trim() 
+    userEmail.value.trim() &&
+    userCity.dataset.id !== '' &&
+    userRole.dataset.id !== ''
   ) {
     $.ajax({
       type: 'POST',
       url: url+'/edit',
       data: {
-        currentUserId: currentUserId,
+        currentUserId: parseInt(currentUserId),
         id: memberId,
         name: userName.value,
         login: userLogin.value,
         email: userEmail.value,
         adress: userAdress.value,
         dateB: userDateB.value,
-        role_name: 2,
+        role: userRole.dataset.id,
         phone: userPhone.value.replace(/\D/g, ''),
         dateStartWork: userDateStart.value,
         photo: userImg.value,
-        city: 2
+        city: userCity.dataset.id,
+        role_name: userRole.innerHTML,
+        city_name: userCity.innerHTML
       },
       success: function (response) {
-          setTimeout(function(){
-            location.reload()
-          },2000)
       },
       error: function (error) {
           console.log(error);
@@ -80,6 +80,16 @@ const saveUser = (e, id) => {
   } else {
     userPassword.style.border = "1px solid transparent";
   }
+  if (userRole.innerHTML === 'Должность') {
+    userRole.style.border = "1px solid red";
+  } else {
+    userRole.style.border = "1px solid #f78345";
+  }
+  if (userCity.innerHTML === 'Все города') {
+    userCity.style.border = "1px solid red";
+  } else {
+    userCity.style.border = "1px solid #f78345";
+  }
 };
 
 const deleteUser = (userId) => {
@@ -91,6 +101,7 @@ const deleteUser = (userId) => {
         id: userId
     },
     success: function (response) {
+      console.log(response)
         usersInfo.forEach(item =>{
           if(userId === item.id){
             usersInfo.splice(usersInfo.indexOf(item), 1);
@@ -121,30 +132,71 @@ const addUser = (e) => {
   // сделать проверку фотографии при отправке
   // создать поле ввода для телефона и пола
   // роль, город сделать выпадающим списком и целочисленным
-  $.ajax({
-        type: 'POST',
-        url: url+'/add',
-        data: {
-            currentUserId: parseInt(currentUserId),
-            name: userName.value,
-            phone: userPhone.value.replace(/\D/g, ''),
-            login: userLogin.value,
-            password: userPassword.value,
-            email: userEmail.value,
-            adress: userAdress.value,
-            dateB: userDateB.value,
-            role: 2,
-            photo: userImg.value,
-            city: '2',
-            dateStartWork: userDateStart.value,
-            gender: '1'
-        },
-        success: function (response) {
-        },
-        error: function (error) {
-            console.log(error);
-    }
-  })
+  if (
+    userName.value.trim() &&
+    userLogin.value.trim() &&
+    userEmail.value.trim() &&
+    userCity.dataset.id !== '' &&
+    userRole.dataset.id !== ''
+  ){
+    $.ajax({
+      type: 'POST',
+      url: url+'/add',
+      data: {
+          currentUserId: parseInt(currentUserId),
+          name: userName.value,
+          phone: userPhone.value.replace(/\D/g, ''),
+          login: userLogin.value,
+          pass: userPassword.value,
+          email: userEmail.value,
+          adress: userAdress.value,
+          dateB: userDateB.value,
+          role: userRole.dataset.id,
+          photo: userImg.value,
+          city: userCity.dataset.id,
+          dateStartWork: userDateStart.value,
+          gender: '1',
+          role_name: userRole.innerHTML,
+          city_name: userCity.innerHTML
+      },
+      success: function (response) {
+        console.log(response)
+      },
+      error: function (error) {
+          console.log(error);
+  }
+})
+  }
+  if (!userName.value.trim()) {
+    userName.style.border = "1px solid red";
+  } else {
+    userName.style.border = "1px solid transparent";
+  }
+  if (!userLogin.value.trim()) {
+    userLogin.style.border = "1px solid red";
+  } else {
+    userLogin.style.border = "1px solid transparent";
+  }
+  if (!userEmail.value.trim()) {
+    userEmail.style.border = "1px solid red";
+  } else {
+    userEmail.style.border = "1px solid transparent";
+  }
+  if (!userPassword.value.trim()) {
+    userPassword.style.border = "1px solid red";
+  } else {
+    userPassword.style.border = "1px solid transparent";
+  }
+  if (userRole.innerHTML === 'Должность') {
+    userRole.style.border = "1px solid red";
+  } else {
+    userRole.style.border = "1px solid #f78345";
+  }
+  if (userCity.innerHTML === 'Все города') {
+    userCity.style.border = "1px solid red";
+  } else {
+    userCity.style.border = "1px solid #f78345";
+  }
 };
 
 const filterCities = (e) =>{

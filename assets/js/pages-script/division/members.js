@@ -4,15 +4,18 @@
 // При манипуляции с сотрудниками отправляем его id
 const setInfo = () => {
   let header = document.querySelector("header .container");
-  let citiesContainer = document.querySelector(".select-inner");
+  let selectInner = document.querySelector(".select-point");
   let membersInfo = document.querySelector(".table-inner");
   membersInfo.innerHTML = ``
   header.innerHTML = headerContentMembers + setHeaderContent(user);
-  citiesContainer.innerHTML = setSelect(cities);
+  selectInner.innerHTML = setSelectPoints(points);
   usersInfo.forEach((user) => {
-    if(user.role == 3 || user.role == 4)
-      membersInfo.innerHTML += setMembersInfo(user);
-    })
+    let point = ''
+      for(let i = 0; i < user.point.length; i++){
+        point = user.point[i].name
+      }
+      membersInfo.innerHTML += setMembersInfoDivision(user, point)
+  })
 };
 
 

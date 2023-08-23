@@ -6,12 +6,13 @@
     top: 0;
     left: 0;
     width: 100vw;
-    height: 120vh;
+    height: 120%;
     background-color: rgba($color: $black, $alpha: 0.2);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 999;
+    
     &.city-modal{
         padding-top: 40px;
         align-items: start;
@@ -77,8 +78,6 @@
                 flex-direction: column;
                 gap: 12px;
                 .select{
-                    width: 40%;
-                    height: 33px;
                     &.active{
                         .select-inner{
                             display: flex;
@@ -89,6 +88,7 @@
                         display: none;
                         flex-direction: column;
                         gap: 8px;
+                        top: 125%;
                     }
                 }
                 p{

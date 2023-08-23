@@ -13,7 +13,7 @@ const modal = (open,e,info) =>{
             });
         }
         else if(info ==='changeCity'){
-            modalContent.innerHTML = setChangeCity(e.parentNode.parentNode.querySelector('.city-name').innerHTML)
+            modalContent.innerHTML = setChangeCity(e.parentNode.parentNode.dataset)
         }
         else if(info ==='addCity'){
             modalContent.innerHTML = setAddCity()
@@ -25,7 +25,6 @@ const modal = (open,e,info) =>{
             if(user.id === parseInt(currentUserId)){
                 if(info ==='editProfile'){
                     modalContent.innerHTML = setUserInfoForm(user,document.title)
-                    modalContent.innerHTML = setAddUserForm()
                     var targetElement = document.getElementById('userPhone');
                     var phoneMask = IMask(targetElement, {
                         mask: '+{7}(000)000-00-00'

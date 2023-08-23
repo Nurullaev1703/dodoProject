@@ -153,22 +153,22 @@ const setMembersResults = (member) => {
   return memberResult;
 };
 
-// const setEquipmentStats = (member) => {
-//   const equipmentStats = `
-//     <div class="equipment-stats" data-name-equip='${member.name}'
-//     data-date-equip='${member.dateB}' data-point-equip='${member.adress}'>
-//             <div class="img-cover">
-//                 <img src="${member.photo}" alt="">
-//             </div>
-//         <div class="text-container">
-//             <h5 class="name">${member.name}</h5>
-//             <p class="school">${member.adress}</p>
-//         </div>
-//         <p class="date">${member.dateB}</p>
-//         <p class="time">${member.time} минут</p>
-//     </div>`;
-//   return equipmentStats;
-// };
+const setEquipmentStats = (member) => {
+  const equipmentStats = `
+    <div class="equipment-stats" data-name-equip='${member.name}'
+    data-date-equip='${member.dateB}' data-point-equip='${member.adress}'>
+            <div class="img-cover">
+                <img src="${member.photo}" alt="">
+            </div>
+        <div class="text-container">
+            <h5 class="name">${member.name}</h5>
+            <p class="school">${member.adress}</p>
+        </div>
+        <p class="date">${member.dateB}</p>
+        <p class="time">${member.time} минут</p>
+    </div>`;
+  return equipmentStats;
+};
 
 //members page
 const setMembersInfo = (member) => {
@@ -179,6 +179,35 @@ const setMembersInfo = (member) => {
                 </div>
                 <div class="column">
                     <p class="city">${member.city_name}</p>
+                </div>
+                <div class="column">
+                    <p class="role">${member.role_name}</p>
+                </div>
+                <div class="column">
+                    <p class="join-date">${member.dateStartWork}</p>
+                </div>
+                <div class="column edit-column" >
+                    <div class="edit" onclick="modal(true,this,'editUser')">
+                        <svg  xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 640 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H322.8c-3.1-8.8-3.7-18.4-1.4-27.8l15-60.1c2.8-11.3 8.6-21.5 16.8-29.7l40.3-40.3c-32.1-31-75.7-50.1-123.9-50.1H178.3zm435.5-68.3c-15.6-15.6-40.9-15.6-56.6 0l-29.4 29.4 71 71 29.4-29.4c15.6-15.6 15.6-40.9 0-56.6l-14.4-14.4zM375.9 417c-4.1 4.1-7 9.2-8.4 14.9l-15 60.1c-1.4 5.5 .2 11.2 4.2 15.2s9.7 5.6 15.2 4.2l60.1-15c5.6-1.4 10.8-4.3 14.9-8.4L576.1 358.7l-71-71L375.9 417z"/></svg>
+                    </div>
+                    <div class="delete" onclick="deleteUser(${member.id})">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 640 512"><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM472 200H616c13.3 0 24 10.7 24 24s-10.7 24-24 24H472c-13.3 0-24-10.7-24-24s10.7-24 24-24z"/></svg>
+                    </div>
+                </div>
+            </div>
+    `;
+  return membersInfo;
+};
+
+// divisions
+const setMembersInfoDivision = (member,point) => {
+  const membersInfo = `
+            <div class="row member-parent" data-id="${member.id}" data-city='${member.city_name}'>
+                <div class="column">
+                    <p class="name">${member.name}</p>
+                </div>
+                <div class="column">
+                    <p class="city">${point}</p>
                 </div>
                 <div class="column">
                     <p class="role">${member.role_name}</p>
@@ -291,15 +320,15 @@ const setAddUserForm = () => {
             <p>Дата рождения</p>
             <input type="date" placeholder="" id="userDateB" value="">
             <p>Город</p>
-            <div class="select" onclick="this.classList.toggle('active')">
-              <p class="select-title">Все города</p>
+            <div class="select"  onclick="this.classList.toggle('active')">
+              <p class="select-title" id="userCity" data-id="">Все города</p>
               <div class="select-inner">
               ${setCities(cities)}
               </div>
             </div>
             <p>Должность</p> 
             <div class="select" onclick="this.classList.toggle('active')">
-              <p class="select-title">Должность</p>
+              <p class="select-title" id="userRole" data-id="">Должность</p>
               <div class="select-inner">
               ${setRoles()}
               </div>
@@ -336,9 +365,9 @@ const headerContentMembers = `
 // cities page
 const setCityNames = (item) =>{
   const city = `
-  <div class="division-member " data-city-name="${item}">
+  <div class="division-member " data-city-name="${item.name}" data-id="${item.id}">
     <div class="city-info">
-        <h3 class="city-name">${item}</h3>
+        <h3 class="city-name">${item.name}</h3>
     </div>
     <div class="city-actions">
         <button class="btn-main lang-change" onclick="modal(true,this,'changeCity')">Изменить</button>
@@ -347,12 +376,13 @@ const setCityNames = (item) =>{
 </div>`
 return city
 }
-const setChangeCity = (cityName) =>{
+const setChangeCity = (city) =>{
+  console.log(city)
    const cityForm = `
     <form action="" class="member-parent">
         <h3>Редактирование города</h3>
         <p>Название города</p>
-        <input type="text" placeholder="Введите название города" id="city" value="${cityName}">
+        <input type="text" placeholder="Введите название города" id="city" value="${city.cityName}" data-id="${city.id}">
         <button onclick="changeCityName(this)" class="btn-main">Сохранить</button>
     </form>`
  return cityForm
@@ -366,6 +396,21 @@ const setAddCity = () =>{
        <button onclick="addCityName(this)" class="btn-main">Сохранить</button>
    </form>`
 return cityForm
+}
+
+// division points
+const setPointsName = (item) =>{
+  const city = `
+  <div class="division-member " data-city-name="${item.name}" data-id="${item.id}">
+    <div class="city-info">
+        <h3 class="city-name">${item.name}</h3>
+    </div>
+    <div class="city-actions">
+        <button class="btn-main lang-change" onclick="modal(true,this,'changeCity')">Изменить</button>
+        <button class="btn-red lang-change" onclick="deleteCity(this)">удалить</button>
+    </div>
+</div>`
+return city
 }
 
 //tasks page

@@ -458,8 +458,8 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   position: relative;
   border-radius: 10px;
   background-color: #fff;
-  border: 1px solid #f78345;
-  width: 150px;
+  width: 200px;
+  height: fit-content;
 }
 .select p {
   padding: 6px 10px;
@@ -467,6 +467,10 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   transition: 0.4s;
   user-select: none;
   text-align: center;
+}
+.select p.select-title {
+  border: 1px solid #f78345;
+  border-radius: 10px;
 }
 .select p.select-title:hover {
   border-radius: 8px;
@@ -478,11 +482,11 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
 }
 .select-inner {
   position: absolute;
-  left: -1px;
+  left: 0;
   top: 100%;
   z-index: 2;
   display: none;
-  width: 100%;
+  width: 99%;
   background-color: #fff;
 }
 .select-inner p {
@@ -611,7 +615,7 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 120vh;
+  height: 120%;
   background-color: rgba(48, 48, 48, 0.2);
   display: none;
   align-items: center;
@@ -686,10 +690,6 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   flex-direction: column;
   gap: 12px;
 }
-.modal-container .modal .modal-content form .select {
-  width: 40%;
-  height: 33px;
-}
 .modal-container .modal .modal-content form .select.active .select-inner {
   display: flex;
 }
@@ -698,6 +698,7 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   display: none;
   flex-direction: column;
   gap: 8px;
+  top: 125%;
 }
 .modal-container .modal .modal-content form p {
   margin-bottom: -10px;
@@ -950,6 +951,44 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   width: 20%;
 }
 
+.loader-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: #fff;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+.loader-container.active {
+  display: flex;
+}
+.loader-container .loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #f78345;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-right: 10px;
+}
+.loader-container p {
+  font-size: 20px;
+  font-weight: 600;
+  color: #303030;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @media screen and (max-width: 450px) {
   .btn-main {
     padding: 6px;
