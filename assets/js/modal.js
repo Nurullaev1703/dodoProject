@@ -21,6 +21,9 @@ const modal = (open,e,info) =>{
         else if(info ==='showEmployees'){
             modalContent.innerHTML = setEmployees()
         }
+        else if(info ==='addPoint'){
+            modalContent.innerHTML = setAddPoint()
+        }
         else{
             if(user.id === parseInt(currentUserId)){
                 if(info ==='editProfile'){

@@ -85,7 +85,7 @@ h2 {
   align-items: baseline;
 }
 
-.cities, .table, .equipment-info .equipment-container, .test-results .results-container, .modal-container .modal .modal-content form input, .modal-container .modal, .form-container .auth, .checkbox-container, .filter-container, .about-user .user-divisions, .about-user .user-info, header .container .nav-menu .btn-main {
+.cities, .table, .equipment-info .equipment-container, .test-results .results-container, .modal-container .modal .modal-content form input:not(.btn-main), .modal-container .modal, .form-container .auth, .checkbox-container, .filter-container, .about-user .user-divisions, .about-user .user-info, header .container .nav-menu .btn-main {
   border-radius: 6px;
   background-color: #fff;
   box-shadow: 2px 2px 5px 2px rgba(247, 131, 69, 0.1);
@@ -705,7 +705,7 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   font-size: 14px;
   color: #808080;
 }
-.modal-container .modal .modal-content form input {
+.modal-container .modal .modal-content form input:not(.btn-main) {
   width: 100%;
   padding: 12px;
 }

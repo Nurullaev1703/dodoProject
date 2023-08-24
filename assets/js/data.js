@@ -82,10 +82,6 @@ const divisionsInfo = JSON.parse(localStorage.getItem('divisionsInfo'))
 const divisionStatistics = [...divisionsInfo[1]]
 
 
-
-
-  
-
 const burgerMenu = (open) =>{
     let sideBar = document.querySelector('.side-bar')
     if(open){
@@ -144,6 +140,15 @@ const setSelectPoints = () => {
   });
   return point;
 };
+const setManagers = () => {
+  let manager = ``;
+  usersInfo.forEach((element) => {
+    if(element.role === '3'){
+      manager += `<p onclick="changeSelectTitle(this)" data-id="${element.id}">${element.name}</p>`;
+    }
+  });
+  return manager;
+};
 // получение городов
 $.ajax({
   type: 'POST',
@@ -178,6 +183,7 @@ $.ajax({
   }
 });
 
+// точки для панели подразделения
 $.ajax({
     type: 'POST',
     url: url+'/points', 

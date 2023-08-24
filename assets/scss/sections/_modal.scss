@@ -96,7 +96,7 @@
                     font-size: 14px;
                     color: $lightgrey;
                 }
-                input{
+                input:not(.btn-main){
                     width: 100%;
                     @extend %card;
                     padding: 12px;

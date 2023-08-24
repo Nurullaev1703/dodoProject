@@ -412,7 +412,25 @@ const setPointsName = (item) =>{
 </div>`
 return city
 }
-
+const setAddPoint = () =>{
+  const cityForm = `
+   <form action="" class="member-parent">
+       <h3>Добавление точки</h3>
+       <p>Название точки</p>
+       <input type="text" placeholder="Введите название точки" id="point" value="">
+       <p>Адрес точки</p>
+       <input type="text" placeholder="Введите адрес" id="adress" value="">
+       <p>Управляющий</p>
+            <div class="select"  onclick="this.classList.toggle('active')" style="margin-bottom:10px;">
+              <p class="select-title" id="userPoint" data-id="">Управляющие</p>
+              <div class="select-inner">
+              ${setManagers()}
+              </div>
+            </div>
+       <input type="button" value="Добавить" onclick="addCityName(this)" class="btn-main">
+   </form>`
+return cityForm
+}
 //tasks page
 const setEmployees = () =>{
   let employee = ``
