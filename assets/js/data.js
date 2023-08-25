@@ -1,6 +1,10 @@
 let url= `https://easyteach.kz/api`
 let imgUrl = `https://test.pol1pvl.kz/storage/app/public/user_photo/`
-
+history.pushState(null, null, location.href);
+window.addEventListener('popstate', function(event) {
+    history.pushState(null, null, location.href);
+    console.log('click')
+});
 const setLangActive = () => {
   let ruLang = document.getElementById('ru')
   let kzLang = document.getElementById('kz')
@@ -14,27 +18,30 @@ const setLangActive = () => {
 // id текущего пользователя
 let currentUserId = localStorage.getItem('id')
 // отправляем и текущий id и id пользователя (одинаковые значения) при редактировании
-$.ajax({
-  type: 'POST',
-  url: url+'/getSub',
-  data: {
-      id: parseInt(currentUserId)
-  },
-  success: function (response) {
-    console.log(response)
-    localStorage.setItem('members', JSON.stringify(response));
-    if(document.title === 'Портал'){
-      setInfo(JSON.parse(localStorage.getItem('members')));
-      setLangActive()
-      document.querySelector('.loader-container').classList.remove('active')
-    }
-  },
-  error: function (error) {
-      console.log(error);
-  }
-});
 
-$.ajax({
+  $.ajax({
+    type: 'POST',
+    url: url+'/getSub',
+    data: {
+        id: parseInt(currentUserId)
+    },
+    success: function (response) {
+      console.log(response)
+      localStorage.setItem('members', JSON.stringify(response));
+      if(document.title === 'Портал'){
+        setInfo(JSON.parse(localStorage.getItem('members')));
+        setLangActive()
+        document.querySelector('.loader-container').classList.remove('active')
+      }
+    },
+    error: function (error) {
+        console.log(error);
+    }
+  });
+
+
+if(!location.href.includes('employee')){
+  $.ajax({
   type: 'POST',
   url: url+'/getUsers',
   data: {
@@ -52,6 +59,8 @@ $.ajax({
       console.log(error);
   }
 });
+}
+
 // первое число - количество городов (нулевой индекс)
 // upr-count - количество управляющих
 // kur-count - количество курьеров
@@ -137,6 +146,13 @@ const setRoles = () =>{
       role += `<p data-filter="${element.name}" data-id="${element.id}" onclick="changeSelectTitle(this)">${element.name}</p>`;
   });
   return role;
+}
+const setPoints = () =>{
+  let point = ``;
+  points.forEach((element) => {
+    point += `<p data-filter="${element.name}" data-id="${element.id}" onclick="changeSelectTitle(this)">${element.name}</p>`;
+  });
+  return point;
 }
 const setSelect = () => {
   let city = ``;

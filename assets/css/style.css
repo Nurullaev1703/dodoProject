@@ -85,7 +85,7 @@ h2 {
   align-items: baseline;
 }
 
-.cities, .table, .equipment-info .equipment-container, .test-results .results-container, .modal-container .modal .modal-content form input:not(.btn-main), .modal-container .modal, .form-container .auth, .checkbox-container, .filter-container, .about-user .user-divisions, .about-user .user-info, header .container .nav-menu .btn-main {
+.tasks, .cities, .table, .equipment-info .equipment-container, .test-results .results-container, .modal-container .modal .modal-content form input:not(.btn-main), .modal-container .modal, .form-container .auth, .checkbox-container, .filter-container, .about-user .user-divisions, .about-user .user-info, header .container .nav-menu .btn-main {
   border-radius: 6px;
   background-color: #fff;
   box-shadow: 2px 2px 5px 2px rgba(247, 131, 69, 0.1);
@@ -220,6 +220,7 @@ header .container .nav-menu .profile-preview:hover {
 }
 header .container .nav-menu .profile-preview p {
   font-size: 14px;
+  text-align: center;
 }
 header .container .nav-menu .profile-preview .img-cover {
   position: relative;
@@ -657,8 +658,11 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   flex-direction: column;
   padding-top: 20px;
 }
-.modal-container .modal .modal-content.tasks .division-member {
+.modal-container .modal .modal-content.tasks .courses-list {
   width: 96%;
+}
+.modal-container .modal .modal-content.tasks .courses-list .text-container {
+  justify-content: space-between;
 }
 .modal-container .modal .modal-content .user-img {
   width: 40%;
@@ -944,14 +948,8 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   background-color: #e35d15;
 }
 
-.tasks .column {
-  width: 60%;
-}
-.tasks .column:nth-child(2) {
-  width: 20%;
-}
-.tasks .column.add-task {
-  width: 20%;
+.tasks {
+  padding: 2%;
 }
 
 .loader-container {

@@ -57,7 +57,7 @@ const saveUser = (e, id) => {
         }, 2000);
       },
       error: function (error) {
-        console.log(error);
+        alert(error);
       },
     });
   }
@@ -100,7 +100,7 @@ const deleteUser = (userId) => {
       });
     },
     error: function (error) {
-      console.log(error);
+      alert(error);
     },
   });
 };
@@ -140,7 +140,7 @@ const addUser = (e) => {
     },
     success: function (response) {},
     error: function (error) {
-      console.log(error);
+      alert(error);
     },
   });
 };

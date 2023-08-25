@@ -1,7 +1,8 @@
 const setInfo = () =>{
     let header = document.querySelector('header .container');
     header.innerHTML += setHeaderContent(user)
-    setLangActive()
+    let taskContainer = document.querySelector('.tasks')
+    taskContainer.innerHTML += setEmployees()
 }
 
 const setCheckbox = (e) =>{

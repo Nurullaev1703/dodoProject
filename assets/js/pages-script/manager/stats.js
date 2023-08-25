@@ -39,7 +39,7 @@ const clearInputs = (e) =>{
 // фильтр сотрудников в results-info
 $(function() {
     let nameFilter = $("[data-filterName]");
-    let pointFilter = $("[data-filterpoint]");
+    let pointFilter = $("[data-filterPoint]");
   
     nameFilter.on("keyup", updateFilters);
     pointFilter.on("keyup", updateFilters);

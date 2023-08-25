@@ -12,6 +12,7 @@ const modal = (open,e,info) =>{
                 mask: '+{7}(000)000-00-00'
             });
             
+            
         }
         else if(info ==='changeCity'){
             modalContent.innerHTML = setChangeCity(e.parentNode.parentNode.dataset)
@@ -27,6 +28,15 @@ const modal = (open,e,info) =>{
         }
         else if(info ==='editPoint'){
             modalContent.innerHTML = setChangePoint(e.parentNode.parentNode.dataset)
+        }
+        else if(info ==='endTasks'){
+            modalContent.innerHTML = setEndTasks()
+        }
+        else if(info ==='currentTasks'){
+            modalContent.innerHTML = setCurrentTasks()
+        }
+        else if(info ==='newTask'){
+            modalContent.innerHTML = setNewTask()
         }
         else{
             if(user.id === parseInt(currentUserId)){

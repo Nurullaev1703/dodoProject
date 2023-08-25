@@ -2,11 +2,6 @@ const setInfo = () => {
   let header = document.querySelector("header .container");
   let userInfo = document.querySelector("#user-info");
   let userDivisions = document.querySelector("#user-divisions");
-  usersInfo.forEach((member) => {
-    if (member.role == 3) {
-      userDivisions.innerHTML += setDivisions(member);
-    }
-  });
   header.innerHTML += setHeaderContent(user);
   userInfo.innerHTML += setUserInfoCard(user);
   setLangActive();
@@ -44,7 +39,7 @@ const saveUser = (e, id) => {
       },
       success: function (response) {},
       error: function (error) {
-        console.log(error);
+        alert(error);
       },
     });
   }

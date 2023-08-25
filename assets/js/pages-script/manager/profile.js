@@ -44,7 +44,7 @@ const saveUser = (e, id) => {
       },
       success: function (response) {},
       error: function (error) {
-        console.log(error);
+        alert(error);
       },
     });
   }

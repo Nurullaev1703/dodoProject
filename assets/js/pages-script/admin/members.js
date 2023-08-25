@@ -6,12 +6,12 @@ const setInfo = () => {
   let header = document.querySelector("header .container");
   let citiesContainer = document.querySelector(".select-inner");
   let membersInfo = document.querySelector(".table-inner");
-  membersInfo.innerHTML = ``
+  membersInfo.innerHTML = ``;
   header.innerHTML = headerContentMembers + setHeaderContent(user);
   citiesContainer.innerHTML = setSelect();
   usersInfo.forEach((user) => {
-      membersInfo.innerHTML += setMembersInfo(user);
-    })
+    membersInfo.innerHTML += setMembersInfo(user);
+  });
 };
 
 const saveUser = (e, id) => {
@@ -31,12 +31,12 @@ const saveUser = (e, id) => {
     userName.value.trim() &&
     userLogin.value.trim() &&
     userEmail.value.trim() &&
-    userCity.dataset.id !== '' &&
-    userRole.dataset.id !== ''
+    userCity.dataset.id !== "" &&
+    userRole.dataset.id !== ""
   ) {
     $.ajax({
-      type: 'POST',
-      url: url+'/edit',
+      type: "POST",
+      url: url + "/edit",
       data: {
         currentUserId: parseInt(currentUserId),
         id: memberId,
@@ -46,19 +46,18 @@ const saveUser = (e, id) => {
         adress: userAdress.value,
         dateB: userDateB.value,
         role: userRole.dataset.id,
-        phone: userPhone.value.replace(/\D/g, ''),
+        phone: userPhone.value.replace(/\D/g, ""),
         dateStartWork: userDateStart.value,
         photo: userImg.value,
         city: userCity.dataset.id,
         role_name: userRole.innerHTML,
-        city_name: userCity.innerHTML
+        city_name: userCity.innerHTML,
       },
-      success: function (response) {
-      },
+      success: function (response) {},
       error: function (error) {
-          console.log(error);
-      }
-  });
+        alert(error);
+      },
+    });
   }
   if (!userName.value.trim()) {
     userName.style.border = "1px solid red";
@@ -80,12 +79,12 @@ const saveUser = (e, id) => {
   } else {
     userPassword.style.border = "1px solid transparent";
   }
-  if (userRole.innerHTML === 'Должность') {
+  if (userRole.innerHTML === "Должность") {
     userRole.style.border = "1px solid red";
   } else {
     userRole.style.border = "1px solid #f78345";
   }
-  if (userCity.innerHTML === 'Все города') {
+  if (userCity.innerHTML === "Все города") {
     userCity.style.border = "1px solid red";
   } else {
     userCity.style.border = "1px solid #f78345";
@@ -94,27 +93,25 @@ const saveUser = (e, id) => {
 
 const deleteUser = (userId) => {
   $.ajax({
-    type: 'POST',
-    url: url+'/delete',
+    type: "POST",
+    url: url + "/delete",
     data: {
-        currentUserId: parseInt(currentUserId),
-        id: userId
+      currentUserId: parseInt(currentUserId),
+      id: userId,
     },
     success: function (response) {
-      console.log(response)
-        usersInfo.forEach(item =>{
-          if(userId === item.id){
-            usersInfo.splice(usersInfo.indexOf(item), 1);
-            setInfo()
-          }
-        })
+      console.log(response);
+      usersInfo.forEach((item) => {
+        if (userId === item.id) {
+          usersInfo.splice(usersInfo.indexOf(item), 1);
+          setInfo();
+        }
+      });
     },
     error: function (error) {
-        console.log(error);
-        
-    }
+      alert(error);
+    },
   });
-  
 };
 
 const addUser = (e) => {
@@ -136,36 +133,36 @@ const addUser = (e) => {
     userName.value.trim() &&
     userLogin.value.trim() &&
     userEmail.value.trim() &&
-    userCity.dataset.id !== '' &&
-    userRole.dataset.id !== ''
-  ){
+    userCity.dataset.id !== "" &&
+    userRole.dataset.id !== ""
+  ) {
     $.ajax({
-      type: 'POST',
-      url: url+'/add',
+      type: "POST",
+      url: url + "/add",
       data: {
-          currentUserId: parseInt(currentUserId),
-          name: userName.value,
-          phone: userPhone.value.replace(/\D/g, ''),
-          login: userLogin.value,
-          pass: userPassword.value,
-          email: userEmail.value,
-          adress: userAdress.value,
-          dateB: userDateB.value,
-          role: userRole.dataset.id,
-          photo: userImg.value,
-          city: userCity.dataset.id,
-          dateStartWork: userDateStart.value,
-          gender: '1',
-          role_name: userRole.innerHTML,
-          city_name: userCity.innerHTML
+        currentUserId: parseInt(currentUserId),
+        name: userName.value,
+        phone: userPhone.value.replace(/\D/g, ""),
+        login: userLogin.value,
+        pass: userPassword.value,
+        email: userEmail.value,
+        adress: userAdress.value,
+        dateB: userDateB.value,
+        role: userRole.dataset.id,
+        photo: userImg.value,
+        city: userCity.dataset.id,
+        dateStartWork: userDateStart.value,
+        gender: "1",
+        role_name: userRole.innerHTML,
+        city_name: userCity.innerHTML,
       },
       success: function (response) {
-        console.log(response)
+        console.log(response);
       },
       error: function (error) {
-          console.log(error);
-  }
-})
+        alert(error);
+      },
+    });
   }
   if (!userName.value.trim()) {
     userName.style.border = "1px solid red";
@@ -187,35 +184,34 @@ const addUser = (e) => {
   } else {
     userPassword.style.border = "1px solid transparent";
   }
-  if (userRole.innerHTML === 'Должность') {
+  if (userRole.innerHTML === "Должность") {
     userRole.style.border = "1px solid red";
   } else {
     userRole.style.border = "1px solid #f78345";
   }
-  if (userCity.innerHTML === 'Все города') {
+  if (userCity.innerHTML === "Все города") {
     userCity.style.border = "1px solid red";
   } else {
     userCity.style.border = "1px solid #f78345";
   }
 };
 
-const filterCities = (e) =>{
-  const memberParent = document.querySelectorAll('.member-parent')
-  if(e.classList.contains('showAll')){
-    e.parentNode.querySelector('.select-title').innerHTML = 'Все города'
-    memberParent.forEach((item) =>{
-      item.classList.remove('hide')
-    })
-  }
-  else{
-    const filterType = e.innerHTML
-    e.parentNode.parentNode.querySelector('.select-title').innerHTML = filterType
-    memberParent.forEach((item) =>{
-      item.classList.remove('hide')
-      if(item.querySelector('.city').innerHTML !== filterType){
-        item.classList.add('hide')
+const filterCities = (e) => {
+  const memberParent = document.querySelectorAll(".member-parent");
+  if (e.classList.contains("showAll")) {
+    e.parentNode.querySelector(".select-title").innerHTML = "Все города";
+    memberParent.forEach((item) => {
+      item.classList.remove("hide");
+    });
+  } else {
+    const filterType = e.innerHTML;
+    e.parentNode.parentNode.querySelector(".select-title").innerHTML =
+      filterType;
+    memberParent.forEach((item) => {
+      item.classList.remove("hide");
+      if (item.querySelector(".city").innerHTML !== filterType) {
+        item.classList.add("hide");
       }
-    })
+    });
   }
-}
-
+};

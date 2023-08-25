@@ -1,11 +1,4 @@
 .tasks{
-    .column{
-        width: 60%;
-        &:nth-child(2){
-            width: 20%;
-        }
-        &.add-task{
-            width: 20%;
-        }
-    }
+    @extend %card;
+    padding: 2%;
 }

@@ -6,23 +6,21 @@ const setInfo = () => {
   let header = document.querySelector("header .container");
   let selectInner = document.querySelector(".select-point");
   let membersInfo = document.querySelector(".table-inner");
-  membersInfo.innerHTML = ``
+  membersInfo.innerHTML = ``;
   header.innerHTML = headerContentMembers + setHeaderContent(user);
   selectInner.innerHTML = setSelectPoints(points);
   usersInfo.forEach((user) => {
-    let point = ''
-      for(let i = 0; i < user.point.length; i++){
-        if(user.point[i].name.trim()){
-          point = user.point[i].name 
-        }
-        else{
-          point = 'Нет точки'
-        }
+    let point = "";
+    for (let i = 0; i < user.point.length; i++) {
+      if (user.point[i].name.trim()) {
+        point = user.point[i].name;
+      } else {
+        point = "Нет точки";
       }
-      membersInfo.innerHTML += setMembersInfoDivision(user, point)
-  })
+    }
+    membersInfo.innerHTML += setMembersInfoDivision(user, point);
+  });
 };
-
 
 const saveUser = (e, id) => {
   let userName = e.parentNode.querySelector("#userName");
@@ -31,7 +29,7 @@ const saveUser = (e, id) => {
   let userEmail = e.parentNode.querySelector("#userEmail");
   let userAdress = e.parentNode.querySelector("#userAdress");
   let userDateB = e.parentNode.querySelector("#userDateB");
-  let userCity = e.parentNode.querySelector("#userCity");
+  let userPoint = e.parentNode.querySelector("#userPoint");
   let userRole = e.parentNode.querySelector("#userRole");
   let userDateStart = e.parentNode.querySelector("#userDateStart");
   let userImg = e.parentNode.querySelector("#userImg");
@@ -40,16 +38,17 @@ const saveUser = (e, id) => {
     userName.value.trim() &&
     userLogin.value.trim() &&
     userEmail.value.trim() &&
-    userCity.dataset.id !== '' &&
-    userRole.dataset.id !== ''
+    userPoint.dataset.id !== "" &&
+    userRole.dataset.id !== ""
   ) {
     $.ajax({
-      type: 'POST',
-      url: url+'/edit',
+      type: "POST",
+      url: url + "/edit",
       data: {
         currentUserId: parseInt(currentUserId),
+        id: parseInt(e.parentNode.dataset.id),
         name: userName.value,
-        phone: userPhone.value.replace(/\D/g, ''),
+        phone: userPhone.value.replace(/\D/g, ""),
         login: userLogin.value,
         pass: userPassword.value,
         email: userEmail.value,
@@ -57,23 +56,18 @@ const saveUser = (e, id) => {
         dateB: userDateB.value,
         role: userRole.dataset.id,
         photo: userImg.value,
-        city: userCity.dataset.id,
+        city: user.city,
         dateStartWork: userDateStart.value,
-        gender: '1',
+        gender: "1",
         role_name: userRole.innerHTML,
-        city_name: userCity.innerHTML,
-        point: []
+        city_name: user.city_name,
+        point: userPoint.dataset.id,
       },
-      success: function (response) {
-          
-          setTimeout(function(){
-            location.reload()
-          },2000)
-      },
+      success: function (response) {},
       error: function (error) {
-          console.log(error);
-      }
-  });
+        alert(error);
+      },
+    });
   }
   if (!userName.value.trim()) {
     userName.style.border = "1px solid red";
@@ -90,45 +84,33 @@ const saveUser = (e, id) => {
   } else {
     userEmail.style.border = "1px solid transparent";
   }
-  if (!userPassword.value.trim()) {
-    userPassword.style.border = "1px solid red";
-  } else {
-    userPassword.style.border = "1px solid transparent";
-  }
-  if (userRole.innerHTML === 'Должность') {
+  if (userRole.innerHTML === "Должность") {
     userRole.style.border = "1px solid red";
   } else {
     userRole.style.border = "1px solid #f78345";
-  }
-  if (userCity.innerHTML === 'Все города') {
-    userCity.style.border = "1px solid red";
-  } else {
-    userCity.style.border = "1px solid #f78345";
   }
 };
 
 const deleteUser = (userId) => {
   $.ajax({
-    type: 'POST',
-    url: url+'/delete',
+    type: "POST",
+    url: url + "/delete",
     data: {
-        currentUserId: parseInt(currentUserId),
-        id: userId
+      currentUserId: parseInt(currentUserId),
+      id: userId,
     },
     success: function (response) {
-        usersInfo.forEach(item =>{
-          if(userId === item.id){
-            usersInfo.splice(usersInfo.indexOf(item), 1);
-            setInfo()
-          }
-        })
+      usersInfo.forEach((item) => {
+        if (userId === item.id) {
+          usersInfo.splice(usersInfo.indexOf(item), 1);
+          setInfo();
+        }
+      });
     },
     error: function (error) {
-        console.log(error);
-        
-    }
+      alert(error);
+    },
   });
-  
 };
 
 const addUser = (e) => {
@@ -138,7 +120,7 @@ const addUser = (e) => {
   let userEmail = e.parentNode.querySelector("#userEmail");
   let userAdress = e.parentNode.querySelector("#userAdress");
   let userDateB = e.parentNode.querySelector("#userDateB");
-  let userCity = e.parentNode.querySelector("#userCity");
+  let userPoint = e.parentNode.querySelector("#userPoint");
   let userRole = e.parentNode.querySelector("#userRole");
   let userDateStart = e.parentNode.querySelector("#userDateStart");
   let userImg = e.parentNode.querySelector("#userImg");
@@ -150,16 +132,16 @@ const addUser = (e) => {
     userName.value.trim() &&
     userLogin.value.trim() &&
     userEmail.value.trim() &&
-    userCity.dataset.id !== '' &&
-    userRole.dataset.id !== ''
+    userPoint.dataset.id !== "" &&
+    userRole.dataset.id !== ""
   ) {
     $.ajax({
-      type: 'POST',
-      url: url+'/add',
+      type: "POST",
+      url: url + "/add",
       data: {
         currentUserId: parseInt(currentUserId),
         name: userName.value,
-        phone: userPhone.value.replace(/\D/g, ''),
+        phone: userPhone.value.replace(/\D/g, ""),
         login: userLogin.value,
         pass: userPassword.value,
         email: userEmail.value,
@@ -169,21 +151,20 @@ const addUser = (e) => {
         photo: userImg.value,
         city: user.city,
         dateStartWork: userDateStart.value,
-        gender: '1',
+        gender: "1",
         role_name: userRole.innerHTML,
         city_name: user.city_name,
-        
+        point: userPoint.dataset.id,
       },
       success: function (response) {
-          
-          setTimeout(function(){
-            location.reload()
-          },2000)
+        setTimeout(function () {
+          location.reload();
+        }, 2000);
       },
       error: function (error) {
-          console.log(error);
-      }
-  });
+        alert(error);
+      },
+    });
   }
   if (!userName.value.trim()) {
     userName.style.border = "1px solid red";
@@ -205,35 +186,34 @@ const addUser = (e) => {
   } else {
     userPassword.style.border = "1px solid transparent";
   }
-  if (userRole.innerHTML === 'Должность') {
+  if (userRole.innerHTML === "Должность") {
     userRole.style.border = "1px solid red";
   } else {
     userRole.style.border = "1px solid #f78345";
   }
-  if (userCity.innerHTML === 'Все города') {
+  if (userCity.innerHTML === "Все города") {
     userCity.style.border = "1px solid red";
   } else {
     userCity.style.border = "1px solid #f78345";
   }
 };
 
-const filterCities = (e) =>{
-  const memberParent = document.querySelectorAll('.member-parent')
-  if(e.classList.contains('showAll')){
-    e.parentNode.querySelector('.select-title').innerHTML = 'Все города'
-    memberParent.forEach((item) =>{
-      item.classList.remove('hide')
-    })
-  }
-  else{
-    const filterType = e.innerHTML
-    e.parentNode.parentNode.querySelector('.select-title').innerHTML = filterType
-    memberParent.forEach((item) =>{
-      item.classList.remove('hide')
-      if(item.querySelector('.city').innerHTML !== filterType){
-        item.classList.add('hide')
+const filterCities = (e) => {
+  const memberParent = document.querySelectorAll(".member-parent");
+  if (e.classList.contains("showAll")) {
+    e.parentNode.querySelector(".select-title").innerHTML = "Все города";
+    memberParent.forEach((item) => {
+      item.classList.remove("hide");
+    });
+  } else {
+    const filterType = e.innerHTML;
+    e.parentNode.parentNode.querySelector(".select-title").innerHTML =
+      filterType;
+    memberParent.forEach((item) => {
+      item.classList.remove("hide");
+      if (item.querySelector(".city").innerHTML !== filterType) {
+        item.classList.add("hide");
       }
-    })
+    });
   }
-}
-
+};

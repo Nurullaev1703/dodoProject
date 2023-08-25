@@ -141,6 +141,7 @@ header {
         }
         p {
           font-size: 14px;
+          text-align: center;
         }
         .img-cover {
           position: relative;
@@ -334,6 +335,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 5px;
+  
   &.hide {
     display: none;
   }

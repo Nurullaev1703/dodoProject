@@ -9,9 +9,9 @@ const setInfo = () => {
   membersInfo.innerHTML = ``;
   header.innerHTML = headerContentMembers + setHeaderContent(user);
   citiesContainer.innerHTML += setRoles();
-  usersInfo.forEach(employee =>{
-    membersInfo.innerHTML += setMembersInfoManager(employee)
-  })
+  usersInfo.forEach((employee) => {
+    membersInfo.innerHTML += setMembersInfoManager(employee);
+  });
 };
 const saveUser = (e, id) => {
   let userName = e.parentNode.querySelector("#userName");
@@ -20,7 +20,6 @@ const saveUser = (e, id) => {
   let userEmail = e.parentNode.querySelector("#userEmail");
   let userAdress = e.parentNode.querySelector("#userAdress");
   let userDateB = e.parentNode.querySelector("#userDateB");
-  let userCity = e.parentNode.querySelector("#userCity");
   let userRole = e.parentNode.querySelector("#userRole");
   let userDateStart = e.parentNode.querySelector("#userDateStart");
   let userImg = e.parentNode.querySelector("#userImg");
@@ -29,35 +28,36 @@ const saveUser = (e, id) => {
     userName.value.trim() &&
     userLogin.value.trim() &&
     userEmail.value.trim() &&
-    userRole.dataset.id !== ''
-  ){
+    userRole.dataset.id !== ""
+  ) {
     $.ajax({
-      type: 'POST',
-      url: url+'/edit',
+      type: "POST",
+      url: url + "/edit",
       data: {
-          currentUserId: parseInt(currentUserId),
-          name: userName.value,
-          phone: userPhone.value.replace(/\D/g, ''),
-          login: userLogin.value,
-          pass: userPassword.value,
-          email: userEmail.value,
-          adress: userAdress.value,
-          dateB: userDateB.value,
-          role: userRole.dataset.id,
-          photo: userImg.value,
-          city: user.city,
-          dateStartWork: userDateStart.value,
-          gender: '1',
-          role_name: userRole.innerHTML,
-          city_name: user.city_name
+        currentUserId: parseInt(currentUserId),
+        id: e.parentNode.dataset.id,
+        name: userName.value,
+        phone: userPhone.value.replace(/\D/g, ""),
+        login: userLogin.value,
+        pass: userPassword.value,
+        email: userEmail.value,
+        adress: userAdress.value,
+        dateB: userDateB.value,
+        role: userRole.dataset.id,
+        photo: userImg.value,
+        city: user.city,
+        dateStartWork: userDateStart.value,
+        gender: "1",
+        role_name: userRole.innerHTML,
+        city_name: user.city_name,
       },
       success: function (response) {
-        console.log(response)
+        console.log(response);
       },
       error: function (error) {
-          console.log(error);
-  }
-})
+        alert(error);
+      },
+    });
   }
   if (!userName.value.trim()) {
     userName.style.border = "1px solid red";
@@ -74,17 +74,11 @@ const saveUser = (e, id) => {
   } else {
     userEmail.style.border = "1px solid transparent";
   }
-  if (!userPassword.value.trim()) {
-    userPassword.style.border = "1px solid red";
-  } else {
-    userPassword.style.border = "1px solid transparent";
-  }
-  if (userRole.innerHTML === 'Должность') {
+  if (userRole.innerHTML === "Должность") {
     userRole.style.border = "1px solid red";
   } else {
     userRole.style.border = "1px solid #f78345";
   }
-
 };
 
 const deleteUser = (userId) => {
@@ -104,7 +98,7 @@ const deleteUser = (userId) => {
       });
     },
     error: function (error) {
-      console.log(error);
+      alert(error);
     },
   });
 };
@@ -115,7 +109,7 @@ const addUser = (e) => {
   let userEmail = e.parentNode.querySelector("#userEmail");
   let userAdress = e.parentNode.querySelector("#userAdress");
   let userDateB = e.parentNode.querySelector("#userDateB");
-  let userCity = e.parentNode.querySelector("#userCity");
+  let userPoint = e.parentNode.dataset.point;
   let userRole = e.parentNode.querySelector("#userRole");
   let userDateStart = e.parentNode.querySelector("#userDateStart");
   let userImg = e.parentNode.querySelector("#userImg");
@@ -127,35 +121,35 @@ const addUser = (e) => {
     userName.value.trim() &&
     userLogin.value.trim() &&
     userEmail.value.trim() &&
-    userRole.dataset.id !== ''
-  ){
+    userRole.dataset.id !== ""
+  ) {
     $.ajax({
-      type: 'POST',
-      url: url+'/add',
+      type: "POST",
+      url: url + "/add",
       data: {
-          currentUserId: parseInt(currentUserId),
-          name: userName.value,
-          phone: userPhone.value.replace(/\D/g, ''),
-          login: userLogin.value,
-          pass: userPassword.value,
-          email: userEmail.value,
-          adress: userAdress.value,
-          dateB: userDateB.value,
-          role: userRole.dataset.id,
-          photo: userImg.value,
-          city: user.city,
-          dateStartWork: userDateStart.value,
-          gender: '1',
-          role_name: userRole.innerHTML,
-          city_name: user.city_name
+        currentUserId: parseInt(currentUserId),
+        name: userName.value,
+        phone: userPhone.value.replace(/\D/g, ""),
+        login: userLogin.value,
+        pass: userPassword.value,
+        email: userEmail.value,
+        adress: userAdress.value,
+        dateB: userDateB.value,
+        role: userRole.dataset.id,
+        photo: userImg.value,
+        city: user.city,
+        dateStartWork: userDateStart.value,
+        gender: "1",
+        role_name: userRole.innerHTML,
+        city_name: user.city_name,
       },
       success: function (response) {
-        console.log(response)
+        console.log(response);
       },
       error: function (error) {
-          console.log(error);
-  }
-})
+        alert(error);
+      },
+    });
   }
   if (!userName.value.trim()) {
     userName.style.border = "1px solid red";
@@ -177,7 +171,7 @@ const addUser = (e) => {
   } else {
     userPassword.style.border = "1px solid transparent";
   }
-  if (userRole.innerHTML === 'Должность') {
+  if (userRole.innerHTML === "Должность") {
     userRole.style.border = "1px solid red";
   } else {
     userRole.style.border = "1px solid #f78345";

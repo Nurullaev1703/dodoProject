@@ -43,8 +43,11 @@
             &.tasks{
                 flex-direction: column;
                 padding-top: 20px;
-                .division-member{
+                .courses-list{
                     width: 96%;
+                    .text-container{
+                        justify-content: space-between;
+                    }
                 }
             }
             .user-img{

@@ -120,7 +120,7 @@ const setDivisions = (member) => {
             <img src=${imgUrl + member.photo} alt="">
         </div>
         <div class="text-container">
-            <h5 class="member-city">${member.city_name}</h5>
+            <h5 class="member-city">${member.PName}</h5>
             <p class="member-name">${member.name}</p>
         </div>
     </div>
@@ -158,8 +158,8 @@ const setMembersResults = (member) => {
   if(location.href.includes('manager')){
     const memberResult = `
         <div class="division-member member-parent"
-        data-id=${member.id} data-name='${member.RName}'
-         data-point='${member.PName}'>
+        data-id=${member.id} data-name='${member.UName}'
+         data-point='${member.RName}'>
             <div class="member-info">
                 <div class="img-cover">
                     <img src="${member.photo}" alt="">
@@ -334,6 +334,14 @@ const setUserInfoForm = (member,pageName) => {
     return userInfoFormProfile
   }
   if(location.href.includes('division')){
+    let userPoint = `Выберите точку`
+    let userPointId = -1
+    if(member.point.length > 0){
+      member.point.forEach(point =>{
+        userPoint = point.name
+        userPointId = point.id
+      })
+    }
     const userInfoForm = `
         <form action="" class="member-parent" data-id="${member.id}">
             <h3>Изменение профиля</h3>
@@ -355,14 +363,14 @@ const setUserInfoForm = (member,pageName) => {
             <input type="date" placeholder="" id="userDateB" value="${member.dateB}">
             <p class="point-hint">Точка</p>
             <div class="select points-select" onclick="this.classList.toggle('active')">
-              <p class="select-title">Все точки</p>
+              <p class="select-title" id="userPoint" data-id="${userPointId}">${userPoint}</p>
               <div class="select-inner">
-              ${setSelectPoints()}
+              ${setPoints()}
               </div>
             </div>
             <p>Должность</p> 
             <div class="select" onclick="this.classList.toggle('active')">
-              <p class="select-title">Должность</p>
+              <p class="select-title" id="userRole" data-role="${member.role}">${member.role_name}</p>
               <div class="select-inner">
               ${setRoles()}
               </div>
@@ -371,7 +379,7 @@ const setUserInfoForm = (member,pageName) => {
             <input type="date" placeholder="" id="userDateStart" value="${member.dateB}">
             <p>Фотография</p>
             <input type="file" id="userImg" value="${member.photo}">
-            <button onclick="saveUser(this,${member.id})" class="btn-main">Сохранить</button>
+            <input type="button" value ="Сохранить" onclick="saveUser(this,${member.id})" class="btn-main">
     </form>
     `;
   return userInfoForm;
@@ -398,16 +406,16 @@ const setUserInfoForm = (member,pageName) => {
             <input type="date" placeholder="" id="userDateB" value="${member.dateB}">
             <p>Должность</p> 
             <div class="select" onclick="this.classList.toggle('active')">
-              <p class="select-title">Должность</p>
+              <p class="select-title" id="userRole" data-id="4">${member.RName}</p>
               <div class="select-inner">
               ${setRoles()}
               </div>
             </div>
             <p>Дата начала работы</p>
-            <input type="date" placeholder="" id="userDateStart" value="${member.dateB}">
+            <input type="date" placeholder="" id="userDateStart" value="${member.dateStartWork}">
             <p>Фотография</p>
             <input type="file" id="userImg" value="${member.photo}">
-            <button onclick="saveUser(this,${member.id})" class="btn-main">Сохранить</button>
+            <input type="button" value="Сохранить" onclick="saveUser(this,${member.id})" class="btn-main">
     </form>
     `;
   return userInfoForm;
@@ -475,11 +483,11 @@ const setAddUserForm = () => {
             <input type="text" placeholder="Адрес" id="userAdress" value="">
             <p>Дата рождения</p>
             <input type="date" placeholder="" id="userDateB" value="">
-            <p class="point-hint">Город</p>
+            <p class="point-hint">Точка</p>
             <div class="select points-select"  onclick="this.classList.toggle('active')">
-              <p class="select-title" id="userCity" data-id="">Все города</p>
+              <p class="select-title" id="userPoint" data-id="">Все точки</p>
               <div class="select-inner">
-              ${setSelectPoints()}
+              ${setPoints()}
               </div>
             </div>
             <p>Должность</p> 
@@ -684,36 +692,67 @@ return cityForm
 //tasks page
 const setEmployees = () =>{
   let employee = ``
-  usersInfo.forEach(item =>{
-    
-    if(item.role == '4'){
+  usersInfo.forEach(member =>{
       employee += `
-        <div class="division-member member-parent">
+        <div class="division-member member-parent" data-id=${member.id}>
           <div class="member-info">
-              <div class="img-cover">
-                  <img src="${item.photo}" alt="">
-              </div>
               <div class="text-container">
-                  <h5 class="member-city">${item.city_name}</h5>
-                  <p class="member-name">${item.name}</p>
+                  <h5 class="member-point">${member.PName}</h5>
+                  <p class="member-name">${member.name}</p>
               </div>
           </div>
           <div class="text-container">
-              <h5 class="">Должность</h5>
-              <p class="employee-count">${item.role_name}</p>
+              <h5 class="lang-employers">Должность</h5>
+              <p class="employee-count">${member.RName}</p>
           </div>
-          <div class="checkbox-container">
-              <label for="checkbox${item.id}">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
-                  <input type="checkbox" id="checkbox${item.id}" onchange="setCheckbox(this)" hidden>
-              </label>
-          </div>
+          <div class="select" onclick="this.classList.toggle('active')">
+              <p class="select-title" id="courses">Курсы</p>
+              <div class="select-inner">
+                  <p onclick="modal(true,this,'newTask')">Новый курс</p>
+                  <p onclick="modal(true,this,'endTasks')">Пройденные</p>
+                  <p onclick="modal(true,this,'currentTasks')">Назначенные</p>
+              </div>
+            </div>
       </div>
         `
-    }
-  })
-  employee += `
-    <button class="btn-main" onclick="giveTask(this)">Назначить задание</button>
-  `
+    })
   return employee
+}
+const setNewTask = () =>{
+  let newTask = `
+  <div class="courses-list">
+      <h3>Курсы</h3>
+      <ol>
+          <li><div class="text-container">
+              <p>Какой-то курс</p>
+              <input type="button" value="Назначить" onclick="addTask()" class="btn-main">
+          </div>
+          </li>
+      </ol>
+  </div>`
+  return newTask
+}
+const setEndTasks = () =>{
+  let task = `
+  <div class="courses-list">
+      <h3>Пройденные курсы</h3>
+      <ol>
+          <li>
+              <p>Какой-то курс</p>
+          </li>
+      </ol>
+  </div>`
+  return task
+}
+const setCurrentTasks = () =>{
+  let task = `
+  <div class="courses-list">
+      <h3>Назначенные курсы</h3>
+      <ol>
+          <li>
+              <p>Какой-то курс</p>
+          </li>
+      </ol>
+  </div>`
+  return task
 }
