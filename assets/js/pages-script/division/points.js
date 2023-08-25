@@ -3,10 +3,10 @@ const setInfo = () => {
     let citiesContainer = document.querySelector('.cities')
     header.innerHTML += setHeaderContent(user);
     points.forEach(point =>{
-        citiesContainer.innerHTML += setCityNames(point)
+        citiesContainer.innerHTML += setPointsName(point)
     })
 };
-const addCityName = (e) =>{
+const addPointName = (e) =>{
     if(e.parentNode.querySelector('#userPoint').innerHTML !== 'Управляющие'){
         $.ajax({
             type: 'POST',
@@ -30,11 +30,11 @@ const addCityName = (e) =>{
     }
 }
 
-const deleteCity = (e) =>{
-    console.log(e.parentNode.parentNode.dataset.cityName)
+const deletePoint = (e) =>{
+    console.log(e.parentNode.parentNode.dataset.id)
     $.ajax({
         type: 'POST',
-        url: url+'/city/delete', 
+        url: url+'/point/delete', 
         data: {
             currentUserId: parseInt(currentUserId),
             id:e.parentNode.parentNode.dataset.id
@@ -49,20 +49,22 @@ const deleteCity = (e) =>{
 }
 
 // передаем тест и id города
-const changeCityName = (e) =>{
+const changePointName = (e) =>{
     $.ajax({
         type: 'POST',
-        url: url+'/city/edit', 
+        url: url+'/point/edit', 
         data: {
             currentUserId: parseInt(currentUserId),
-            name:e.parentNode.querySelector('#city').value,
-            id: e.parentNode.querySelector('#city').dataset.id
+            id: e.dataset.pointId,
+            name: e.parentNode.querySelector('#point').value,
+            adress: e.parentNode.querySelector('#adress').value,
+            upr_id: e.parentNode.querySelector('#userPoint').dataset.id
         },
         success: function (response) {
-          console.log(response)
+            
         },
         error: function (error) {
             console.log(error);
         }
-      });
+        });
 }

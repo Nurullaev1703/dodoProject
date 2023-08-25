@@ -1,6 +1,10 @@
 const setInfo = () =>{
     let header = document.querySelector('header .container');
     header.innerHTML += setHeaderContent(user)
+    let resultsContainer = document.querySelector('#results-container');
+    divisionsInfo.forEach(employee =>{
+      resultsContainer.innerHTML += setMembersResults(employee)
+    })
 }
 
 
@@ -35,7 +39,7 @@ const clearInputs = (e) =>{
 // фильтр сотрудников в results-info
 $(function() {
     let nameFilter = $("[data-filterName]");
-    let pointFilter = $("[data-filterPoint]");
+    let pointFilter = $("[data-filterpoint]");
   
     nameFilter.on("keyup", updateFilters);
     pointFilter.on("keyup", updateFilters);

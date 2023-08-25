@@ -112,6 +112,26 @@ const setUserInfoCard = (user) => {
 };
 
 const setDivisions = (member) => {
+  if(location.href.includes('manager')){
+    const divisionMember = `
+    <div class="division-member member-parent" data-id=${member.id}>
+    <div class="member-info">
+        <div class="img-cover">
+            <img src=${imgUrl + member.photo} alt="">
+        </div>
+        <div class="text-container">
+            <h5 class="member-city">${member.city_name}</h5>
+            <p class="member-name">${member.name}</p>
+        </div>
+    </div>
+    <div class="text-container">
+        <h5 class="lang-employers">Должность</h5>
+        <p class="employee-count">${member.RName}</p>
+    </div>
+    <button class="btn-main lang-info" onclick="modal(true,this,'fullInfo')">Информация</button>
+</div>`;
+  return divisionMember;
+  }
   const divisionMember = `
     <div class="division-member member-parent" data-id=${member.id}>
     <div class="member-info">
@@ -135,6 +155,24 @@ const setDivisions = (member) => {
 // stats page
 
 const setMembersResults = (member) => {
+  if(location.href.includes('manager')){
+    const memberResult = `
+        <div class="division-member member-parent"
+        data-id=${member.id} data-name='${member.RName}'
+         data-point='${member.PName}'>
+            <div class="member-info">
+                <div class="img-cover">
+                    <img src="${member.photo}" alt="">
+                </div>
+                <div class="text-container">
+                    <h5 class="member-point">${member.PName}</h5>
+                    <p class="member-name">${member.UName}</p>
+                </div>
+            </div>
+            <button class="btn-main lang-info" onclick="modal(true,this,'result')">Инфо</button>
+        </div>`;
+  return memberResult;
+  }
   const memberResult = `
         <div class="division-member member-parent"
         data-id=${member.id} data-name='${member.name}'
@@ -169,7 +207,21 @@ const setEquipmentStats = (member) => {
     </div>`;
   return equipmentStats;
 };
-
+const setDivisionResults = (division) => {
+  const memberResult = `
+        <div class="division-member member-parent"
+        data-id=${division.id} data-name='${division.UName}'
+         data-point='${division.PName}'>
+            <div class="member-info">
+                <div class="text-container">
+                    <h5 class="member-point">${division.PName}</h5>
+                    <p class="member-name">${division.UName}</p>
+                </div>
+            </div>
+            <button class="btn-main lang-info" onclick="modal(true,this,'resultDivision')">Инфо</button>
+        </div>`;
+  return memberResult;
+};
 //members page
 const setMembersInfo = (member) => {
   const membersInfo = `
@@ -198,7 +250,30 @@ const setMembersInfo = (member) => {
     `;
   return membersInfo;
 };
-
+const setMembersInfoManager = (member) => {
+  const membersInfo = `
+            <div class="row member-parent" data-id="${member.id}" data-city='${member.city_name}'>
+                <div class="column">
+                    <p class="name">${member.name}</p>
+                </div>
+                <div class="column">
+                    <p class="role">${member.RName}</p>
+                </div>
+                <div class="column">
+                    <p class="join-date">${member.dateStartWork}</p>
+                </div>
+                <div class="column edit-column" >
+                    <div class="edit" onclick="modal(true,this,'editUser')">
+                        <svg  xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 640 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H322.8c-3.1-8.8-3.7-18.4-1.4-27.8l15-60.1c2.8-11.3 8.6-21.5 16.8-29.7l40.3-40.3c-32.1-31-75.7-50.1-123.9-50.1H178.3zm435.5-68.3c-15.6-15.6-40.9-15.6-56.6 0l-29.4 29.4 71 71 29.4-29.4c15.6-15.6 15.6-40.9 0-56.6l-14.4-14.4zM375.9 417c-4.1 4.1-7 9.2-8.4 14.9l-15 60.1c-1.4 5.5 .2 11.2 4.2 15.2s9.7 5.6 15.2 4.2l60.1-15c5.6-1.4 10.8-4.3 14.9-8.4L576.1 358.7l-71-71L375.9 417z"/></svg>
+                    </div>
+                    <div class="delete" onclick="deleteUser(${member.id})">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 640 512"><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM472 200H616c13.3 0 24 10.7 24 24s-10.7 24-24 24H472c-13.3 0-24-10.7-24-24s10.7-24 24-24z"/></svg>
+                    </div>
+                </div>
+            </div>
+    `;
+  return membersInfo;
+};
 // divisions
 const setMembersInfoDivision = (member,point) => {
   const membersInfo = `
@@ -258,6 +333,85 @@ const setUserInfoForm = (member,pageName) => {
     `;
     return userInfoFormProfile
   }
+  if(location.href.includes('division')){
+    const userInfoForm = `
+        <form action="" class="member-parent" data-id="${member.id}">
+            <h3>Изменение профиля</h3>
+            <p>Имя</p>
+            <input type="text" placeholder="Имя" id="userName" value="${member.name}" required>
+            <p>Логин</p>
+            <input type="text" placeholder="Логин" id="userLogin" value="${member.login}" required>
+            <p>Пароль</p>
+            <input type="text" placeholder="Пароль" id="userPassword" value="">
+            <p>Подтвердить пароль</p>
+            <input type="text" placeholder="Подтвердите пароль" id="confirmPassword" value="">
+            <p>E-mail</p>
+            <input type="email" placeholder="E-mail" id="userEmail" value="${member.email}" required>
+            <p>Телефон</p>
+            <input type="text" placeholder="Номер телефона" id="userPhone" value="${member.phone}">
+            <p>Адрес</p>
+            <input type="text" placeholder="Адрес" id="userAdress" value="${member.adress}">
+            <p>Дата рождения</p>
+            <input type="date" placeholder="" id="userDateB" value="${member.dateB}">
+            <p class="point-hint">Точка</p>
+            <div class="select points-select" onclick="this.classList.toggle('active')">
+              <p class="select-title">Все точки</p>
+              <div class="select-inner">
+              ${setSelectPoints()}
+              </div>
+            </div>
+            <p>Должность</p> 
+            <div class="select" onclick="this.classList.toggle('active')">
+              <p class="select-title">Должность</p>
+              <div class="select-inner">
+              ${setRoles()}
+              </div>
+            </div>
+            <p>Дата начала работы</p>
+            <input type="date" placeholder="" id="userDateStart" value="${member.dateB}">
+            <p>Фотография</p>
+            <input type="file" id="userImg" value="${member.photo}">
+            <button onclick="saveUser(this,${member.id})" class="btn-main">Сохранить</button>
+    </form>
+    `;
+  return userInfoForm;
+  }
+  if(location.href.includes('manager')){
+    const userInfoForm = `
+        <form action="" class="member-parent" data-id="${member.id}">
+            <h3>Изменение профиля</h3>
+            <p>Имя</p>
+            <input type="text" placeholder="Имя" id="userName" value="${member.name}" required>
+            <p>Логин</p>
+            <input type="text" placeholder="Логин" id="userLogin" value="${member.login}" required>
+            <p>Пароль</p>
+            <input type="text" placeholder="Пароль" id="userPassword" value="">
+            <p>Подтвердить пароль</p>
+            <input type="text" placeholder="Подтвердите пароль" id="confirmPassword" value="">
+            <p>E-mail</p>
+            <input type="email" placeholder="E-mail" id="userEmail" value="${member.email}" required>
+            <p>Телефон</p>
+            <input type="text" placeholder="Номер телефона" id="userPhone" value="${member.phone}">
+            <p>Адрес</p>
+            <input type="text" placeholder="Адрес" id="userAdress" value="${member.adress}">
+            <p>Дата рождения</p>
+            <input type="date" placeholder="" id="userDateB" value="${member.dateB}">
+            <p>Должность</p> 
+            <div class="select" onclick="this.classList.toggle('active')">
+              <p class="select-title">Должность</p>
+              <div class="select-inner">
+              ${setRoles()}
+              </div>
+            </div>
+            <p>Дата начала работы</p>
+            <input type="date" placeholder="" id="userDateStart" value="${member.dateB}">
+            <p>Фотография</p>
+            <input type="file" id="userImg" value="${member.photo}">
+            <button onclick="saveUser(this,${member.id})" class="btn-main">Сохранить</button>
+    </form>
+    `;
+  return userInfoForm;
+  }
   const userInfoForm = `
         <form action="" class="member-parent" data-id="${member.id}">
             <h3>Изменение профиля</h3>
@@ -277,8 +431,8 @@ const setUserInfoForm = (member,pageName) => {
             <input type="text" placeholder="Адрес" id="userAdress" value="${member.adress}">
             <p>Дата рождения</p>
             <input type="date" placeholder="" id="userDateB" value="${member.dateB}">
-            <p>Город</p>
-            <div class="select" onclick="this.classList.toggle('active')">
+            <p class="city-hint">Город</p>
+            <div class="select cities-select" onclick="this.classList.toggle('active')">
               <p class="select-title">${member.city_name}</p>
               <div class="select-inner">
               ${setCities(cities)}
@@ -302,7 +456,9 @@ const setUserInfoForm = (member,pageName) => {
 };
 
 const setAddUserForm = () => {
-  const userInfoForm = `
+  let userInfoForm = ``
+  if(location.href.includes("division")){
+    userInfoForm = `
         <form action="" class="member-parent">
             <h3>Добавление пользователя</h3>
             <p>Имя</p>
@@ -319,8 +475,81 @@ const setAddUserForm = () => {
             <input type="text" placeholder="Адрес" id="userAdress" value="">
             <p>Дата рождения</p>
             <input type="date" placeholder="" id="userDateB" value="">
-            <p>Город</p>
-            <div class="select"  onclick="this.classList.toggle('active')">
+            <p class="point-hint">Город</p>
+            <div class="select points-select"  onclick="this.classList.toggle('active')">
+              <p class="select-title" id="userCity" data-id="">Все города</p>
+              <div class="select-inner">
+              ${setSelectPoints()}
+              </div>
+            </div>
+            <p>Должность</p> 
+            <div class="select" onclick="this.classList.toggle('active')">
+              <p class="select-title" id="userRole" data-id="">Должность</p>
+              <div class="select-inner">
+              ${setRoles()}
+              </div>
+            </div>
+            <p>Дата начала работы</p>
+            <input type="date" placeholder="" id="userDateStart" value="">
+            <p>Фотография</p>
+            <input type="file" id="userImg" value="">
+            <input type="button" value="Сохранить" onclick="addUser(this)" class="btn-main">
+    </form>
+    `;
+  }
+  else if(location.href.includes("manager")){
+    userInfoForm = `
+        <form action="" class="member-parent">
+            <h3>Добавление пользователя</h3>
+            <p>Имя</p>
+            <input type="text" placeholder="Имя" id="userName" value="">
+            <p>Логин</p>
+            <input type="text" placeholder="Логин" id="userLogin" value="">
+            <p>Пароль</p>
+            <input type="password" placeholder="Пароль" id="userPassword" value="">
+            <p>E-mail</p>
+            <input type="email" placeholder="E-mail" id="userEmail" value="">
+            <p>Телефон</p>
+            <input type="text" placeholder="Номер телефона" id="userPhone" value="">
+            <p>Адрес</p>
+            <input type="text" placeholder="Адрес" id="userAdress" value="">
+            <p>Дата рождения</p>
+            <input type="date" placeholder="" id="userDateB" value="">
+            <p>Должность</p> 
+            <div class="select" onclick="this.classList.toggle('active')">
+              <p class="select-title" id="userRole" data-id="">Должность</p>
+              <div class="select-inner">
+              ${setRoles()}
+              </div>
+            </div>
+            <p>Дата начала работы</p>
+            <input type="date" placeholder="" id="userDateStart" value="">
+            <p>Фотография</p>
+            <input type="file" id="userImg" value="">
+            <input type="button" value="Сохранить" onclick="addUser(this)" class="btn-main">
+    </form>
+    `;
+  }
+  else{
+    userInfoForm = `
+        <form action="" class="member-parent">
+            <h3>Добавление пользователя</h3>
+            <p>Имя</p>
+            <input type="text" placeholder="Имя" id="userName" value="">
+            <p>Логин</p>
+            <input type="text" placeholder="Логин" id="userLogin" value="">
+            <p>Пароль</p>
+            <input type="password" placeholder="Пароль" id="userPassword" value="">
+            <p>E-mail</p>
+            <input type="email" placeholder="E-mail" id="userEmail" value="">
+            <p>Телефон</p>
+            <input type="text" placeholder="Номер телефона" id="userPhone" value="">
+            <p>Адрес</p>
+            <input type="text" placeholder="Адрес" id="userAdress" value="">
+            <p>Дата рождения</p>
+            <input type="date" placeholder="" id="userDateB" value="">
+            <p class="city-hint">Город</p>
+            <div class="select cities-select"  onclick="this.classList.toggle('active')">
               <p class="select-title" id="userCity" data-id="">Все города</p>
               <div class="select-inner">
               ${setCities(cities)}
@@ -337,9 +566,12 @@ const setAddUserForm = () => {
             <input type="date" placeholder="" id="userDateStart" value="">
             <p>Фотография</p>
             <input type="file" id="userImg" value="">
-            <button onclick="addUser(this)" class="btn-main">Сохранить</button>
+            <input type="button" value="Сохранить" onclick="addUser(this)" class="btn-main">
     </form>
     `;
+    
+  }
+  
   return userInfoForm;
 };
 
@@ -377,7 +609,6 @@ const setCityNames = (item) =>{
 return city
 }
 const setChangeCity = (city) =>{
-  console.log(city)
    const cityForm = `
     <form action="" class="member-parent">
         <h3>Редактирование города</h3>
@@ -401,13 +632,13 @@ return cityForm
 // division points
 const setPointsName = (item) =>{
   const city = `
-  <div class="division-member " data-city-name="${item.name}" data-id="${item.id}">
+  <div class="division-member " data-point-name="${item.name}" data-point-adress="${item.adress}" data-id="${item.id}">
     <div class="city-info">
         <h3 class="city-name">${item.name}</h3>
     </div>
     <div class="city-actions">
-        <button class="btn-main lang-change" onclick="modal(true,this,'changeCity')">Изменить</button>
-        <button class="btn-red lang-change" onclick="deleteCity(this)">удалить</button>
+        <button class="btn-main lang-change" onclick="modal(true,this,'editPoint')">Изменить</button>
+        <button class="btn-red lang-change" onclick="deletePoint(this)">удалить</button>
     </div>
 </div>`
 return city
@@ -415,8 +646,8 @@ return city
 const setAddPoint = () =>{
   const cityForm = `
    <form action="" class="member-parent">
-       <h3>Добавление точки</h3>
-       <p>Название точки</p>
+       <h3>Точка</h3>
+       <p>Добавление точки</p>
        <input type="text" placeholder="Введите название точки" id="point" value="">
        <p>Адрес точки</p>
        <input type="text" placeholder="Введите адрес" id="adress" value="">
@@ -427,7 +658,26 @@ const setAddPoint = () =>{
               ${setManagers()}
               </div>
             </div>
-       <input type="button" value="Добавить" onclick="addCityName(this)" class="btn-main">
+       <input type="button" value="Добавить" onclick="addPointName(this)" class="btn-main">
+   </form>`
+return cityForm
+}
+const setChangePoint = (point) =>{
+  const cityForm = `
+   <form action="" class="member-parent">
+       <h3>Точка</h3>
+       <p>Новое название точки</p>
+       <input type="text" placeholder="Введите название точки" id="point" value="${point.pointName}">
+       <p>Адрес точки</p>
+       <input type="text" placeholder="Введите адрес" id="adress" value="${point.pointAdress}">
+       <p>Управляющий</p>
+            <div class="select"  onclick="this.classList.toggle('active')" style="margin-bottom:10px;">
+              <p class="select-title" id="userPoint" data-id="">Управляющие</p>
+              <div class="select-inner">
+              ${setManagers()}
+              </div>
+            </div>
+       <input type="button" value="Сохранить" onclick="changePointName(this)" class="btn-main" data-point-id="${point.id}">
    </form>`
 return cityForm
 }

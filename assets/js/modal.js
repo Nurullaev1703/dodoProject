@@ -11,6 +11,7 @@ const modal = (open,e,info) =>{
             var phoneMask = IMask(targetElement, {
                 mask: '+{7}(000)000-00-00'
             });
+            
         }
         else if(info ==='changeCity'){
             modalContent.innerHTML = setChangeCity(e.parentNode.parentNode.dataset)
@@ -23,6 +24,9 @@ const modal = (open,e,info) =>{
         }
         else if(info ==='addPoint'){
             modalContent.innerHTML = setAddPoint()
+        }
+        else if(info ==='editPoint'){
+            modalContent.innerHTML = setChangePoint(e.parentNode.parentNode.dataset)
         }
         else{
             if(user.id === parseInt(currentUserId)){
@@ -39,12 +43,31 @@ const modal = (open,e,info) =>{
                     if(member.id === parseInt(memberId)){
                         switch(info){
                             case 'result':
-                                divisionStatistics.forEach(item =>{
-                                    if(member.city_name === item.name){
-                                        modalContent.innerHTML = setResultInfo(member,item)
-                                    }
-                                })
+                                if(!location.href.includes('manager')){
+                                    divisionStatistics.forEach(item =>{
+                                        if(member.city_name === item.name){
+                                            modalContent.innerHTML = setResultInfo(member,item)
+                                        }
+                                    })
+                                }
+                                else{
+                                    divisionsInfo.forEach(item =>{
+                                        if(member.name === item.UName){
+                                            modalContent.innerHTML = setResultInfo(member,item)
+                                            if(item.score === null){
+                                                modalContent.querySelector('#score').innerHTML = 'Нет оценки'
+                                            }
+                                            if(item.dateLastEdu === null){
+                                                modalContent.querySelector('#lastEdu').innerHTML = 'Нет обучения'
+                                            }
+                                        }
+                                    })
+                                }
+                                
                                 break
+                                case 'resultDivision':
+                                    modalContent.innerHTML = setResultInfoDivision(divisionsInfo)
+                                    break
                             case 'fullInfo':
                                 modalContent.innerHTML = setFullInfo(member)
                                 break
@@ -54,6 +77,7 @@ const modal = (open,e,info) =>{
                                 var phoneMask = IMask(targetElement, {
                                     mask: '+{7}(000)000-00-00'
                                 });
+                                
                                 break
                             default:
                                 break

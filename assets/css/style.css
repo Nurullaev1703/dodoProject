@@ -903,6 +903,9 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   width: 98%;
   padding: 1%;
 }
+.table.manager .column {
+  width: 25%;
+}
 .table-title {
   font-weight: 600;
 }

@@ -2,7 +2,6 @@ const auth = () => {
   let userLogin = document.getElementById("login");
   let userPassword = document.getElementById("password");
   let authHint = document.getElementById("hint");
-
   $.ajax({
     type: "POST",
     url: url + "/login",

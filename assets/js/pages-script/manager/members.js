@@ -8,12 +8,11 @@ const setInfo = () => {
   let membersInfo = document.querySelector(".table-inner");
   membersInfo.innerHTML = ``;
   header.innerHTML = headerContentMembers + setHeaderContent(user);
-  citiesContainer.innerHTML = setSelect(cities);
-  usersInfo.forEach((user) => {
-    if (user.role == 4) membersInfo.innerHTML += setMembersInfo(user);
-  });
+  citiesContainer.innerHTML += setRoles();
+  usersInfo.forEach(employee =>{
+    membersInfo.innerHTML += setMembersInfoManager(employee)
+  })
 };
-
 const saveUser = (e, id) => {
   let userName = e.parentNode.querySelector("#userName");
   let userLogin = e.parentNode.querySelector("#userLogin");
@@ -26,39 +25,39 @@ const saveUser = (e, id) => {
   let userDateStart = e.parentNode.querySelector("#userDateStart");
   let userImg = e.parentNode.querySelector("#userImg");
   let userPhone = e.parentNode.querySelector("#userPhone");
-  let memberId = id;
   if (
     userName.value.trim() &&
     userLogin.value.trim() &&
     userEmail.value.trim() &&
-    userPassword.value.trim()
-  ) {
+    userRole.dataset.id !== ''
+  ){
     $.ajax({
-      type: "POST",
-      url: url + "/edit",
+      type: 'POST',
+      url: url+'/edit',
       data: {
-        currentUserId: currentUserId,
-        id: memberId,
-        name: userName.value,
-        login: userLogin.value,
-        email: userEmail.value,
-        adress: userAdress.value,
-        dateB: userDateB.value,
-        role_name: 2,
-        phone: userPhone.value.replace(/\D/g, ""),
-        dateStartWork: userDateStart.value,
-        photo: userImg.value,
-        city: 2,
+          currentUserId: parseInt(currentUserId),
+          name: userName.value,
+          phone: userPhone.value.replace(/\D/g, ''),
+          login: userLogin.value,
+          pass: userPassword.value,
+          email: userEmail.value,
+          adress: userAdress.value,
+          dateB: userDateB.value,
+          role: userRole.dataset.id,
+          photo: userImg.value,
+          city: user.city,
+          dateStartWork: userDateStart.value,
+          gender: '1',
+          role_name: userRole.innerHTML,
+          city_name: user.city_name
       },
       success: function (response) {
-        setTimeout(function () {
-          location.reload();
-        }, 2000);
+        console.log(response)
       },
       error: function (error) {
-        console.log(error);
-      },
-    });
+          console.log(error);
+  }
+})
   }
   if (!userName.value.trim()) {
     userName.style.border = "1px solid red";
@@ -80,6 +79,12 @@ const saveUser = (e, id) => {
   } else {
     userPassword.style.border = "1px solid transparent";
   }
+  if (userRole.innerHTML === 'Должность') {
+    userRole.style.border = "1px solid red";
+  } else {
+    userRole.style.border = "1px solid #f78345";
+  }
+
 };
 
 const deleteUser = (userId) => {
@@ -103,7 +108,6 @@ const deleteUser = (userId) => {
     },
   });
 };
-
 const addUser = (e) => {
   let userName = e.parentNode.querySelector("#userName");
   let userLogin = e.parentNode.querySelector("#userLogin");
@@ -119,29 +123,65 @@ const addUser = (e) => {
   // сделать проверку фотографии при отправке
   // создать поле ввода для телефона и пола
   // роль, город сделать выпадающим списком и целочисленным
-  $.ajax({
-    type: "POST",
-    url: url + "/add",
-    data: {
-      currentUserId: parseInt(currentUserId),
-      name: userName.value,
-      phone: userPhone.value.replace(/\D/g, ""),
-      login: userLogin.value,
-      password: userPassword.value,
-      email: userEmail.value,
-      adress: userAdress.value,
-      dateB: userDateB.value,
-      role: 2,
-      photo: userImg.value,
-      city: "2",
-      dateStartWork: userDateStart.value,
-      gender: "1",
-    },
-    success: function (response) {},
-    error: function (error) {
-      console.log(error);
-    },
-  });
+  if (
+    userName.value.trim() &&
+    userLogin.value.trim() &&
+    userEmail.value.trim() &&
+    userRole.dataset.id !== ''
+  ){
+    $.ajax({
+      type: 'POST',
+      url: url+'/add',
+      data: {
+          currentUserId: parseInt(currentUserId),
+          name: userName.value,
+          phone: userPhone.value.replace(/\D/g, ''),
+          login: userLogin.value,
+          pass: userPassword.value,
+          email: userEmail.value,
+          adress: userAdress.value,
+          dateB: userDateB.value,
+          role: userRole.dataset.id,
+          photo: userImg.value,
+          city: user.city,
+          dateStartWork: userDateStart.value,
+          gender: '1',
+          role_name: userRole.innerHTML,
+          city_name: user.city_name
+      },
+      success: function (response) {
+        console.log(response)
+      },
+      error: function (error) {
+          console.log(error);
+  }
+})
+  }
+  if (!userName.value.trim()) {
+    userName.style.border = "1px solid red";
+  } else {
+    userName.style.border = "1px solid transparent";
+  }
+  if (!userLogin.value.trim()) {
+    userLogin.style.border = "1px solid red";
+  } else {
+    userLogin.style.border = "1px solid transparent";
+  }
+  if (!userEmail.value.trim()) {
+    userEmail.style.border = "1px solid red";
+  } else {
+    userEmail.style.border = "1px solid transparent";
+  }
+  if (!userPassword.value.trim()) {
+    userPassword.style.border = "1px solid red";
+  } else {
+    userPassword.style.border = "1px solid transparent";
+  }
+  if (userRole.innerHTML === 'Должность') {
+    userRole.style.border = "1px solid red";
+  } else {
+    userRole.style.border = "1px solid #f78345";
+  }
 };
 
 const filterCities = (e) => {

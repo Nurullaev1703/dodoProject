@@ -51,6 +51,11 @@
     width: 98%;
     padding: 1%;
     @extend %card;
+    &.manager{
+        .column{
+            width: 25%;
+        }
+    }
     &-title{
         font-weight: 600;
         .column:not(:last-child){

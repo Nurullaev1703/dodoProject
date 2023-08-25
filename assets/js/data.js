@@ -1,8 +1,6 @@
 let url= `https://easyteach.kz/api`
 let imgUrl = `https://test.pol1pvl.kz/storage/app/public/user_photo/`
 
-
-
 const setLangActive = () => {
   let ruLang = document.getElementById('ru')
   let kzLang = document.getElementById('kz')
@@ -76,10 +74,24 @@ let usersInfo = JSON.parse(localStorage.getItem('usersInfo'))
 console.log(usersInfo)
 // информация о текущем пользователе
 let user = JSON.parse(localStorage.getItem('user'))
-// полная информация о подразделениях
-const divisionsInfo = JSON.parse(localStorage.getItem('divisionsInfo'))
-// статистика о подразделениях без количества городов
-const divisionStatistics = [...divisionsInfo[1]]
+let divisionsInfo = []
+let divisionStatistics = []
+if(location.href.includes('admin/')){
+  // полная информация о подразделениях
+  divisionsInfo= JSON.parse(localStorage.getItem('divisionsInfo'))
+  // статистика о подразделениях без количества городов
+  divisionStatistics= [...divisionsInfo[1]]
+}
+if(location.href.includes('division/')){
+  // полная информация о подразделениях
+  divisionsInfo= JSON.parse(localStorage.getItem('divisionsInfo'))
+  console.log(divisionsInfo)
+}
+if(location.href.includes('manager/')){
+  // полная информация о подразделениях
+  divisionsInfo= JSON.parse(localStorage.getItem('divisionsInfo'))
+  console.log(divisionsInfo)
+}
 
 
 const burgerMenu = (open) =>{
@@ -175,7 +187,6 @@ $.ajax({
       currentUserId: parseInt(currentUserId)
   },
   success: function (response) {
-    console.log(response)
     rolesName.push(...response)
   },
   error: function (error) {

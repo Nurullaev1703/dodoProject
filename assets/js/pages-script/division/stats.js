@@ -1,12 +1,12 @@
 const setInfo = () =>{
     let header = document.querySelector('header .container');
     let testResults = document.querySelector('#results-container');
-    let divisionsCount = document.querySelector('.division-count')
+    let UprCount = document.querySelector('.count-upr')
+    let CurCount = document.querySelector('.count-cur')
     header.innerHTML += setHeaderContent(user)
-    divisionsCount.innerHTML = `Кол-во: ${divisionsInfo[0]}`
-    division.forEach(member =>{
-        testResults.innerHTML += setMembersResults(member)
-    })
+    UprCount.innerHTML = `Кол-во: ${divisionsInfo[1].count_upr}`
+    CurCount.innerHTML = `Кол-во: ${divisionsInfo[2].count_cur}`
+    testResults.innerHTML += setDivisionResults(divisionsInfo[0])
 }
 
 
