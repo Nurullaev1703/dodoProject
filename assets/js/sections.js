@@ -718,41 +718,119 @@ const setEmployees = () =>{
     })
   return employee
 }
+const setTasksInfo = () =>{
+  let employee = ``
+  tasks.forEach(task =>{
+    task.forEach(member =>{
+      employee += `
+        <div class="division-member member-parent" data-point-id=${member.id} data-user-id="${member.PUser_id}">
+          <div class="member-info">
+              <div class="text-container">
+                  <h5 class="member-point">${member.name}</h5>
+                  <p class="member-name">${member.UName}</p>
+              </div>
+          </div>
+          <div class="text-container">
+              <h5 class="lang-employers">Должность</h5>
+              <p class="employee-count">${member.role_name}</p>
+          </div>
+          <div class="select" onclick="this.classList.toggle('active')">
+              <p class="select-title" id="courses">Курсы</p>
+              <div class="select-inner">
+                  <p onclick="modal(true,this,'newTask')" data-user-id="${member.PUser_id}">Новый курс</p>
+                  <p onclick="modal(true,this,'endTasks')">Пройденные</p>
+                  <p onclick="modal(true,this,'currentTasks')">Назначенные</p>
+              </div>
+            </div>
+      </div>
+        `
+    })
+  })
+  
+  return employee
+}
 const setNewTask = () =>{
   let newTask = `
-  <div class="courses-list">
+  <div class="courses-list" data-user-id="">
       <h3>Курсы</h3>
       <ol>
-          <li><div class="text-container">
-              <p>Какой-то курс</p>
-              <input type="button" value="Назначить" onclick="addTask()" class="btn-main">
-          </div>
-          </li>
+          ${setTasksName()}
       </ol>
   </div>`
   return newTask
 }
-const setEndTasks = () =>{
+const setEndTasks = (user_id) =>{
   let task = `
   <div class="courses-list">
       <h3>Пройденные курсы</h3>
       <ol>
-          <li>
-              <p>Какой-то курс</p>
-          </li>
+          ${setEndTasksName(user_id)}
       </ol>
   </div>`
   return task
 }
-const setCurrentTasks = () =>{
+const setCurrentTasks = (user_id) =>{
   let task = `
   <div class="courses-list">
       <h3>Назначенные курсы</h3>
       <ol>
-          <li>
-              <p>Какой-то курс</p>
-          </li>
+          ${setCurrentTasksName(user_id)}
       </ol>
   </div>`
   return task
+}
+
+// device page
+const setDevices = (item) =>{
+  const device = `
+  <div class="row" data-id="${item.id}" data-name="${item.name}" data-point="${item.point}" data-point-name="${item.point_name}">
+    <div class="column">
+      <p>${item.name}</p>
+    </div>
+    <div class="column">
+      <p>${item.point_name}</p>
+    </div>
+    <div class="column actions-column">
+      <input type="button" value="Изменить" class="btn-main" onclick="modal(true,this,'editDevice')">
+      <input type="button" value="Удалить" class="btn-red" onclick="deleteDevice(${item.id})">
+    </div>
+  </div>
+  `
+  return device
+}
+const setAddDevice = () =>{
+  const device = `
+  <form action="">
+    <h3 style="margin-bottom: 20px;">Добавить оборудование</h3>
+    <p>Название оборудования</p>
+    <input type="text" placeholder="Введите название" id="deviceName">
+    <p class="point-hint">Точка</p>
+    <div class="select points-select"  onclick="this.classList.toggle('active')">
+      <p class="select-title" id="devicePoint" data-id="">Все точки</p>
+      <div class="select-inner">
+      ${setPoints()}
+      </div>
+    </div>
+    <input type="button" value="Добавить" class="btn-main" onclick="addDevice(this)" style="margin-top: 20px;">
+  </form>
+  `
+  return device
+}
+const setEditDevice = (item) =>{
+  const device = `
+  <form action="" data-id="${item.id}">
+    <h3 style="margin-bottom: 20px;">Изменить оборудование</h3>
+    <p>Название оборудования</p>
+    <input type="text" placeholder="Введите название" id="deviceName" value="${item.name}">
+    <p class="point-hint">Точка</p>
+    <div class="select points-select"  onclick="this.classList.toggle('active')">
+      <p class="select-title" id="devicePoint" data-id="${item.point}">${item.pointName}</p>
+      <div class="select-inner">
+      ${setPoints()}
+      </div>
+    </div>
+    <input type="button" value="Сохранить" class="btn-main" onclick="editDevice(this)" style="margin-top: 20px;">
+  </form>
+  `
+  return device
 }

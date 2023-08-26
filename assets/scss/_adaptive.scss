@@ -1,5 +1,5 @@
 @media screen and (max-width:450px){
-    .btn-main{
+    .btn-main,.btn-red{
         padding: 6px;
     }
     .division-member .member-info .img-cover{
@@ -214,6 +214,11 @@
     }
     .row p {
         font-size: 12px;
+    }
+    .devices .column.actions-column{
+        svg{
+            height: 1em;
+        }
     }
 }
 

@@ -657,6 +657,7 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
 .modal-container .modal .modal-content.tasks {
   flex-direction: column;
   padding-top: 20px;
+  box-shadow: none;
 }
 .modal-container .modal .modal-content.tasks .courses-list {
   width: 96%;
@@ -952,6 +953,23 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   padding: 2%;
 }
 
+.devices .table-top {
+  font-weight: 600;
+}
+.devices .table-top .column {
+  border-bottom: 1px dashed #f78345;
+}
+.devices .column {
+  width: 32%;
+}
+.devices .column.actions-column {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .loader-container {
   display: none;
   position: fixed;
@@ -991,7 +1009,7 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   }
 }
 @media screen and (max-width: 450px) {
-  .btn-main {
+  .btn-main, .btn-red {
     padding: 6px;
   }
   .division-member .member-info .img-cover {
@@ -1198,6 +1216,9 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   }
   .row p {
     font-size: 12px;
+  }
+  .devices .column.actions-column svg {
+    height: 1em;
   }
 }
 @keyframes openSidebar {

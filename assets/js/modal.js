@@ -30,13 +30,34 @@ const modal = (open,e,info) =>{
             modalContent.innerHTML = setChangePoint(e.parentNode.parentNode.dataset)
         }
         else if(info ==='endTasks'){
-            modalContent.innerHTML = setEndTasks()
+            modalContent.innerHTML = setEndTasks(e.parentNode.parentNode.parentNode.dataset.userId)
         }
         else if(info ==='currentTasks'){
-            modalContent.innerHTML = setCurrentTasks()
+            modalContent.innerHTML = setCurrentTasks(e.parentNode.parentNode.parentNode.dataset.userId)
         }
         else if(info ==='newTask'){
-            modalContent.innerHTML = setNewTask()
+            $.ajax({
+                type: 'POST',
+                url: url+'/edu/lessons',
+                data: {
+                  user_id: e.dataset.userId
+                },
+                success: function (response) {
+                  localStorage.setItem('currentEducation',JSON.stringify(response))
+                  currentTasks = JSON.parse(localStorage.getItem('currentEducation'))
+                  modalContent.innerHTML = setNewTask(currentTasks)
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+              });
+            
+        }
+        else if(info ==='addDevice'){
+            modalContent.innerHTML = setAddDevice()
+        }
+        else if(info ==='editDevice'){
+            modalContent.innerHTML = setEditDevice(e.parentNode.parentNode.dataset)
         }
         else{
             if(user.id === parseInt(currentUserId)){

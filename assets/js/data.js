@@ -19,26 +19,40 @@ const setLangActive = () => {
 let currentUserId = localStorage.getItem('id')
 // отправляем и текущий id и id пользователя (одинаковые значения) при редактировании
 
+$.ajax({
+  type: 'POST',
+  url: url+'/getSub',
+  data: {
+      id: parseInt(currentUserId)
+  },
+  success: function (response) {
+    console.log(response)
+    localStorage.setItem('members', JSON.stringify(response));
+    if(document.title === 'Портал'){
+      setInfo(JSON.parse(localStorage.getItem('members')));
+      setLangActive()
+      document.querySelector('.loader-container').classList.remove('active')
+    }
+  },
+  error: function (error) {
+      console.log(error);
+  }
+});
+if(location.href.includes('manager')){
   $.ajax({
     type: 'POST',
-    url: url+'/getSub',
+    url: url+'/edu',
     data: {
-        id: parseInt(currentUserId)
+        currentUserId: parseInt(currentUserId)
     },
     success: function (response) {
-      console.log(response)
-      localStorage.setItem('members', JSON.stringify(response));
-      if(document.title === 'Портал'){
-        setInfo(JSON.parse(localStorage.getItem('members')));
-        setLangActive()
-        document.querySelector('.loader-container').classList.remove('active')
-      }
+      
     },
     error: function (error) {
         console.log(error);
     }
   });
-
+}
 
 if(!location.href.includes('employee')){
   $.ajax({
@@ -60,7 +74,23 @@ if(!location.href.includes('employee')){
   }
 });
 }
-
+const tasks = JSON.parse(localStorage.getItem('education'))
+if(location.href.includes('manager')){
+  $.ajax({
+    type: 'POST',
+    url: url+'/edu',
+    data: {
+      currentUserId: parseInt(currentUserId)
+    },
+    success: function (response) {
+        localStorage.setItem('education', JSON.stringify(response)) 
+    },
+    error: function (error) {
+        console.log(error);
+    }
+  });
+  
+}
 // первое число - количество городов (нулевой индекс)
 // upr-count - количество управляющих
 // kur-count - количество курьеров
@@ -177,6 +207,22 @@ const setManagers = () => {
   });
   return manager;
 };
+let devices = JSON.parse(localStorage.getItem('devices'));
+if(location.href.includes('division')){
+  $.ajax({
+    type: 'POST',
+    url: url+'/device',
+    data: {
+        currentUserId: parseInt(currentUserId)
+    },
+    success: function (response) {
+      localStorage.setItem('devices',JSON.stringify(response));
+    },
+    error: function (error) {
+        console.log(error);
+    }
+  });
+}
 // получение городов
 $.ajax({
   type: 'POST',
@@ -225,3 +271,54 @@ $.ajax({
     }
 });
 const points = JSON.parse(localStorage.getItem('points'))
+let currentTasks = []
+const setTasksName = () => {
+  let task = ``;
+  if(currentTasks.length > 1){
+    currentTasks.forEach((element) => {
+      task += `
+      <li>
+        <div class="text-container">
+            <p>${element}</p>
+            <input type="button" value="Назначить" onclick="addTask(this)" class="btn-main">
+        </div>
+      </li>
+      `;
+    });
+  }
+  return task;
+};
+const setEndTasksName = (user_id) => {
+  let task = ``
+  tasks.forEach(element => {
+    element.forEach(item => {
+      if(item.PUser_id === user_id){
+        item.edu_comp.forEach(edu =>{
+          task += `
+          <li>
+            <p>${edu}</p>
+          </li>
+          `
+        })
+      }
+    })
+  });
+  return task
+};
+const setCurrentTasksName = (user_id) => {
+  let task = ``
+  tasks.forEach(element => {
+    element.forEach(item => {
+      if(item.PUser_id === user_id){
+        item.edu_app.forEach(edu =>{
+          task += `
+          <li>
+            <p>${edu}</p>
+          </li>
+          `
+        })
+      }
+    })
+  });
+  return task
+};

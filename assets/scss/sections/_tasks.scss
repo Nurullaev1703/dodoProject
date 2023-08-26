@@ -2,3 +2,21 @@
     @extend %card;
     padding: 2%;
 }
+.devices{
+    .table-top{
+        font-weight: 600;
+        .column{
+            border-bottom: 1px dashed $main;
+        }
+    }
+    .column{
+        width: 32%;
+        &.actions-column{
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
+}
