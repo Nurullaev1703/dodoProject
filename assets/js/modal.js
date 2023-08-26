@@ -33,7 +33,7 @@ const modal = (open,e,info) =>{
             modalContent.innerHTML = setEndTasks(e.parentNode.parentNode.parentNode.dataset.userId)
         }
         else if(info ==='currentTasks'){
-            modalContent.innerHTML = setCurrentTasks(e.parentNode.parentNode.parentNode.dataset.userId)
+            modalContent.innerHTML = setCurrentTasks(e.dataset.userId)
         }
         else if(info ==='newTask'){
             $.ajax({
@@ -46,6 +46,7 @@ const modal = (open,e,info) =>{
                   localStorage.setItem('currentEducation',JSON.stringify(response))
                   currentTasks = JSON.parse(localStorage.getItem('currentEducation'))
                   modalContent.innerHTML = setNewTask(currentTasks)
+                  modalContent.querySelector('.courses-list').dataset.userId = e.dataset.userId
                 },
                 error: function (error) {
                     console.log(error);

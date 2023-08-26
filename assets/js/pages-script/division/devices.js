@@ -48,7 +48,7 @@ const deleteDevice = (deviceId) => {
       devices.forEach((item) => {
         if (deviceId === item.id) {
           devices.splice(devices.indexOf(item), 1);
-          setInfo();
+          location.reload()
         }
       });
     },

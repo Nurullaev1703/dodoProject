@@ -1,10 +1,6 @@
 let url= `https://easyteach.kz/api`
 let imgUrl = `https://test.pol1pvl.kz/storage/app/public/user_photo/`
-history.pushState(null, null, location.href);
-window.addEventListener('popstate', function(event) {
-    history.pushState(null, null, location.href);
-    console.log('click')
-});
+
 const setLangActive = () => {
   let ruLang = document.getElementById('ru')
   let kzLang = document.getElementById('kz')
@@ -26,7 +22,6 @@ $.ajax({
       id: parseInt(currentUserId)
   },
   success: function (response) {
-    console.log(response)
     localStorage.setItem('members', JSON.stringify(response));
     if(document.title === 'Портал'){
       setInfo(JSON.parse(localStorage.getItem('members')));
@@ -75,7 +70,7 @@ if(!location.href.includes('employee')){
 });
 }
 const tasks = JSON.parse(localStorage.getItem('education'))
-if(location.href.includes('manager')){
+if(location.href.includes('manager') || location.href.includes('employee')){
   $.ajax({
     type: 'POST',
     url: url+'/edu',
@@ -279,7 +274,7 @@ const setTasksName = () => {
       task += `
       <li>
         <div class="text-container">
-            <p>${element}</p>
+            <p data-id="${element.id}">${element.name}</p>
             <input type="button" value="Назначить" onclick="addTask(this)" class="btn-main">
         </div>
       </li>
@@ -292,11 +287,11 @@ const setEndTasksName = (user_id) => {
   let task = ``
   tasks.forEach(element => {
     element.forEach(item => {
-      if(item.PUser_id === user_id){
+      if(item.user_id === user_id){
         item.edu_comp.forEach(edu =>{
           task += `
           <li>
-            <p>${edu}</p>
+            <p>${edu.LName}</p>
           </li>
           `
         })
@@ -309,11 +304,11 @@ const setCurrentTasksName = (user_id) => {
   let task = ``
   tasks.forEach(element => {
     element.forEach(item => {
-      if(item.PUser_id === user_id){
+      if(item.user_id == user_id){
         item.edu_app.forEach(edu =>{
           task += `
           <li>
-            <p>${edu}</p>
+            <p>${edu.LName}</p>
           </li>
           `
         })

@@ -661,6 +661,14 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
 }
 .modal-container .modal .modal-content.tasks .courses-list {
   width: 96%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modal-container .modal .modal-content.tasks .courses-list ol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .modal-container .modal .modal-content.tasks .courses-list .text-container {
   justify-content: space-between;

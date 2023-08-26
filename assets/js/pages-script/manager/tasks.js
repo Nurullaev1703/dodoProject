@@ -2,7 +2,7 @@ const setInfo = () =>{
     let header = document.querySelector('header .container');
     header.innerHTML += setHeaderContent(user)
     let taskContainer = document.querySelector('.tasks')
-    taskContainer.innerHTML += setTasksInfo()
+    taskContainer.innerHTML += setEmployees()
 }
 //modal(true,this,'newTask')
 const setCheckbox = (e) =>{
@@ -20,11 +20,11 @@ const addTask = (e) =>{
     url: url+'/edu/add', 
     data: {
         currentUserId: parseInt(currentUserId),
-        userId: 1,
-        lesson: 'test'
+        user_id: e.parentNode.parentNode.parentNode.parentNode.dataset.userId,
+        lesson: parseInt(e.parentNode.querySelector('p').dataset.id)
     },
     success: function (response) {
-      rolesName.push(...response)
+      console.log(response)
     },
     error: function (error) {
         console.log(error);

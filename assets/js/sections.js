@@ -708,9 +708,9 @@ const setEmployees = () =>{
           <div class="select" onclick="this.classList.toggle('active')">
               <p class="select-title" id="courses">Курсы</p>
               <div class="select-inner">
-                  <p onclick="modal(true,this,'newTask')">Новый курс</p>
-                  <p onclick="modal(true,this,'endTasks')">Пройденные</p>
-                  <p onclick="modal(true,this,'currentTasks')">Назначенные</p>
+                  <p onclick="modal(true,this,'newTask')" data-user-id="${member.id}">Новый курс</p>
+                  <p onclick="modal(true,this,'endTasks')" data-user-id="${member.id}">Пройденные</p>
+                  <p onclick="modal(true,this,'currentTasks')" data-user-id="${member.id}">Назначенные</p>
               </div>
             </div>
       </div>
@@ -770,6 +770,7 @@ const setEndTasks = (user_id) =>{
   return task
 }
 const setCurrentTasks = (user_id) =>{
+  console.log(user_id)
   let task = `
   <div class="courses-list">
       <h3>Назначенные курсы</h3>

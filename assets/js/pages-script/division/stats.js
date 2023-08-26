@@ -4,12 +4,15 @@ const setInfo = () =>{
     let UprCount = document.querySelector('.count-upr')
     let CurCount = document.querySelector('.count-cur')
     header.innerHTML += setHeaderContent(user)
-    UprCount.innerHTML = `Кол-во: ${divisionsInfo[1].count_upr}`
-    CurCount.innerHTML = `Кол-во: ${divisionsInfo[2].count_cur}`
-    testResults.innerHTML += setDivisionResults(divisionsInfo[0])
+    UprCount.innerHTML = `Кол-во: ${divisionsInfo[divisionsInfo.length-2].count_upr}`
+    CurCount.innerHTML = `Кол-во: ${divisionsInfo[divisionsInfo.length-1].count_cur}`
+    divisionsInfo.forEach(item =>{
+      if(item.id){
+        testResults.innerHTML += setDivisionResults(item)
+      }
+    })
+    
 }
-
-
 const openFilterResults = (open,filterName) =>{
   let filter = ``
   if(filterName === 'results'){
