@@ -203,17 +203,21 @@ const setEquipmentStats = (stats) => {
   }
   const equipmentStats = `
     <div class="equipment-stats">
+    <div class="text-container">
+            <h3 class="location">Точка</h3>
+            <p class="equipment-location">${stats['0'].point_name}</p>
+        </div>
         <div class="text-container">
-            <h3 class="count">Название</h3>
-            <p class="school">${stats['0'].name}</p>
+            <h3 class="name">Название</h3>
+            <p class="equipment-name">${stats['0'].name}</p>
         </div>
         <div class="text-container">
             <h3 class="count">Средняя оценка</h3>
-            <p class="school">${parseFloat(stats.avg_score).toFixed(2)}</p>
+            <p class="avg-count">${parseFloat(stats.avg_score).toFixed(2)}</p>
         </div>
         <div class="text-container">
-            <h3 class="count">Среднее время использования</h3>
-            <p class="school">${stats.avg_time} минут</p>
+            <h3 class="time">Среднее время использования</h3>
+            <p class="avg-time">${stats.avg_time} минут</p>
         </div>
     </div>`;
   return equipmentStats;

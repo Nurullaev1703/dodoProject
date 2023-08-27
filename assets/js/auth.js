@@ -14,16 +14,16 @@ const auth = () => {
         localStorage.setItem("id", response.id);
         localStorage.setItem("user", JSON.stringify(response));
         if (response.role == 1) {
-          window.location = "./assets/pages/admin/profile.html" + "#ru";
+          window.location = "./admin/profile.html" + "#ru";
         }
         if (response.role == 2) {
-          window.location = "./assets/pages/division/profile.html" + "#ru";
+          window.location = "./division/profile.html" + "#ru";
         }
         if (response.role == 3) {
-          window.location = "./assets/pages/manager/profile.html" + "#ru";
+          window.location = "./manager/profile.html" + "#ru";
         }
         if (response.role == 4) {
-          window.location = "./assets/pages/employee/profile.html" + "#ru";
+          window.location = "./employee/profile.html" + "#ru";
         }
       } else {
         userLogin.style.border = "1px solid red";

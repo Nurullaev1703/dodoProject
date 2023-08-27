@@ -3,14 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Учетные записи</title>
-    <link rel="stylesheet" href="../../css/style.css" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
   <body>
-    <div class="side-bar" onclick="burgerMenu(false)">
-      <div class="logo">
-        <img src="../../img/logo.png" alt="" />
-      </div>
+    <div class="side-bar">
+        <div class="top-menu">
+            <div class="logo">
+                <img src="../assets/img/logo.png" alt="">
+            </div>
+            <div class="exit">X</div>
+        </div>
       <a
         href="./profile.html#ru"
         onclick="burgerMenu(false)"
@@ -59,10 +62,22 @@
         </svg>
         <p>Учетные записи</p>
       </a>
-      <a href="./tasks.html#ru" onclick="burgerMenu(false)" class="side-bar-item d-flex">
-        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
-        <p>Задания</p>
-    </a>
+      <!-- <a
+        href="./cities.html#ru"
+        onclick="burgerMenu(false)"
+        class="side-bar-item d-flex"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="1em"
+          viewBox="0 0 640 512"
+        >
+          <path
+            d="M480 48c0-26.5-21.5-48-48-48H336c-26.5 0-48 21.5-48 48V96H224V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V96H112V24c0-13.3-10.7-24-24-24S64 10.7 64 24V96H48C21.5 96 0 117.5 0 144v96V464c0 26.5 21.5 48 48 48H304h32 96H592c26.5 0 48-21.5 48-48V240c0-26.5-21.5-48-48-48H480V48zm96 320v32c0 8.8-7.2 16-16 16H528c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16zM240 416H208c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16zM128 400c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32zM560 256c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H528c-8.8 0-16-7.2-16-16V272c0-8.8 7.2-16 16-16h32zM256 176v32c0 8.8-7.2 16-16 16H208c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16zM112 160c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h32zM256 304c0 8.8-7.2 16-16 16H208c-8.8 0-16-7.2-16-16V272c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32zM112 320H80c-8.8 0-16-7.2-16-16V272c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16zm304-48v32c0 8.8-7.2 16-16 16H368c-8.8 0-16-7.2-16-16V272c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16zM400 64c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H368c-8.8 0-16-7.2-16-16V80c0-8.8 7.2-16 16-16h32zm16 112v32c0 8.8-7.2 16-16 16H368c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16z"
+          />
+        </svg>
+        <p>Города</p>
+      </a> -->
     </div>
     <div class="wrapper">
       <header id="header">
@@ -94,15 +109,18 @@
           <div class="top-menu-container">
             <button class="btn-main" data-filter="all">Показать всех</button>
             <div class="select" onclick="this.classList.toggle('active')">
-              <p class="select-title">Все должности</p>
+              <p class="select-title">Все города</p>
               <div class="select-inner"></div>
             </div>
           </div>
         </div>
-        <div class="table manager">
+        <div class="table">
           <div class="table-title row">
             <div class="column">
               <p>Имя</p>
+            </div>
+            <div class="column">
+              <p>Город</p>
             </div>
             <div class="column">
               <p>Должность</p>
@@ -122,21 +140,18 @@
         <div class="modal-content"></div>
       </div>
     </div>
-    <div class="loader-container active">
-      <div class="loader"></div>
-      <p>Загрузка...</p>
-    </div>
+
     <script
       src="https://code.jquery.com/jquery-3.7.0.js"
       integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
       crossorigin="anonymous"
     ></script>
     <script src="https://unpkg.com/imask"></script>
-    <script src="../../js/data.js"></script>
-    <script src="../../js/members-info.js"></script>
-    <script src="../../js/modal.js"></script>
-    <script src="../../js/sections.js"></script>
-    <script src="../../js/pages-script/manager/members.js"></script>
-    <script src="../../js/lang.js"></script>
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/members-info.js"></script>
+    <script src="../assets/js/modal.js"></script>
+    <script src="../assets/js/sections.js"></script>
+    <script src="../assets/js/pages-script/employee/members.js"></script>
+    <script src="../assets/js/lang.js"></script>
   </body>
 </html>

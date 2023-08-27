@@ -40,6 +40,29 @@
             background-color: $main;
             padding-top: 20px;
             animation-name: openSidebar;
+            .bg{
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                width: 100vw;
+                height: 100vh;
+                background-color: transparent;
+                cursor: pointer;
+            }
+            .exit{
+                background-color: rgba($color: $white, $alpha: 1);
+                padding: 4px;
+                border-radius: 6px;
+                font-family: 'Dodo';
+                font-weight: 600;
+                width: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 10px;
+                color: $black;
+              }
         }
         &-item{
             font-size: 18px;
@@ -195,6 +218,11 @@
         }
     }
     .test-results .toggle-filter{
+        display: block;
+        padding: 6px 0;
+        width: 98%;
+    }
+    .equipment-info .toggle-filter{
         display: block;
         padding: 6px 0;
         width: 98%;

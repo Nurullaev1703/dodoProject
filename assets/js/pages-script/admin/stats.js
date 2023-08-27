@@ -8,8 +8,8 @@ const setInfo = () =>{
     division.forEach(member =>{
         testResults.innerHTML += setMembersResults(member)
     })
-    equipment.innerHTML = setEquipmentStats(equipmentStatistics)
-    console.log(equipmentStatistics['0'])
+    equipment.innerHTML += setEquipmentStats(equipmentStatistics)
+    console.log(equipmentStatistics)
 }
 
 
