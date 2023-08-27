@@ -191,19 +191,30 @@ const setMembersResults = (member) => {
   return memberResult;
 };
 
-const setEquipmentStats = (member) => {
+const setEquipmentStats = (stats) => {
+  if(stats.avg_score === null){
+    stats.avg_score = "Нет оценки"
+  }
+  else{
+    stats.avg_score = parseFloat(stats.avg_score).toFixed(2)
+  }
+  if(stats.avg_time === null){
+    stats.avg_time = "Оборудование не использовалось"
+  }
   const equipmentStats = `
-    <div class="equipment-stats" data-name-equip='${member.name}'
-    data-date-equip='${member.dateB}' data-point-equip='${member.adress}'>
-            <div class="img-cover">
-                <img src="${member.photo}" alt="">
-            </div>
+    <div class="equipment-stats">
         <div class="text-container">
-            <h5 class="name">${member.name}</h5>
-            <p class="school">${member.adress}</p>
+            <h3 class="count">Название</h3>
+            <p class="school">${stats['0'].name}</p>
         </div>
-        <p class="date">${member.dateB}</p>
-        <p class="time">${member.time} минут</p>
+        <div class="text-container">
+            <h3 class="count">Средняя оценка</h3>
+            <p class="school">${parseFloat(stats.avg_score).toFixed(2)}</p>
+        </div>
+        <div class="text-container">
+            <h3 class="count">Среднее время использования</h3>
+            <p class="school">${stats.avg_time} минут</p>
+        </div>
     </div>`;
   return equipmentStats;
 };

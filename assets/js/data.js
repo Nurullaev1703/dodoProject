@@ -96,6 +96,7 @@ $.ajax({
     currentUserId: parseInt(currentUserId)
   },
   success: function (response) {
+    console.log(response)
       localStorage.setItem('divisionsInfo', JSON.stringify(response)) 
   },
   error: function (error) {
@@ -110,11 +111,13 @@ console.log(usersInfo)
 let user = JSON.parse(localStorage.getItem('user'))
 let divisionsInfo = []
 let divisionStatistics = []
+let equipmentStatistics = {}
 if(location.href.includes('admin/')){
   // полная информация о подразделениях
   divisionsInfo= JSON.parse(localStorage.getItem('divisionsInfo'))
   // статистика о подразделениях без количества городов
-  divisionStatistics= [...divisionsInfo[1]]
+  divisionStatistics= [...divisionsInfo[0][1]]
+  equipmentStatistics = {...divisionsInfo[1]}
 }
 if(location.href.includes('division/')){
   // полная информация о подразделениях

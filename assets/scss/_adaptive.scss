@@ -194,17 +194,10 @@
             
         }
     }
-    .equipment-info .equipment-container .toggle-filter{
-        display: block;
-        margin-right: 2%;
-    }
     .test-results .toggle-filter{
         display: block;
         padding: 6px 0;
         width: 98%;
-    }
-    .equipment-info .equipment-container{
-        width: 100%;
     }
     .test-results .title{
         margin-bottom: 0;
@@ -219,6 +212,12 @@
         svg{
             height: 1em;
         }
+    }
+    .equipment-info .equipment-container .title{
+        font-size: 24px;
+    }
+    .equipment-info .equipment-container .equipment-stats p{
+        font-size: 14px;
     }
 }
 

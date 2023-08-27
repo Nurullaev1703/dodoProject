@@ -85,7 +85,7 @@ h2 {
   align-items: baseline;
 }
 
-.tasks, .cities, .table, .equipment-info .equipment-container, .test-results .results-container, .modal-container .modal .modal-content form input:not(.btn-main), .modal-container .modal, .form-container .auth, .checkbox-container, .filter-container, .about-user .user-divisions, .about-user .user-info, header .container .nav-menu .btn-main {
+.tasks, .cities, .table, .equipment-info .equipment-container .equipment-stats, .equipment-info .equipment-container, .test-results .results-container, .modal-container .modal .modal-content form input:not(.btn-main), .modal-container .modal, .form-container .auth, .checkbox-container, .filter-container, .about-user .user-divisions, .about-user .user-info, header .container .nav-menu .btn-main {
   border-radius: 6px;
   background-color: #fff;
   box-shadow: 2px 2px 5px 2px rgba(247, 131, 69, 0.1);
@@ -780,28 +780,9 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
 }
 .equipment-info .equipment-container {
   padding: 2% 0 2% 2%;
-  width: 60%;
-  height: 600px;
+  width: 98%;
 }
 .equipment-info .equipment-container .btn-main {
-  display: none;
-}
-.equipment-info .equipment-container .equipment {
-  height: 85%;
-  overflow-y: scroll;
-  padding-right: 2%;
-}
-.equipment-info .equipment-container .equipment::-webkit-scrollbar {
-  width: 6px;
-}
-.equipment-info .equipment-container .equipment::-webkit-scrollbar-thumb {
-  background-color: #f78345;
-}
-.equipment-info .equipment-container .equipment::-webkit-scrollbar-thumb:hover {
-  background-color: #e35d15;
-}
-.equipment-info .equipment-container .toggle-filter {
-  width: 30%;
   display: none;
 }
 .equipment-info .equipment-container .title {
@@ -812,10 +793,9 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
 .equipment-info .equipment-container .equipment-stats {
   display: flex;
   justify-content: space-between;
-  flex-grow: 1;
-  align-items: center;
-  border-bottom: 1px solid #aaaaaa;
+  flex-direction: column;
   padding-bottom: 5px;
+  gap: 16px;
 }
 .equipment-info .equipment-container .equipment-stats.hide {
   display: none;
@@ -824,12 +804,11 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   margin-bottom: 15px;
 }
 .equipment-info .equipment-container .equipment-stats p {
-  font-size: 13px;
+  font-size: 16px;
 }
 .equipment-info .equipment-container .equipment-stats .text-container {
-  width: 33%;
-  flex-direction: column;
-  gap: 0;
+  width: 96%;
+  gap: 20px;
 }
 .equipment-info .equipment-container .equipment-stats .text-container .name {
   font-size: 14px;
@@ -1204,17 +1183,10 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   .filter-container .filter-inner p {
     font-size: 12px;
   }
-  .equipment-info .equipment-container .toggle-filter {
-    display: block;
-    margin-right: 2%;
-  }
   .test-results .toggle-filter {
     display: block;
     padding: 6px 0;
     width: 98%;
-  }
-  .equipment-info .equipment-container {
-    width: 100%;
   }
   .test-results .title {
     margin-bottom: 0;
@@ -1227,6 +1199,12 @@ header .container .nav-menu .profile-preview .img-cover .avatar {
   }
   .devices .column.actions-column svg {
     height: 1em;
+  }
+  .equipment-info .equipment-container .title {
+    font-size: 24px;
+  }
+  .equipment-info .equipment-container .equipment-stats p {
+    font-size: 14px;
   }
 }
 @keyframes openSidebar {
